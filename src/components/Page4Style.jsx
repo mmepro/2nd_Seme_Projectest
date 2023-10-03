@@ -9,13 +9,20 @@ export const Container = styled.div`
   width: 1280px;
   height: 832px;
 `;
-
+export const Body = styled.div`
+  position: relative;
+  width: 1280px;
+  height: 721px;
+  left: 0px;
+  top: 111px;
+  background-color: white;
+`;
 export const Image = styled.div`
 position: absolute;
 width: 298px;
 height: 402px;
 left: 96px;
-top: 200px;
+top: 90px;
 
 background: #D9D9D9;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -26,7 +33,7 @@ position: absolute;
 width: 777px;
 height: 589px;
 left: 464px;
-top: 198px;
+top: 90px;
 
 background: #D9D9D9;
 `;
@@ -35,8 +42,8 @@ export const Date1 = styled.div`
 position: absolute;
 width: 100px;
 height: 52px;
-left: 483px;
-top: 213px;
+left: 19px;
+top: 15px;
 
 background: #F4F3F3;
 `;
@@ -44,8 +51,8 @@ export const Date2 = styled.div`
 position: absolute;
 width: 100px;
 height: 52px;
-left: 590px;
-top: 213px;
+left: 126px;
+top: 15px;
 
 background: #F4F3F3;
 `;
@@ -53,8 +60,8 @@ export const Date3 = styled.div`
 position: absolute;
 width: 100px;
 height: 52px;
-left: 697px;
-top: 213px;
+left: 233px;
+top: 15px;
 
 background: #F4F3F3;
 `;
@@ -62,8 +69,8 @@ export const Date4 = styled.div`
 position: absolute;
 width: 100px;
 height: 52px;
-left: 804px;
-top: 213px;
+left: 340px;
+top: 15px;
 
 background: #F4F3F3;
 `;
@@ -71,8 +78,8 @@ export const Date5 = styled.div`
 position: absolute;
 width: 100px;
 height: 52px;
-left: 911px;
-top: 213px;
+left: 447px;
+top: 15px;
 
 background: #F4F3F3;
 `;
@@ -80,8 +87,8 @@ export const Date6 = styled.div`
 position: absolute;
 width: 100px;
 height: 52px;
-left: 1021px;
-top: 213px;
+left: 554px;
+top: 15px;
 
 background: #F4F3F3;
 `;
@@ -89,8 +96,8 @@ export const Date7 = styled.div`
 position: absolute;
 width: 100px;
 height: 52px;
-left: 1128px;
-top: 213px;
+left: 661px;
+top: 15px;
 
 background: #F4F3F3;
 `;
@@ -99,9 +106,8 @@ export const Theather1 = styled.div`
 position: absolute;
 width: 735px;
 height: 129px;
-left: 483px;
-top: 322px;
-
+left: 19px;
+top: 121px;
 background: #F0EEEE;
 `;
 
@@ -109,8 +115,8 @@ export const Theather2 = styled.div`
 position: absolute;
 width: 735px;
 height: 129px;
-left: 483px;
-top: 474px;
+left: 19px;
+top: 273px;
 
 background: #F0EEEE;
 `;
@@ -119,8 +125,8 @@ export const Theather3 = styled.div`
 position: absolute;
 width: 735px;
 height: 129px;
-left: 483px;
-top: 626px;
+left: 19px;
+top: 425px;
 
 background: #F0EEEE;
 

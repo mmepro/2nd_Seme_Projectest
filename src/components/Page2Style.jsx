@@ -10,12 +10,21 @@ export const Container = styled.div`
   height: 832px;
 `;
 
+export const Body = styled.div`
+  position: relative;
+  width: 1280px;
+  height: 721px;
+  left: 0px;
+  top: 111px;
+  background-color: white;
+`;
+
 export const Image1 = styled.div`
   position: absolute;
   width: 194px;
   height: 285px;
   left: 565px;
-  top: 331px;
+  top: 220px;
 
   background: #d9d9d9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -26,7 +35,7 @@ export const Image2 = styled.div`
   width: 194px;
   height: 285px;
   left: 809px;
-  top: 331px;
+  top: 220px;
 
   background: #d9d9d9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -37,7 +46,7 @@ export const Image3 = styled.div`
   width: 194px;
   height: 285px;
   left: 1053px;
-  top: 331px;
+  top: 220px;
 
   background: #d9d9d9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -48,7 +57,7 @@ export const Chart = styled.div`
   width: 257px;
   height: 252px;
   left: 100px;
-  top: 350px;
+  top: 240px;
   border-radius: 100%;
   background: #d9d9d9;
 `;
@@ -58,7 +67,7 @@ export const Search = styled.div`
   width: 885px;
   height: 72px;
   left: calc(50% - 885px / 2 - 0.5px);
-  top: 153px;
+  top: 42px;
 
   background: #d9d9d9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

@@ -1,9 +1,9 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Container,Header,Logo,Search,Image1,Image2,Image3,Chart,ButtonPage1,ButtonPage2,ButtonPage3, Body } from './components/Page3Style'
 
 function Page3() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 
   return (
     <Container>

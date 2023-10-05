@@ -102,12 +102,21 @@ top: 15px;
 background: #F4F3F3;
 `;
 
+export const TheatherGroup = styled.div`
+position: absolute;
+width: 735px;
+height: 433px;
+left: 19px;
+top: 121px;
+overflow: hidden;
+`;
+
 export const Theather1 = styled.div`
 position: absolute;
 width: 735px;
 height: 129px;
-left: 19px;
-top: 121px;
+left: 0px;
+top: 0px;
 background: #F0EEEE;
 `;
 
@@ -115,8 +124,8 @@ export const Theather2 = styled.div`
 position: absolute;
 width: 735px;
 height: 129px;
-left: 19px;
-top: 273px;
+left: 0px;
+top: 152px;
 
 background: #F0EEEE;
 `;
@@ -125,12 +134,33 @@ export const Theather3 = styled.div`
 position: absolute;
 width: 735px;
 height: 129px;
-left: 19px;
-top: 425px;
-
+left: 0px;
+top: 304px;
 background: #F0EEEE;
 
 `;
+
+export const Theather4 = styled.div`
+position: absolute;
+width: 735px;
+height: 129px;
+left: 0px;
+top: 456px;
+background: #F0EEEE;
+
+`;
+
+export const Theather5 = styled.div`
+position: absolute;
+width: 735px;
+height: 129px;
+left: 0px;
+top: 608px;
+background: #F0EEEE;
+
+`;
+
+
 
 export const Header = styled.div`
   position: absolute;

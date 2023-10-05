@@ -24,14 +24,16 @@ function Page1() {
           <Image5>5</Image5><Image6>6</Image6><Image7>7</Image7><Image8>8</Image8>
           <Grade1>x.x</Grade1><Grade2>x.x</Grade2><Grade3>x.x</Grade3><Grade4>x.x</Grade4>
           <Grade5>x.x</Grade5><Grade6>x.x</Grade6><Grade7>x.x</Grade7><Grade8>x.x</Grade8>
-          <Link to="/page4"><Reserve1>예매</Reserve1></Link>
-          <Link to="/page4"><Reserve2>예매</Reserve2></Link>
-          <Link to="/page4"><Reserve3>예매</Reserve3></Link>
-          <Link to="/page4"><Reserve4>예매</Reserve4></Link>
-          <Link to="/page4"><Reserve5>예매</Reserve5></Link>
-          <Link to="/page4"><Reserve6>예매</Reserve6></Link>
-          <Link to="/page4"><Reserve7>예매</Reserve7></Link>
-          <Link to="/page4"><Reserve8>예매</Reserve8></Link>   
+          <Link to="/page4">
+            <Reserve1>예매</Reserve1>
+            <Reserve2>예매</Reserve2>
+            <Reserve3>예매</Reserve3>
+            <Reserve4>예매</Reserve4>
+            <Reserve5>예매</Reserve5>
+            <Reserve6>예매</Reserve6>
+            <Reserve7>예매</Reserve7>
+            <Reserve8>예매</Reserve8>
+            </Link>
         </ImageGroup>  
         <ImageChange/> 
       </Body>

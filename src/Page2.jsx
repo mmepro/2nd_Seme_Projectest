@@ -1,6 +1,7 @@
 // import { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { Container,Header,Logo,Search,Image1,Image2,Image3,Chart,ButtonPage1,ButtonPage2,ButtonPage3, Body } from './components/Page2Style'
+import { Container,Header,Logo,Search,Chart,ButtonPage1,ButtonPage2,ButtonPage3, Body } from './components/Page2Style'
+import Rcmd from './components/Page2/Rcmd';
 
 function Page2() {
   // const [count, setCount] = useState(0)
@@ -15,9 +16,7 @@ function Page2() {
       </Header>
 
       <Body>
-        <Image1/>
-        <Image2/>
-        <Image3/>
+        <Rcmd/>
         <Chart/>
         <Search/>
       </Body>

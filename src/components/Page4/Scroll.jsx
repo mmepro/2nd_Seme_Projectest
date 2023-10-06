@@ -12,12 +12,12 @@ function Page4Scroll() {
 
     const scrollTop = () => {
         var scrollableDiv = document.getElementById('scroll');
-        scrollableDiv.scrollTop += 50;
+        scrollableDiv.scrollTop -= 50;
     }
 
     const scrollDown = () => {
         var scrollableDiv = document.getElementById('scroll');
-        scrollableDiv.scrollTop -= 50;
+        scrollableDiv.scrollTop += 50;
     }
 
     return(

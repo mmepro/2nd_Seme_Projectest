@@ -1,19 +1,13 @@
 // import { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { Container,Header,Logo,Search,Image1,Image2,Image3,Chart,ButtonPage1,ButtonPage2,ButtonPage3, Body } from './components/Page3Style'
+import { Container,Header,Logo,Search,Chart,ButtonPage1,ButtonPage2,ButtonPage3, Body } from './components/Page3Style'
+import Rcmd from './components/Page3/Rcmd';
 
 function Page3() {
   // const [count, setCount] = useState(0)
 
   return (
     <Container>
-      <Body>
-        <Image1 />
-        <Image2 />
-        <Image3 />
-        <Chart />
-        <Search />
-      </Body>
       <Header>
         <Logo />
         <Link to="/">
@@ -26,6 +20,12 @@ function Page3() {
           <ButtonPage3>내게 맞는 영화</ButtonPage3>
         </Link>
       </Header>
+
+      <Body>
+        <Rcmd/>
+        <Chart />
+        <Search />
+      </Body>
     </Container>
   );
 }

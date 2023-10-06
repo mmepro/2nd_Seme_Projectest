@@ -18,6 +18,8 @@ export const Body = styled.div`
   background-color: white;
 `;
 
+
+
 export const Header = styled.div`
   position: absolute;
   width: 1280px;

@@ -18,39 +18,6 @@ export const Body = styled.div`
   background-color: white;
 `;
 
-export const Image1 = styled.div`
-  position: absolute;
-  width: 194px;
-  height: 285px;
-  left: 565px;
-  top: 220px;
-
-  background: #d9d9d9;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
-
-export const Image2 = styled.div`
-  position: absolute;
-  width: 194px;
-  height: 285px;
-  left: 809px;
-  top: 220px;
-
-  background: #d9d9d9;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
-
-export const Image3 = styled.div`
-  position: absolute;
-  width: 194px;
-  height: 285px;
-  left: 1053px;
-  top: 220px;
-
-  background: #d9d9d9;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
-
 export const Chart = styled.div`
   position: absolute;
   width: 257px;

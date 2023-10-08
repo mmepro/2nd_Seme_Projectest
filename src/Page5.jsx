@@ -1,6 +1,7 @@
 // import { useState } from 'react'
 // import { Link } from 'react-router-dom';
 import { Container,Header,Logo,Body } from './components/Page5Style'
+import Login from './components/Share/Login';
 import PageButton from './components/Share/PageButton';
 
 function Page5() {
@@ -8,12 +9,14 @@ function Page5() {
 
   return (
     <Container>
-      <Body>
-      </Body>
       <Header>
       <Logo>MOVIE</Logo>
         <PageButton/>
+        <Login/>
       </Header>
+
+      <Body>
+      </Body>
     </Container>
   );
 }

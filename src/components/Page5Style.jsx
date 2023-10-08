@@ -15,7 +15,7 @@ export const Body = styled.div`
   height: 721px;
   left: 0px;
   top: 111px;
-  background-color: white;
+  background: #2A2F42;
 `;
 
 
@@ -25,19 +25,25 @@ export const Header = styled.div`
   width: 1280px;
   height: 123px;
   left: 0px;
-  top: -12px;
+  top: 0px;
 
-  background: #d9d9d9;
+  background: #1C1E2C;
 `;
 
 export const Logo = styled.div`
-  position: absolute;
-  width: 306px;
-  height: 67px;
-  left: 88px;
-  top: 24px;
-
-  background: #a29b9b;
+position: absolute;
+width: 238px;
+height: 45px;
+left: 67px;
+top: 32px;
+font-family: 'Ingrid Darling';
+font-style: normal;
+font-weight: 400;
+font-size: 64px;
+line-height: 79px;
+display: flex;
+align-items: center;
+text-align: center;
 `;
 
 export const ButtonPage1 = styled.button`

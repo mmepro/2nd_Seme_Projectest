@@ -7,14 +7,24 @@ const ImageInfo = styled.div`
   height: 285px;
   background: #d9d9d9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
 `;
 
 const GradeInfo = styled.div`
   position: absolute;
   width: 65px;
   height: 27px;
-  background: #d9d9d9;
+  background: #1C1E2C;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f4f3f3;
 `;
 
 const ReservInfo = styled.button`
@@ -26,7 +36,11 @@ const ReservInfo = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
+  background-color: #898FC0;
+  color: black;
 `;
+
 
 function BoxOffice() {
   const ImageData = () => {};
@@ -50,7 +64,7 @@ function BoxOffice() {
           key={index}
           style={{ left: `${left}px`, top: '295px' }}
           onClick={GradeData}
-        />
+        >x.x</GradeInfo>
       ))}
 
       <Link to="/page4">
@@ -59,7 +73,7 @@ function BoxOffice() {
             key={index}
             style={{ left: `${left}px`, top: '295px' }}
             onClick={ReservData}
-          />
+          >예매</ReservInfo>
         ))}
       </Link>
     </>

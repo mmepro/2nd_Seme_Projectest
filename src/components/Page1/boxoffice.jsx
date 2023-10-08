@@ -31,7 +31,6 @@ const ReservInfo = styled.button`
   position: absolute;
   width: 119px;
   height: 27px;
-  background: #d9d9d9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;

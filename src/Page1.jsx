@@ -4,6 +4,7 @@ import ImageChange from './components/Page1/Scroll';
 import BoxOffice from './components/Page1/boxoffice';
 import PageButton from './components/Share/PageButton';
 import Search from './components/Share/Search';
+import Login from './components/Share/Login';
 
 function Page1() {
   // const [count, setCount] = useState(0)
@@ -14,6 +15,7 @@ function Page1() {
       <Header>
         <Logo>MOVIE</Logo>
         <PageButton/>
+        <Login/>
       </Header>
 
       <Body>

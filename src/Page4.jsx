@@ -1,6 +1,6 @@
 // import { useState } from 'react'
 // import { Link } from 'react-router-dom';
-import { Container,Header,Logo,Image,Reservation, TheatherGroup, Body } from './components/Page4Style'
+import { Container,Header,Logo,Image,Reservation, TheatherGroup, Body, NearTheather } from './components/Page4Style'
 import Scroll from './components/Page4/Scroll';
 import Theather from './components/Page4/Theather';
 import Date from './components/Page4/Date';
@@ -21,6 +21,7 @@ function Page4() {
         <Image />
         <Reservation>
             <Date/>
+            <NearTheather>가까운 극장순 ↓</NearTheather>
             <TheatherGroup id='scroll'>
               <Theather/>
             </TheatherGroup>

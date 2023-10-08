@@ -33,6 +33,25 @@ export const Reservation = styled.div`
   border: 1px solid #F4F3F3;
 `;
 
+export const NearTheather = styled.div`
+position: absolute;
+width: 143px;
+height: 31px;
+left: 621px;
+top: 79px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #F4F3F3;
+`;
+
 export const TheatherGroup = styled.div`
   position: absolute;
   width: 735px;

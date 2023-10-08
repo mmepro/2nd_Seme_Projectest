@@ -5,6 +5,7 @@ import Scroll from './components/Page4/Scroll';
 import Theather from './components/Page4/Theather';
 import Date from './components/Page4/Date';
 import PageButton from './components/Share/PageButton';
+import Login from './components/Share/Login';
 function Page4() {
   // const [count, setCount] = useState(0);
 
@@ -13,6 +14,7 @@ function Page4() {
       <Header>
       <Logo>MOVIE</Logo>
         <PageButton/>
+        <Login/>
       </Header>
 
       <Body>

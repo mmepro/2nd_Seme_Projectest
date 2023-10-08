@@ -62,7 +62,7 @@ function Rcmd() {
           key={index}
           style={{ left: `${left}px`, top: '515px' }}
           onClick={GradeData}
-        />
+        >x.x</GradeInfo>
       ))}
 
       <Link to="/page4">
@@ -71,7 +71,7 @@ function Rcmd() {
             key={index}
             style={{ left: `${left}px`, top: '515px' }}
             onClick={ReservData}
-          />
+          >예매</ReservInfo>
         ))}
       </Link>
     </>

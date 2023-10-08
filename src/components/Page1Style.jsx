@@ -55,7 +55,6 @@ width: 1280px;
 height: 123px;
 left: 0px;
 top: 0px;
-
 background: #1C1E2C;
 `;
 

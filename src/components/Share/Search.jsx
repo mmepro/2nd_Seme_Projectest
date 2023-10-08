@@ -10,7 +10,7 @@ background: #2A2F42;
 border: 1px solid #F4F3F3;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 5px;
-font-family: 'Inter';
+font-family: 'Noto Sans KR', sans-serif;
 font-style: normal;
 font-weight: 400;
 font-size: 24px;

@@ -38,6 +38,7 @@ const ReservInfo = styled.button`
   border-radius: 5px;
   background-color: #898FC0;
   color: black;
+  font-family: 'Noto Sans KR', sans-serif;
 `;
 
 

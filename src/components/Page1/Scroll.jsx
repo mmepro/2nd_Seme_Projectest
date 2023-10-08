@@ -5,8 +5,8 @@ import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
 const Page1ScrollButton = styled.button`
   position: absolute;
-  width: 47px;
-  height: 44px;
+  width: 55px;
+  height: 55px;
   background: #434b69;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 100%;
@@ -41,7 +41,7 @@ function Page1Scroll() {
 
       {count < 4 && (
         <Page1ScrollButton
-          style={{ left: '1147px', top: '337px' }}
+          style={{ left: '1143px', top: '337px' }}
           onClick={scrollRight}
         >
           <FontAwesomeIcon icon={faAngleRight} color="black" />

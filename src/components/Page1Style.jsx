@@ -27,7 +27,7 @@ height: 53px;
 left: calc(50% - 149px/2 - 0.5px);
 top: calc(50% - 53px/2 - 178px);
 
-font-family: 'Inter';
+font-family: 'Noto Sans KR', sans-serif;
 font-style: normal;
 font-weight: 700;
 font-size: 20px;
@@ -64,7 +64,7 @@ width: 238px;
 height: 45px;
 left: 67px;
 top: 32px;
-font-family: 'Ingrid Darling';
+font-family: 'Noto Sans KR', sans-serif;
 font-style: normal;
 font-weight: 400;
 font-size: 64px;

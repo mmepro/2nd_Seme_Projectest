@@ -29,7 +29,8 @@ export const Reservation = styled.div`
   height: 589px;
   left: 464px;
   top: 90px;
-  background: #d9d9d9;
+  background: #2A2F42;
+  border: 1px solid #F4F3F3;
 `;
 
 export const TheatherGroup = styled.div`

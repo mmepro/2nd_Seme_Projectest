@@ -6,7 +6,8 @@ width: 100px;
 height: 52px;
 left: 661px;
 top: 15px;
-background: #F4F3F3;
+background: #2A2F42;
+border: 1px solid #F4F3F3;
 `;
 
 function Date() {

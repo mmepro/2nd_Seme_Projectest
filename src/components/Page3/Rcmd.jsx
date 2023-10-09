@@ -8,6 +8,7 @@ const ImageInfo = styled.div`
   background: #d9d9d9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+  color: black;
 `;
 
 const GradeInfo = styled.div`
@@ -54,7 +55,7 @@ function Rcmd() {
           key={index}
           style={{ left: `${left}px`, top: '220px' }}
           onClick={ImageData}
-        />
+        >{index+1}</ImageInfo>
       ))}
 
       {[565,809,1053].map((left, index) => (

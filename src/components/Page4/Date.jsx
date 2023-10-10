@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
+import 'dayjs/locale/ko';
+dayjs.locale('ko');
 
 const DateInfo = styled.div`
   position: absolute;
@@ -22,7 +24,7 @@ function Date() {
     return currentDate.add(index, 'day').format("MM.DD");
   };
   const DayOfWeek = (index) => {
-    return currentDate.add(index, 'day').format("dddd");
+    return currentDate.add(index, 'day').format("ddd");
   };
 
   return (

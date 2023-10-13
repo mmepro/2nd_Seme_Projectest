@@ -23,7 +23,7 @@ function Page5() {
   return (
     <Container>
       <Header>
-      <Logo>MOVIE</Logo>
+      <Logo>LOGO</Logo>
         <PageButton/>
         <Login/>
       </Header>

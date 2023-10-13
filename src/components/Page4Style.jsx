@@ -13,15 +13,6 @@ export const Body = styled.div`
   top: 111px;
   background: #2A2F42;
 `;
-export const Image = styled.div`
-  position: absolute;
-  width: 298px;
-  height: 402px;
-  left: 96px;
-  top: 90px;
-  background: #d9d9d9;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
 
 export const Reservation = styled.div`
   position: absolute;

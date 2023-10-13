@@ -18,16 +18,6 @@ export const Body = styled.div`
   background: #2A2F42;
 `;
 
-export const Chart = styled.div`
-  position: absolute;
-  width: 257px;
-  height: 252px;
-  left: 100px;
-  top: 240px;
-  border-radius: 100%;
-  background: #d9d9d9;
-`;
-
 export const Header = styled.div`
   position: absolute;
   width: 1280px;

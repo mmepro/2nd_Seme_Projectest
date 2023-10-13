@@ -1,6 +1,23 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+const TextInfo = styled.div`
+  position: absolute;
+  width: 403px;
+  height: 53px;
+  left: 565px;
+  top: 155px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #f4f3f3;
+`;
+
 const ImageInfo = styled.div`
   position: absolute;
   width: 194px;
@@ -50,6 +67,7 @@ function Rcmd() {
 
   return (
     <>
+    <TextInfo>000님에게 추천드리는 기존 영화</TextInfo>
       {[565,809,1053].map((left, index) => (
         <ImageInfo
           key={index}
@@ -72,7 +90,7 @@ function Rcmd() {
             key={index}
             style={{ left: `${left}px`, top: '515px' }}
             onClick={ReservData}
-          >예매</ReservInfo>
+          >보러가기</ReservInfo>
         ))}
       </Link>
     </>

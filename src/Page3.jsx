@@ -1,9 +1,10 @@
 // import { useState } from 'react'
-import { Container,Header,Logo,Chart, Body } from './components/Page3Style'
+import { Container,Header,Logo,Body } from './components/Page3Style'
 import Rcmd from './components/Page3/Rcmd';
 import PageButton from './components/Share/PageButton';
 import Search from './components/Share/Search';
 import Login from './components/Share/Login';
+import Chart from './components/Page3/Chart';
 
 function Page3() {
   // const [count, setCount] = useState(0)
@@ -11,7 +12,7 @@ function Page3() {
   return (
     <Container>
       <Header>
-      <Logo>MOVIE</Logo>
+      <Logo>LOGO</Logo>
         <PageButton/>
         <Login/>
       </Header>
@@ -19,7 +20,7 @@ function Page3() {
       <Body>
         <Search/>
         <Rcmd/>
-        <Chart />
+        <Chart/>
       </Body>
     </Container>
   );

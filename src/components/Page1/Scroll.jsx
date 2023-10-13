@@ -32,6 +32,7 @@ function Page1Scroll() {
     <>
       {count > 0 && (
         <Page1ScrollButton
+          id='scrollLeft'
           style={{ left: '82px', top: '337px' }}
           onClick={scrollLeft}
         >
@@ -41,6 +42,7 @@ function Page1Scroll() {
 
       {count < 4 && (
         <Page1ScrollButton
+          id='scrollRight'
           style={{ left: '1143px', top: '337px' }}
           onClick={scrollRight}
         >

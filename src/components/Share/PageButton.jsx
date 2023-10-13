@@ -34,9 +34,9 @@ function PageButton() {
 
     return(
 <>
-        <Link to="/"><PageButtonInfo style={{left:'370px',top:'46px'}}>박스오피스</PageButtonInfo></Link>
-        <Link to="/page2"><PageButtonInfo style={{left:'550px',top:'46px'}}>상영작 추천</PageButtonInfo></Link>
-        <Link to="/page3"><PageButtonInfo style={{left:'730px',top:'46px'}}>내게 맞는 영화</PageButtonInfo></Link>
+        <Link to="/"><PageButtonInfo id="page1" style={{left:'370px',top:'46px'}}>박스오피스</PageButtonInfo></Link>
+        <Link to="/page2"><PageButtonInfo id="page2" style={{left:'550px',top:'46px'}}>상영작 추천</PageButtonInfo></Link>
+        <Link to="/page3"><PageButtonInfo id="page3" style={{left:'730px',top:'46px'}}>내게 맞는 영화</PageButtonInfo></Link>
   </>
     )
 }

@@ -30,7 +30,8 @@ function Search() {
 
     return(
 <>
-        <SearchInfo>원하시는 영화를 검색하세요</SearchInfo>
+        <SearchInfo>원하시는 영화 제목을 입력하세요
+        </SearchInfo>
 </>
     )
 }

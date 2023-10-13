@@ -64,7 +64,7 @@ width: 238px;
 height: 45px;
 left: 67px;
 top: 32px;
-font-family: 'Noto Sans KR', sans-serif;
+font-family: 'Ingrid Darling';
 font-style: normal;
 font-weight: 400;
 font-size: 64px;

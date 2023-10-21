@@ -40,12 +40,14 @@ const SearchInput = styled.input`
 `;
 
 function Search() {
+
   return (
     <>
       <SearchInfo>
         <SearchInput
           type="text"
           placeholder="원하시는 영화 제목을 입력하세요"
+          className="search_input"
         />
       </SearchInfo>
     </>

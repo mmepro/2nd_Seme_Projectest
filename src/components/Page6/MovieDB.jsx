@@ -18,7 +18,7 @@ const OverviewContainer = styled.div`
     margin-right: 30px;
 `;
 
-function Movie({poster_path, title, overview, genre_ids}) {
+function Movie({poster_path, title, overview}) {
     return (
         <ImageInfo>
             <ImageContainer>
@@ -27,7 +27,6 @@ function Movie({poster_path, title, overview, genre_ids}) {
             <OverviewContainer>
                 <h2>제목 : {title}</h2>
                 <p>줄거리 : {overview}</p>
-                {/* <ul>{genre_ids.map((genre) => (<li key={genre}>{genre}</li>))}</ul> */}
             </OverviewContainer>
         </ImageInfo>
     );

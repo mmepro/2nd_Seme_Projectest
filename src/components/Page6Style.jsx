@@ -74,3 +74,12 @@ export const ResultContainer = styled.div`
 export const ResultGroup = styled.div`
   display: flex;
 `
+
+export const SearchText = styled.div`
+  font-size: 20px;
+  position: absolute;
+  width: 885px;
+  height: 72px;
+  left: calc(50% - 885px / 2 - 0.5px);
+  top: 140px;
+`

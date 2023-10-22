@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const SearchInfo = styled.div`
   position: absolute;
@@ -39,16 +40,31 @@ const SearchInput = styled.input`
   }
 `;
 
-function Search() {
+// eslint-disable-next-line react/prop-types
+function Search({ onInputChange, onSubmit }) {
+
+  const handleChange = (event) => {
+    onInputChange(event.target.value); // Step 2
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      onSubmit(); // Enter 키를 눌렀을 때 onSubmit 호출
+    }
+  };
 
   return (
     <>
       <SearchInfo>
+      <Link to="/page6">
         <SearchInput
-          type="text"
-          placeholder="원하시는 영화 제목을 입력하세요"
-          className="search_input"
-        />
+            type="text"
+            placeholder="영화 제목을 입력하세요"
+            className="search_input"
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+          />
+      </Link>
       </SearchInfo>
     </>
   );

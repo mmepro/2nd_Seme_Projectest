@@ -208,6 +208,17 @@ top: 645px;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 background: #898FC0;
 border-radius: 30px;
+transition: background-color 0.2s ease; /* hover 시 배경색 변화를 부드럽게 만들기 위한 트랜지션 설정 */
+/* hover 시 배경색 변경 */
+&:hover {
+  background: #4F526B; /* 원하는 색상으로 변경 */
+}
+font-family: 'Noto Sans KR', sans-serif;
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+text-align: center;
+margin: 0 auto;
 `;
 
 export const SubmitBox = styled.div`
@@ -216,8 +227,8 @@ export const SubmitBox = styled.div`
   height: 154px;
   left: 428px;
   top: 435px;
-  background: #D9D9D9;
   border-radius: 5px;
+  background: #898FC0;
   display: flex;
   justify-content: space-between; /* 컨텐츠를 가운데 정렬하기 위해 */
   align-items: center; /* 세로 가운데 정렬하기 위해 */
@@ -227,6 +238,5 @@ export const SubmitBox = styled.div`
 export const SubmitContent = styled.div`
 width: 97px;
 height: 142.5px;
-background-color: #898FC0;
-border-radius: 10px;;
+padding: 10px;
 `;

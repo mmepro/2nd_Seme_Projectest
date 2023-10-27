@@ -1,4 +1,5 @@
 import './App.css'
+import LoginPage from './LoginPage';
 import Page1 from './Page1';
 import Page2 from './Page2';
 import Page3 from './Page3';
@@ -19,6 +20,7 @@ function App() {
         <Route path="/page4" element={<Page4 />}></Route>
         <Route path="/page5" element={<Page5 />}></Route>
         <Route path="/page6" element={<Page6 />}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
       </Routes>
     </BrowserRouter>
   </div>

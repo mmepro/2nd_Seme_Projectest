@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const SearchInfo = styled.div`
   position: absolute;
@@ -40,33 +41,31 @@ const SearchInput = styled.input`
   }
 `;
 
-// eslint-disable-next-line react/prop-types
-function Search({ onInputChange, onSubmit }) {
+function Search() {
+  const navigate = useNavigate();
+  const [inputValue, setInputValue] = useState('');
 
-  const handleChange = (event) => {
-    onInputChange(event.target.value); // Step 2
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
   };
 
-  const handleKeyDown = (event) => {
+  const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-      onSubmit(); // Enter 키를 눌렀을 때 onSubmit 호출
+      navigate('/page6', { state: { searchQuery: inputValue } });
     }
   };
 
   return (
-    <>
-      <SearchInfo>
-      <Link to="/page6">
-        <SearchInput
-            type="text"
-            placeholder="영화 제목을 입력하세요"
-            className="search_input"
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-          />
-      </Link>
-      </SearchInfo>
-    </>
+    <SearchInfo>
+      <SearchInput
+        type="text"
+        placeholder="영화 제목을 입력하세요"
+        className="search_input"
+        value={inputValue}
+        onChange={handleInputChange}
+        onKeyPress={handleKeyPress}
+      />
+    </SearchInfo>
   );
 }
 

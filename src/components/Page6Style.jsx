@@ -64,6 +64,7 @@ text-align: center;
 export const ResultContainer = styled.div`
   position: absolute;
   width: 1170px;
+  height: 450px;
   top: 190px;
   left: 35px;
   overflow: hidden;

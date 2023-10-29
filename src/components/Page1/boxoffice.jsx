@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'; // Import useEffect and useState
-import axios from 'axios'; // Import axios for making HTTP requests
+
 const ImageInfo = styled.div`
   position: absolute;
   width: 194px;
@@ -14,13 +14,8 @@ const ImageInfo = styled.div`
 
 const PosterImage = styled.img`
   width: 100%;
-  height: 85%; /* Adjust the height of the image portion */
+  height: 100%; /* Adjust the height of the image portion */
   object-fit: cover; /* Maintain aspect ratio and cover the div */
-`;
-const Title = styled.div`
-  padding: 10px;
-  font-weight: bold;
-  text-align: center;
 `;
 
 const GradeInfo = styled.div`
@@ -33,23 +28,27 @@ const GradeInfo = styled.div`
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-size: 24px;
+  font-size: ${(props) => {
+    if (props.rating == 0) {
+      return '17px';
+    } 
+    else {
+      return '20px';
+    }
+  }};
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  /* Use the backgroundColor property to dynamically change the background color */
+  line-height: 30px;
   color: ${(props) => {
-    // Define color conditions based on the rating
     if (props.rating >= 8.5) {
-      return '#4D96FF'; // Change this to your desired color
+      return '#4D96FF';
     } else if (props.rating >= 7.5) {
-      return '#6BCB77'; // Change this to your desired color
+      return '#6BCB77';
     } else if (props.rating >= 6.5) {
-      return '#FFD93D'; // Change this to your desired color
+      return '#FFD93D';
     }
     else {
-      return '#FF6B6B'; // Change this to your desired color
+      return '#FF6B6B';
     }
   }};
 
@@ -72,21 +71,45 @@ const ReservInfo = styled.button`
 
 function BoxOffice() {
   const [movieData, setMovieData] = useState([]);
+  const [moviePost, setMoviePost] = useState([]);
+  console.log(moviePost);
+
+  const getMovies = async () => { // searchName 파라미터 추가
+    const koficResponse = await (await fetch(`http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=c41addc3237a2809a6569efc778d609e&targetDt=20231028`)).json();
+    const boxOfficeData = koficResponse.boxOfficeResult.dailyBoxOfficeList;
+    const movieTitles = boxOfficeData.map(movie => movie.movieNm);
+    setMovieData(movieTitles);
+  };
+
+  const getPost = async (titles) => {
+    const KEY = '0d38cc635c10e090910f3d7ea7194e05'; // Replace with your TMDb API key
+    const URL = 'https://api.themoviedb.org/3/search/movie';
+    const promises = titles.map(async (title) => {
+      const tmdbResponse = await fetch(`${URL}?api_key=${KEY}&language=ko-KR&page=1&query=${title}`);
+      const tmdbJson = await tmdbResponse.json();
+      console.log(tmdbJson);
+      const posterPath = tmdbJson.results.length > 0 ? tmdbJson.results[0].poster_path : null;
+      const vote_average = tmdbJson.results.length > 0 ? tmdbJson.results[0].vote_average : null;
+      return {
+        title,
+        posterUrl: posterPath ? `https://image.tmdb.org/t/p/w500${posterPath}` : null,
+        vote_average: vote_average,
+      };
+    });
+    return Promise.all(promises);
+  };
+
 
   useEffect(() => {
-    // Fetch data from the API when the component mounts
-    axios.get('https://api.themoviedb.org/3/movie/now_playing?api_key=c4e59022826dc465ea5620d6adaa6813&language=ko&page=1&region=KR')
-      .then((response) => {
-        // Sort the movie data by vote_count in descending order
-        const sortedMovies = response.data.results.sort((a, b) => b.popularity - a.popularity);
-        
-        // Store the movie data in the state  
-        setMovieData(response.data.results);
-      })
-      .catch((error) => {
-        console.error('Error fetching data: ', error);
-      });
+    getMovies();
   }, []);
+
+  useEffect(() => {
+    if (movieData.length > 0) {
+      getPost(movieData).then(setMoviePost);
+    }
+  }, [movieData]);
+
   const ImageData = () => {};
 
   const GradeData = () => {};
@@ -96,25 +119,25 @@ function BoxOffice() {
   
   return (
     <>
-    {movieData.map((movie, index) => (
+    {moviePost.map((movie, index) => (
         <ImageInfo
           key={index}
           style={{ left: `${index * 291}px`, top: '0px' }}
           onClick={ImageData}
         >
-          <PosterImage src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.title} />
-          <Title>{movie.title}</Title> {/* Display the movie title */}
+          <PosterImage src={movie.posterUrl} alt={movie.title} />
+          {/* <Title>{movie.title}</Title> Display the movie title */}
         </ImageInfo>
       ))}
 
-    {movieData.map((movie, index) => (
+    {moviePost.map((movie, index) => (
       <GradeInfo
         key={index}
         style={{ left: `${index * 291}px`, top: '295px' }}
         onClick={GradeData}
         rating={movie.vote_average} // Pass the rating as a prop
       >
-        {movie.vote_average}
+        {movie.vote_average === 0 ? '합산중' : movie.vote_average.toFixed(1)}
       </GradeInfo>
     ))}
       

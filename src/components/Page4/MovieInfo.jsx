@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 const Image = styled.div`
   position: absolute;
-  width: 298px;
-  height: 402px;
+  width: 300px;
+  height: 420px;
   left: 96px;
   top: 90px;
   background: #d9d9d9;
@@ -16,7 +16,7 @@ const TextInfo = styled.div`
 width: 298px;
 height: 181px;
 left: 96px;
-top: 492px;
+top: 510px;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 500;
@@ -28,12 +28,21 @@ color: #F4F3F3;
 text-align: left;
 `;
 
-function MovieInfo() {
+const PosterImage = styled.img`
+  width: 100%;
+  height: 100%; /* Adjust the height of the image portion */
+  object-fit: cover; /* Maintain aspect ratio and cover the div */
+  border-radius: 10px;
+`;
+
+function MovieInfo( movie ) {
 
   return (
     <>
-        <Image/>
-        <TextInfo>감독 : 이승훈<br/>장르 : 드라마 / 멜로<br/>개봉 : 2023.12.24<br/>평점 : 7.9</TextInfo>
+        <Image>
+          <PosterImage src={movie.posterUrl}/>
+        </Image>
+        <TextInfo>감독 : {movie.directorName}<br/>장르 : {movie.genres}<br/>개봉 : {movie.releaseDate}<br/>평점 : {movie.voteAvg} </TextInfo>
     </>
   );
 }

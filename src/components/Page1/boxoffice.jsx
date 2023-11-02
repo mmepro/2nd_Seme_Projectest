@@ -72,33 +72,60 @@ const ReservInfo = styled.button`
 function BoxOffice() {
   const [movieData, setMovieData] = useState([]);
   const [moviePost, setMoviePost] = useState([]);
-  console.log(moviePost);
 
-  const getMovies = async () => { // searchName 파라미터 추가
-    const koficResponse = await (await fetch(`http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=c41addc3237a2809a6569efc778d609e&targetDt=20231028`)).json();
+  const getMovies = async () => {
+    // searchName 파라미터 추가
+    const koficResponse = await (
+      await fetch(
+        `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=c41addc3237a2809a6569efc778d609e&targetDt=20231028`
+      )
+    ).json();
     const boxOfficeData = koficResponse.boxOfficeResult.dailyBoxOfficeList;
-    const movieTitles = boxOfficeData.map(movie => movie.movieNm);
+    const movieTitles = boxOfficeData.map((movie) => movie.movieNm);
     setMovieData(movieTitles);
   };
 
   const getPost = async (titles) => {
     const KEY = '0d38cc635c10e090910f3d7ea7194e05'; // Replace with your TMDb API key
-    const URL = 'https://api.themoviedb.org/3/search/movie';
+    const URL = 'https://api.themoviedb.org/3';
     const promises = titles.map(async (title) => {
-      const tmdbResponse = await fetch(`${URL}?api_key=${KEY}&language=ko-KR&page=1&query=${title}`);
+      // Search for the movie by title
+      const tmdbResponse = await fetch(
+        `${URL}/search/movie?api_key=${KEY}&language=ko-KR&page=1&query=${title}`
+      );
       const tmdbJson = await tmdbResponse.json();
-      console.log(tmdbJson);
-      const posterPath = tmdbJson.results.length > 0 ? tmdbJson.results[0].poster_path : null;
-      const vote_average = tmdbJson.results.length > 0 ? tmdbJson.results[0].vote_average : null;
+      const movie = tmdbJson.results[0];
+      if (movie) {
+        // Fetch additional movie details by movie ID to get the director's information
+        const movieDetailsResponse = await fetch(
+          `${URL}/movie/${movie.id}?api_key=${KEY}&language=ko-KR&append_to_response=credits`
+        );
+        const movieDetailsJson = await movieDetailsResponse.json();
+        const director = movieDetailsJson.credits.crew.find((person) => person.job === 'Director');
+        const genres = movieDetailsJson.genres.slice(0, 2).map((genre) => genre.name);
+        console.log(movieDetailsJson);
+        return {
+          title,
+          posterUrl: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : null,
+          vote_average: movie.vote_average,
+          release_date : movie.release_date,
+          director: director ? director.name : 'Director not found',
+          genres: genres.join(' / '),
+        };
+      }
+  
+      // Return a placeholder if the movie is not found
       return {
         title,
-        posterUrl: posterPath ? `https://image.tmdb.org/t/p/w500${posterPath}` : null,
-        vote_average: vote_average,
+        posterUrl: null,
+        vote_average: null,
+        director: 'Director not found',
+        genres: 'Genres not found',
       };
     });
     return Promise.all(promises);
   };
-
+  
 
   useEffect(() => {
     getMovies();
@@ -116,10 +143,9 @@ function BoxOffice() {
 
   const ReservData = () => {};
 
-  
   return (
     <>
-    {moviePost.map((movie, index) => (
+      {moviePost.map((movie, index) => (
         <ImageInfo
           key={index}
           style={{ left: `${index * 291}px`, top: '0px' }}
@@ -130,26 +156,27 @@ function BoxOffice() {
         </ImageInfo>
       ))}
 
-    {moviePost.map((movie, index) => (
-      <GradeInfo
-        key={index}
-        style={{ left: `${index * 291}px`, top: '295px' }}
-        onClick={GradeData}
-        rating={movie.vote_average} // Pass the rating as a prop
-      >
-        {movie.vote_average === 0 ? '합산중' : movie.vote_average.toFixed(1)}
-      </GradeInfo>
-    ))}
-      
-      <Link to="/page4">
-        {[75, 366, 657, 948, 1239, 1530, 1821, 2112].map((left, index) => (
+      {moviePost.map((movie, index) => (
+        <GradeInfo
+          key={index}
+          style={{ left: `${index * 291}px`, top: '295px' }}
+          onClick={GradeData}
+          rating={movie.vote_average} // Pass the rating as a prop
+        >
+          {movie.vote_average === 0 ? '합산중' : movie.vote_average.toFixed(1)}
+        </GradeInfo>
+      ))}
+
+      {moviePost.map((movie, index) => (
+        <Link key={index} to={`/page4?voteAvg=${movie.vote_average}&posterUrl=${movie.posterUrl}&directorName=${movie.director}&releaseDate=${movie.release_date}&genres=${movie.genres}`}>
           <ReservInfo
-            key={index}
-            style={{ left: `${left}px`, top: '295px' }}
+            style={{ left: `${index * 291 + 75}px`, top: '295px' }}
             onClick={ReservData}
-          >예매</ReservInfo>
-        ))}
-      </Link>
+          >
+            예매
+          </ReservInfo>
+        </Link>
+      ))}
     </>
   );
 }

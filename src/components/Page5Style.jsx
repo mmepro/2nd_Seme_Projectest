@@ -77,113 +77,34 @@ export const ButtonPage3 = styled.button`
 `;
 
 export const ScrollContent = styled.div`
-position: absolute;
-width: 1067px;
-height: 563px;
-left: 106px;
-right: 106px;
-overflow: hidden;
-color: black;
-`;
-
-export const Box1 = styled.div`
-position: absolute;
-width: 194px;
-height: 285px;
-left: 0px;
-top: 116px;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 10px;;
-background: #D9D9D9;
-`;
-
-export const Box2 = styled.div`
-position: absolute;
-width: 194px;
-height: 285px;
-left: 291px;
-top: 116px;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 10px;;
-background: #D9D9D9;
-`;
-
-export const Box3 = styled.div`
-position: absolute;
-width: 194px;
-height: 285px;
-left: 582px;
-top: 116px;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 10px;;
-background: #D9D9D9;
-`;
-export const Box4 = styled.div`
   position: absolute;
-  width: 194px;
-  height: 285px;
-  left: 873px;
-  top: 116px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;;
-  background: #D9D9D9;
-`;
+  left: 106px;
+  right: 106px;
+  top: 100px;
+  overflow: hidden;
+  color: black;
+  padding: 20px;
+  gap: 25px;
+  cursor: pointer;
+  background: #4F526B; /* 원하는 색상으로 변경 */
 
-export const Box5 = styled.div`
-  position: absolute;
-  width: 194px;
-  height: 285px;    
-  left: 1164px;
-  top: 116px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;;
-  background: #D9D9D9;
-`;
+  // Add styles for the movie posters
+  > div {
+    position: relative;
+    cursor: pointer;
+    transition: filter 0.3s; /* Add a transition for smooth effect */
 
-export const Box6 = styled.div`
-  position: absolute;
-  width: 194px;
-  height: 285px;
-  left: 1455px;
-  top: 116px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;;
-  background: #D9D9D9;
-`;
+    // Darken the poster on hover
+    &:hover {
+      filter: brightness(0.7); /* Darken the poster */
+    }
 
-export const Box7 = styled.div`
-  position: absolute;
-  width: 194px;
-  height: 285px;;
-  left: 1746px;
-  top: 116px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;;
-  background: #D9D9D9;
+    // Show the overlay when hovering over the movie poster
+    &:hover::before {
+      display: block;
+    }
+  }
 `;
-
-export const Box8 = styled.div`
-  position: absolute;
-  width: 194px;
-  height: 285px;;
-  left: 2037px;
-  top: 116px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;;
-  background: #D9D9D9;
-`;
-
-export const Box9 = styled.div`
-  position: absolute;
-  width: 194px;
-  height: 285px;
-  left: 2328px;
-  top: 116px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;;
-  background: #D9D9D9;
-`;
-
 
 export const Text1 = styled.div`
 position: absolute;
@@ -201,9 +122,9 @@ color: #FFFFFF;
 
 export const Submit = styled.button`
 position: absolute;
-width: 180px;
-height: 58px;
-left: 565px;
+width: 150px;
+height: 50px;
+left: 580px;
 top: 645px;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 background: #898FC0;
@@ -216,9 +137,9 @@ transition: background-color 0.2s ease; /* hover 시 배경색 변화를 부드�
 font-family: 'Noto Sans KR', sans-serif;
 font-style: normal;
 font-weight: 400;
-font-size: 24px;
-text-align: center;
-margin: 0 auto;
+font-size: 20px;
+text-align: center; /* 텍스트 가운데 정렬 */
+line-height: 10px; 
 `;
 
 export const SubmitBox = styled.div`
@@ -226,9 +147,9 @@ export const SubmitBox = styled.div`
   width: 424px;
   height: 154px;
   left: 428px;
-  top: 435px;
+  top: 440px;
   border-radius: 5px;
-  background: #898FC0;
+  background: #4F526B; /* 원하는 색상으로 변경 */
   display: flex;
   justify-content: space-between; /* 컨텐츠를 가운데 정렬하기 위해 */
   align-items: center; /* 세로 가운데 정렬하기 위해 */
@@ -236,7 +157,5 @@ export const SubmitBox = styled.div`
 `;
 
 export const SubmitContent = styled.div`
-width: 97px;
-height: 142.5px;
-padding: 10px;
+cursor: pointer;
 `;

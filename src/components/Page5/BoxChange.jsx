@@ -18,13 +18,13 @@ function BoxChange() {
   const scrollLeft = () => {
     console.log('Scroll Left Clicked'); // 이 줄을 추가
     var scrollableDiv = document.getElementById('scroll');
-    scrollableDiv.scrollLeft -= 291;
+    scrollableDiv.scrollLeft -= 210;
 }
 
 const scrollRight = () => {
   console.log('Scroll Right Clicked'); // 이 줄을 추가
     var scrollableDiv = document.getElementById('scroll');
-    scrollableDiv.scrollLeft += 291;
+    scrollableDiv.scrollLeft += 210;
 }
 
   return (

@@ -1,6 +1,6 @@
 import PageButton from './components/Share/PageButton';
 import Login from './components/Share/Login';
-import { Container,Header,Logo,Body,Logo1,Welcome,IdInput,PwInput, LoginButton, Caption} from './components/LoginPageStyle';
+import { Container,Header,Logo,Body,Welcome,IdInput,PwInput, LoginButton, Caption} from './components/LoginPageStyle';
 
 function LoginPage() {
     // const [count, setCount] = useState(0)
@@ -9,13 +9,12 @@ function LoginPage() {
     return (
       <Container>
         <Header>
-          <Logo>MOVIE</Logo>
+          <Logo>LOGO</Logo>
           <PageButton/>
           <Login/>
         </Header>
   
         <Body>
-        <Logo1>Movie</Logo1>
         <Welcome>Welcome Back</Welcome>
         <IdInput type="text"/>
         <PwInput type="text"/>

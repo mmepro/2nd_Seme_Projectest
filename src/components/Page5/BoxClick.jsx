@@ -1,14 +1,11 @@
-// BoxClick.jsx
-
-
-export function handleBoxClick(boxName, selectedBoxes, setSelectedBoxes) {
-  if (selectedBoxes.includes(boxName)) {
-    setSelectedBoxes(selectedBoxes.filter((box) => box !== boxName));
+export function handleBoxClick(selectedMovies, setSelectedMovies, movie) {
+  // Check if the movie is not already in selectedMovies
+  if (selectedMovies.length < 3 && !selectedMovies.some((m) => m.id === movie.id)) {
+    setSelectedMovies([...selectedMovies, movie]);
+  } else if (selectedMovies.some((m) => m.id === movie.id)) {
+    alert('이미 선택된 영화입니다.');
   } else {
-    if (selectedBoxes.length < 3) {
-      setSelectedBoxes([...selectedBoxes, boxName]);
-    } else {
-      alert('최대 세 개의 박스까지만 선택 가능합니다.');
-    }
+    alert('최대 세 개의 박스까지만 선택 가능합니다.');
   }
 }
+

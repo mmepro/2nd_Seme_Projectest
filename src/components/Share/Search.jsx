@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { FaSearch } from 'react-icons/fa';
+
 
 const SearchInfo = styled.div`
   position: absolute;
@@ -9,7 +11,7 @@ const SearchInfo = styled.div`
   left: calc(50% - 885px / 2 - 0.5px);
   top: 42px;
   background: #2a2f42;
-  border: 1px solid #f4f3f3;
+  border: 2px solid #f4f3f3;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   font-family: 'Noto Sans KR', sans-serif;
@@ -41,6 +43,14 @@ const SearchInput = styled.input`
   }
 `;
 
+const SearchIcon = styled.div`
+  position: absolute;
+  right: 30px; /* 원하는 위치로 조정 */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #f4f3f3;
+`;
+
 function Search() {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
@@ -55,6 +65,10 @@ function Search() {
     }
   };
 
+  const handleSearchClick = () => {
+    navigate('/page6', { state: { searchQuery: inputValue } });
+  };
+
   return (
     <SearchInfo>
       <SearchInput
@@ -64,6 +78,10 @@ function Search() {
         value={inputValue}
         onChange={handleInputChange}
         onKeyPress={handleKeyPress}
+      />
+       <FaSearch
+        onClick={handleSearchClick}
+        style={{ cursor: 'pointer', fontSize: '32px', marginLeft: '-80px' }}
       />
     </SearchInfo>
   );

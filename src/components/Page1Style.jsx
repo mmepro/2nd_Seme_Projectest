@@ -60,17 +60,7 @@ background: #1C1E2C;
 
 export const Logo = styled.div`
 position: absolute;
-width: 238px;
-height: 45px;
-left: 67px;
-top: 32px;
-font-family: 'Ingrid Darling';
-font-style: normal;
-font-weight: 400;
-font-size: 64px;
-line-height: 79px;
+left: 90px;
 display: flex;
-align-items: center;
-text-align: center;
 `;
 

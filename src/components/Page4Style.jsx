@@ -63,17 +63,44 @@ export const Header = styled.div`
 
 export const Logo = styled.div`
 position: absolute;
-width: 238px;
-height: 45px;
-left: 67px;
-top: 32px;
-font-family: 'Ingrid Darling';
-font-style: normal;
-font-weight: 400;
-font-size: 64px;
-line-height: 79px;
+left: 90px;
 display: flex;
-align-items: center;
-text-align: center;
 `;
 
+export const TextBox = styled.div`
+  position: absolute;
+  height: 559px;
+  left: 880px;
+  top: 90px;
+  background: #2A2F42;
+  padding-left: 20px;
+  padding-top: 30px;
+  font-size: 27px;
+  font-weight: bold;
+  line-height: 50px;
+`;
+
+export const StyledButton = styled.button`
+  width: 250px;
+  height: 90px;
+  padding: 10px 20px;
+  margin: 20px;
+  border: none;
+  background: #1C1E2C; /* Light background for the button */
+  color: white; /* Dark text color for the button */
+  font-weight: bold;
+  font-size: 30px;
+  border-radius: 5px; /* Rounded corners for the button */
+  border: 1px solid #F4F3F3;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+
+  &:hover {
+    background-color: #4F5B93; /* Change color on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+  }
+
+  &:active {
+    transform: translateY(1px); /* Depress button on click */
+  }
+`;

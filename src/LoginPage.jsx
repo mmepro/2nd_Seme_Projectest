@@ -9,13 +9,15 @@ function LoginPage() {
     return (
       <Container>
         <Header>
-          <Logo>MOVIE</Logo>
+          <Logo>
+            <img width={'170px'} height={'120px'} src='public/logo.png'></img>
+          </Logo>
           <PageButton/>
           <Login/>
         </Header>
   
         <Body>
-        <Logo1>Movie</Logo1>
+        <Logo1>Logo</Logo1>
         <Welcome>Welcome Back</Welcome>
         <IdInput type="text"/>
         <PwInput type="text"/>

@@ -36,7 +36,9 @@ function Page6() {
   return (
     <Container>
       <Header>
-        <Logo>LOGO</Logo>
+        <Logo>
+          <img width={'170px'} height={'120px'} src='public/logo.png'></img>
+        </Logo>
         <PageButton />
         <Login />
       </Header>

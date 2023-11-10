@@ -31,25 +31,15 @@ background: #1C1E2C;
 
 export const Logo = styled.div`
 position: absolute;
-width: 238px;
-height: 45px;
-left: 67px;
-top: 32px;
-font-family: 'Noto Sans KR', sans-serif;
-font-style: normal;
-font-weight: 400;
-font-size: 64px;
-line-height: 79px;
+left: 90px;
 display: flex;
-align-items: center;
-text-align: center;
 `;
 
 export const Logo1 = styled.div`
 position: absolute;
 width: 238px;
 height: 45px;
-left: 546px;
+left: 585px;
 top: 106px;
 
 font-family: 'Ingrid Darling';
@@ -68,7 +58,7 @@ export const Welcome = styled.div`
 position: absolute;
 width: 361px;
 height: 91px;
-left: 304px;
+left: 370px;
 top: 202px;
 
 font-family: 'Inter';

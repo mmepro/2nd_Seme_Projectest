@@ -103,7 +103,6 @@ function BoxOffice() {
         const movieDetailsJson = await movieDetailsResponse.json();
         const director = movieDetailsJson.credits.crew.find((person) => person.job === 'Director');
         const genres = movieDetailsJson.genres.slice(0, 2).map((genre) => genre.name);
-        console.log(movieDetailsJson);
         return {
           title,
           posterUrl: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : null,

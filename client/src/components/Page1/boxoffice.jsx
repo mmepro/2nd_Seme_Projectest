@@ -167,7 +167,7 @@ function BoxOffice() {
       ))}
 
       {moviePost.map((movie, index) => (
-        <Link key={index} to={`/page4?voteAvg=${movie.vote_average}&posterUrl=${movie.posterUrl}&directorName=${movie.director}&releaseDate=${movie.release_date}&genres=${movie.genres}`}>
+        <Link key={index} to={`/page4?voteAvg=${movie.vote_average}&posterUrl=${movie.posterUrl}&directorName=${movie.director}&releaseDate=${movie.release_date}&genres=${movie.genres}&title=${movie.title}`}>
           <ReservInfo
             style={{ left: `${index * 291 + 75}px`, top: '295px' }}
             onClick={ReservData}

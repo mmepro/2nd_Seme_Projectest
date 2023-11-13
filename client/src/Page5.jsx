@@ -1,9 +1,5 @@
 import { useState } from 'react';
-<<<<<<< HEAD
-import React, { useRef } from 'react';
-=======
 import { useRef } from 'react';
->>>>>>> 3605eda86fa43f10f3f5620bb67787a01720cb25
 //import { Link } from 'react-router-dom';
 import { Container, Header, Logo, Body } from './components/Page5Style';
 import Login from './components/Share/Login';
@@ -86,16 +82,13 @@ const handleSubmit = () => {
   return (
     <Container>
       <Header>
-<<<<<<< HEAD
-        <Logo>LOGO</Logo>
-=======
         <Logo>
-        <img width={'170px'} height={'120px'} src='/logo.png'></img>
+          <img width={'170px'} height={'120px'} src='/logo.png'></img>
         </Logo>
->>>>>>> 3605eda86fa43f10f3f5620bb67787a01720cb25
         <PageButton />
         <Login />
       </Header>
+      
       <Body>
         <Text1>본인의 취향에 맞는 영화를 3개 골라주세요!</Text1>
         <MdRefresh onClick={handleRefresh} style={{ cursor: 'pointer', color: 'white'  }} size={40} />

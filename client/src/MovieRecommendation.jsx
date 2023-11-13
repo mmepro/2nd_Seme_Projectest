@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-=======
 import { useState } from 'react';
->>>>>>> 3605eda86fa43f10f3f5620bb67787a01720cb25
 import axios from 'axios';
 
 function MovieRecommendation() {

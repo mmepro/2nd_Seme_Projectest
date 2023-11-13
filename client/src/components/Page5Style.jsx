@@ -32,23 +32,8 @@ export const Header = styled.div`
 
 export const Logo = styled.div`
 position: absolute;
-<<<<<<< HEAD
-width: 238px;
-height: 45px;
-left: 67px;
-top: 32px;
-font-family: 'Ingrid Darling';
-font-style: normal;
-font-weight: 400;
-font-size: 64px;
-line-height: 79px;
-display: flex;
-align-items: center;
-text-align: center;
-=======
 left: 90px;
 display: flex;
->>>>>>> 3605eda86fa43f10f3f5620bb67787a01720cb25
 `;
 
 export const ButtonPage1 = styled.button`

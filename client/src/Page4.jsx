@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-// import { useState } from 'react'
-// import { Link } from 'react-router-dom';
-import { Container,Header,Logo,Reservation, TheatherGroup, Body, NearTheather } from './components/Page4Style'
-=======
 import { useState } from 'react'
 import { Container,Header,Logo,Reservation, TheatherGroup, Body, NearTheather, TextBox, StyledButton} from './components/Page4Style'
->>>>>>> 3605eda86fa43f10f3f5620bb67787a01720cb25
 import Scroll from './components/Page4/Scroll';
 import Theather from './components/Page4/Theather';
 import Date from './components/Page4/Date';
@@ -13,11 +7,6 @@ import PageButton from './components/Share/PageButton';
 import Login from './components/Share/Login';
 import MovieInfo from './components/Page4/MovieInfo';
 import { useLocation } from 'react-router-dom';
-<<<<<<< HEAD
-
-function Page4() {
-  // const [count, setCount] = useState(0);
-=======
 import KakaoMap from './components/Page4/Location';
 import axios from 'axios';
 import cgv from './components/Page4/TN/cgvTheater.json';
@@ -26,7 +15,6 @@ import megabox from './components/Page4/TN/megabox.json';
 
 function Page4() {
   // 선택한 영화 정보 불러오기
->>>>>>> 3605eda86fa43f10f3f5620bb67787a01720cb25
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const posterUrl = params.get('posterUrl');
@@ -34,14 +22,6 @@ function Page4() {
   const directorName = params.get('directorName');
   const releaseDate = params.get('releaseDate');
   const genres = params.get('genres');
-<<<<<<< HEAD
-  // 이제 movieIndex를 사용하여 moviePost 배열에서 선택한 영화 정보를 가져올 수 있습니다.
-  
-  return (
-    <Container>
-      <Header>
-      <Logo>LOGO</Logo>
-=======
   const title = params.get('title');
   
 
@@ -133,27 +113,17 @@ function Page4() {
       <Logo>
         <img width={'170px'} height={'120px'} src='/logo.png'></img>
       </Logo>
->>>>>>> 3605eda86fa43f10f3f5620bb67787a01720cb25
         <PageButton/>
         <Login/>
       </Header>
 
       <Body>
-<<<<<<< HEAD
-=======
       {dataOpen && (<>
->>>>>>> 3605eda86fa43f10f3f5620bb67787a01720cb25
         <MovieInfo posterUrl={posterUrl} voteAvg={voteAvg} directorName={directorName} releaseDate={releaseDate} genres={genres}/>
         <Reservation>
             <Date/>
             <NearTheather>가까운 극장순 ↓</NearTheather>
             <TheatherGroup id='scroll'>
-<<<<<<< HEAD
-              <Theather/>
-            </TheatherGroup>
-            <Scroll/>
-        </Reservation>
-=======
               <Theather nData={nData}/>
             </TheatherGroup>
             <Scroll/>
@@ -170,7 +140,6 @@ function Page4() {
             <StyledButton>위치 직접 설정</StyledButton>
           </TextBox>
         </>)}
->>>>>>> 3605eda86fa43f10f3f5620bb67787a01720cb25
       </Body>
     </Container>
   );

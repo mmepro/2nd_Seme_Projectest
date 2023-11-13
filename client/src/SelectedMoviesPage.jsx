@@ -92,7 +92,9 @@ function SelectedMoviesPage() {
   return (
     <Container>
       <Header>
-        <Logo>LOGO</Logo>
+      <Logo>
+          <img width={'170px'} height={'120px'} src='/logo.png'></img>
+        </Logo>
         <PageButton />
         <Login />
       </Header>

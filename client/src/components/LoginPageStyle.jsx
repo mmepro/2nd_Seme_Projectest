@@ -31,10 +31,30 @@ background: #1C1E2C;
 
 export const Logo = styled.div`
 position: absolute;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:src/components/LoginPageStyle.jsx
+left: 90px;
+display: flex;
+`;
+
+export const Logo1 = styled.div`
+position: absolute;
+width: 238px;
+height: 45px;
+left: 585px;
+top: 106px;
+
+=======
+>>>>>>> 3605eda86fa43f10f3f5620bb67787a01720cb25
 width: 238px;
 height: 45px;
 left: 67px;
 top: 32px;
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/main:client/src/components/LoginPageStyle.jsx
+>>>>>>> 3605eda86fa43f10f3f5620bb67787a01720cb25
 font-family: 'Ingrid Darling';
 font-style: normal;
 font-weight: 400;
@@ -49,8 +69,18 @@ export const Welcome = styled.div`
 position: absolute;
 width: 500px;
 height: 91px;
+<<<<<<< HEAD
 left: 304px;
 top: 152px;
+=======
+<<<<<<< HEAD:src/components/LoginPageStyle.jsx
+left: 370px;
+top: 202px;
+=======
+left: 304px;
+top: 152px;
+>>>>>>> refs/remotes/origin/main:client/src/components/LoginPageStyle.jsx
+>>>>>>> 3605eda86fa43f10f3f5620bb67787a01720cb25
 
 font-family: 'Inter';
 font-style: normal;

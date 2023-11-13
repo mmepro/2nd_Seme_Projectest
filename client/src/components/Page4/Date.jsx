@@ -18,6 +18,7 @@ const DateInfo = styled.div`
 `;
 
 function Date() {
+  // eslint-disable-next-line no-unused-vars
   const [currentDate, setCurrentDate] = useState(dayjs());
 
   const Date = (index) => {

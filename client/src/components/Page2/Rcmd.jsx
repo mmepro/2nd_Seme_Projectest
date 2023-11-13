@@ -5,7 +5,7 @@ const TextInfo = styled.div`
   position: absolute;
   width: 403px;
   height: 53px;
-  left: 565px;
+  left: 540px;
   top: 155px;
   font-family: 'Inter';
   font-style: normal;
@@ -67,7 +67,7 @@ function Rcmd() {
   return (
     <>
       <TextInfo>000님에게 추천드리는 현재 상영작</TextInfo>
-      {[565, 809, 1053].map((left, index) => (
+      {[540, 784, 1028].map((left, index) => (
         <ImageInfo
           key={index}
           style={{ left: `${left}px`, top: '220px' }}
@@ -77,7 +77,7 @@ function Rcmd() {
         </ImageInfo>
       ))}
 
-      {[565, 809, 1053].map((left, index) => (
+      {[540, 784, 1028].map((left, index) => (
         <GradeInfo
           key={index}
           style={{ left: `${left}px`, top: '515px' }}
@@ -88,7 +88,7 @@ function Rcmd() {
       ))}
 
       <Link to="/page4">
-        {[640, 884, 1128].map((left, index) => (
+        {[615, 859, 1103].map((left, index) => (
           <ReservInfo
             id={`예매${index + 1}`}
             key={index}

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useState, useEffect } from 'react'
 
 const TheatherInfo = styled.div`
   position: absolute;
@@ -36,31 +37,35 @@ const TimeInfo = styled.div`
 
 `;
 
-function Theather() {
-  const Data = () => {};
+// eslint-disable-next-line react/prop-types
+function Theather({ nData }) {
+  const [data, setData] = useState(nData);
+
+  useEffect(() => {
+    setData(nData); // Update the state if nData prop changes
+  }, [nData]); 
 
   return (
     <>
       {[0, 152, 304, 456, 608].map((top, index) => (
-        <TheatherInfo
-          key={index}
-          style={{ left: '0px', top: `${top}px` }}
-          onClick={Data}
-        >
-          <TheatherName
-          >CGV 000</TheatherName>
-          {[23, 189, 355, 521, 687].map((left, index) => (
-            <TimeInfo
-              key={index}
-              style={{ left: `${left}px`, top: `45px` }}
-              onClick={Data}
-            >00:00 ~ 00:00<br/>
-            x관</TimeInfo>
-          ))}
-        </TheatherInfo>
+        data[index] && (
+          <TheatherInfo
+            key={index}
+            style={{ left: '0px', top: `${top}px` }}
+          >
+            <TheatherName>{data[index].place_name}</TheatherName>
+            {[23, 189, 355, 521, 687].map((left, timeIndex) => (
+              <TimeInfo
+                key={timeIndex}
+                style={{ left: `${left}px`, top: `45px` }}
+              >00:00 ~ 00:00<br/>x관</TimeInfo>
+            ))}
+          </TheatherInfo>
+        )
       ))}
     </>
   );
+  
 }
 
 export default Theather;

@@ -7,7 +7,10 @@ import Page5 from './Page5';
 import Page6 from './Page6';
 import LoginPage from './LoginPage';
 import SelectedMoviesPage from './SelectedMoviesPage'; // Import the new component
+<<<<<<< HEAD
 import MapPage from './MapPage';
+=======
+>>>>>>> 3605eda86fa43f10f3f5620bb67787a01720cb25
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MovieRecommendation from './MovieRecommendation';
 
@@ -25,7 +28,10 @@ function App() {
         <Route path="/page6" element={<Page6 />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/selected-movies" element={<SelectedMoviesPage />}></Route>
+<<<<<<< HEAD
         <Route path="/map" element={<MapPage />}></Route>
+=======
+>>>>>>> 3605eda86fa43f10f3f5620bb67787a01720cb25
         <Route path="/recommend" element={<MovieRecommendation />}></Route>
         
       </Routes>

@@ -71,38 +71,39 @@ function Page4() {
     const MD = nData[i].place_name.split(' ');
     const theather = MD[0];
     const place = MD[1];
-
     const CGV = cgv;
     const LOTTE = lotte;
     const MEGABOX = megabox;
     const code = [];
     
     if(theather === 'CGV'){
-      console.log(`CGVCode: ${findCGVCode(CGV, place)}`); // CGV 성공
+      // console.log(`CGVCode: ${findCGVCode(CGV, place)}`); // CGV 성공
       code[i] = findCGVCode(CGV, place); 
     }
     else if(theather === '롯데시네마'){
-      console.log(`LotteCode: ${findLOTTECode(LOTTE, place)}`); // 롯데시네마 성공
+      // console.log(`LotteCode: ${findLOTTECode(LOTTE, place)}`); // 롯데시네마 성공
       code[i] = findLOTTECode(LOTTE, place);
     }
     else if(theather === '메가박스'){
-      console.log(`MegaboxCode : ${findMEGABOXCode(MEGABOX, place)}`); //메가박스 성공
+      // console.log(`MegaboxCode : ${findMEGABOXCode(MEGABOX, place)}`); //메가박스 성공
       code[i] = findMEGABOXCode(MEGABOX, place);
     }
   
-    axios({
-      method: 'get',
-      url: 'http://3.38.251.66:3000',
-      params: {
-        "brchNo": code[i],
-        "Title":title
-      }
-    }, { withCredentials : true })
-      .then((Response)=>{
-        console.log(Response.data);
-    }).catch((Error)=>{
-        console.log(Error);
-    })
+    // axios({
+    //   method: 'post',
+    //   url: 'http://43.201.51.58:3000/crawler/cgv',
+    //   params: {
+    //     "Theather":place,
+    //     "brchNo": code[i],
+    //     "Title":title
+    //   }
+    // }, { withCredentials : true })
+    //   .then((Response)=>{
+    //     console.log(Response.data);
+    // }).catch((Error)=>{
+    //     console.log(Error);
+    // })
+
   }
   }
 
@@ -124,7 +125,7 @@ function Page4() {
             <Date/>
             <NearTheather>가까운 극장순 ↓</NearTheather>
             <TheatherGroup id='scroll'>
-              <Theather nData={nData}/>
+              <Theather nData={nData} movieName={title} />
             </TheatherGroup>
             <Scroll/>
         </Reservation>

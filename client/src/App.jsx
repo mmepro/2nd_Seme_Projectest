@@ -9,6 +9,7 @@ import LoginPage from './LoginPage';
 import SelectedMoviesPage from './SelectedMoviesPage'; // Import the new component
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MovieRecommendation from './MovieRecommendation';
+import Account from './Account';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/page5" element={<Page5 />}></Route>
         <Route path="/page6" element={<Page6 />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/account" element={<Account/>}></Route>
         <Route path="/selected-movies" element={<SelectedMoviesPage />}></Route>
         <Route path="/recommend" element={<MovieRecommendation />}></Route>
         

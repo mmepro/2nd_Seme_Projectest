@@ -28,7 +28,7 @@ function Login() {
     return(
 <>
         <Link to="/Login"><LoginInfo style={{left:'987px',top:'15px'}}>로그인</LoginInfo></Link>
-        <Link to="/Login"><LoginInfo style={{left:'1066px',top:'15px'}}>회원가입</LoginInfo></Link>
+        <Link to="/account"><LoginInfo style={{left:'1066px',top:'15px'}}>회원가입</LoginInfo></Link>
         <Link to="/page5"><LoginInfo style={{left:'1145px',top:'15px'}}>내 정보</LoginInfo></Link>
   </>
     )

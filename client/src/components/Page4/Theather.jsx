@@ -52,18 +52,18 @@ function Theather({ nData, movieName }) {
     const matchingTheaters = find3Theaters(nData);
     setData(matchingTheaters);
 
-    axios({
-      method: 'get',
-      url: 'http://43.201.51.58:3000/crawler/cgv/5173',
-    }, { withCredentials : true })
-      .then((Response)=>{
-        //Response.data에서 movieName이 일치하는 것만 데이터를 가져온다
-        const filteredData = Response.data.filter(item => item.movieName === movieName);
-        setData2(filteredData);
-        console.log(filteredData);
-    }).catch((Error)=>{
-        console.log(Error);
-    })
+    // axios({
+    //   method: 'get',
+    //   url: 'http://43.201.51.58:3000/crawler/cgv/5173',
+    // }, { withCredentials : true })
+    //   .then((Response)=>{
+    //     //Response.data에서 movieName이 일치하는 것만 데이터를 가져온다
+    //     const filteredData = Response.data.filter(item => item.movieName === movieName);
+    //     setData2(filteredData);
+    //     console.log(filteredData);
+    // }).catch((Error)=>{
+    //     console.log(Error);
+    // })
     
     // const fetchData = async () => {
     //   try {

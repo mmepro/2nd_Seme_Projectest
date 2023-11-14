@@ -112,7 +112,7 @@ function Page4() {
     <Container>
       <Header>
       <Logo>
-        <img width={'170px'} height={'120px'} src='/logo.png'></img>
+        <img width={'170px'} height={'110px'} src='/logo.png'></img>
       </Logo>
         <PageButton/>
         <Login/>

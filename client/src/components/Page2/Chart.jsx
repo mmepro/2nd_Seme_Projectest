@@ -9,7 +9,7 @@ const ChartTopInfo = styled.div`
   top: 165px;
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 400; 
   font-size: 24px;
   line-height: 35px;
   color: #f4f3f3;
@@ -50,7 +50,7 @@ function Chart() {
   //   const Data = () => {};
 
   return (
-    <>
+    <>  
       <ChartTopInfo>
         OOO님의 관람 기록 top3
       </ChartTopInfo>

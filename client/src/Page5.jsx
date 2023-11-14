@@ -83,11 +83,12 @@ const handleSubmit = () => {
     <Container>
       <Header>
         <Logo>
-        <img width={'170px'} height={'120px'} src='/logo.png'></img>
+          <img width={'170px'} height={'120px'} src='/logo.png'></img>
         </Logo>
         <PageButton />
         <Login />
       </Header>
+      
       <Body>
         <Text1>본인의 취향에 맞는 영화를 3개 골라주세요!</Text1>
         <MdRefresh onClick={handleRefresh} style={{ cursor: 'pointer', color: 'white'  }} size={40} />

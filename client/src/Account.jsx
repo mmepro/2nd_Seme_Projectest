@@ -3,7 +3,7 @@ import Login from './components/Share/Login';
 import { Container,Header,Logo,Body} from './components/AccountStyle';
 import styled from 'styled-components';
 import { useState } from 'react';
-
+import axios from 'axios';
 
 const Name1Box = styled.input`
     position: absolute;
@@ -83,17 +83,26 @@ const CreateAccount = styled.button`
 
 
 function Account() {
-    // State variables for form inputs
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
 
-    // Handle form submission
     const handleSubmit = () => {
-        // Perform actions on form submit, e.g., send data to a server
-        console.log({ firstName, lastName, email, id, password });
+        // 서버로 보낼 데이터
+        const userData = { firstName, lastName, email, id, password };
+
+        // axios를 사용해 서버에 POST 요청 보내기
+        axios.post('?', userData)
+            .then(response => {
+                console.log('회원가입 성공:', response.data);
+                // 성공적인 회원가입 후 처리
+            })
+            .catch(error => {
+                console.error('회원가입 오류:', error);
+                // 오류 처리
+            });
     };
 
     return (

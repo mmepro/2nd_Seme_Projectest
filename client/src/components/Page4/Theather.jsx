@@ -39,69 +39,66 @@ const TimeInfo = styled.div`
 `;
 
 // eslint-disable-next-line react/prop-types
-function Theather({ nData, movieName }) {
-  const [data, setData] = useState(nData);
-  const [data2, setData2] = useState();
-
-  function find3Theaters(theaters) {
-    const targetTheaters = ['CGV', '메가박스', '롯데시네마'];
-    return theaters.filter(theater => targetTheaters.some(target => theater.place_name.includes(target)));
-  }
-
+function Theather({ nData, movieName, tData }) {
+  const [data2, setData2] = useState([]);
   useEffect(() => {
-    const matchingTheaters = find3Theaters(nData);
-    setData(matchingTheaters);
-
-    // axios({
-    //   method: 'get',
-    //   url: 'http://43.201.51.58:3000/crawler/cgv/5173',
-    // }, { withCredentials : true })
-    //   .then((Response)=>{
-    //     //Response.data에서 movieName이 일치하는 것만 데이터를 가져온다
-    //     const filteredData = Response.data.filter(item => item.movieName === movieName);
-    //     setData2(filteredData);
-    //     console.log(filteredData);
-    // }).catch((Error)=>{
-    //     console.log(Error);
-    // })
-    
-    // const fetchData = async () => {
-    //   try {
-    //     const response = await axios.get('http://43.201.51.58:3000/crawler/cgv');
-    //     console.log(response.data);
-    //   } catch (error) {
-    //     console.error('Error fetching data:', error);
-    //   }
-    // };
-    // fetchData();
-
-  }, [nData]); 
+    if (tData) {
+      let allData = [];
+      let promises = [];
+      for (var i = 0; i < nData.length; i++) {
+        let promise = axios({
+          method: 'get',
+          url: `http://43.201.51.58:3000/crawler/${tData[i].theaterType}/${tData[i].code}`,
+        }, { withCredentials: true })
+        .then((Response) => {
+          const filteredData = Response.data.data.filter(item => item.movieName === movieName);
+          return filteredData;
+        })
+        .catch((Error) => {
+          console.log(Error);
+          return []; // Return an empty array in case of an error
+        });
+        promises.push(promise);
+      }
+      Promise.all(promises).then((results) => {
+        allData.push(...results); // Collect all responses
+        setData2(allData); // Update the state with the collected data
+      });
+    }
+  }, [nData, tData]);
+  
+  
 
   return (
     <>
       {[0, 152, 304, 456, 608].map((top, index) => (
-        data[index] && (
+        nData[index] && (
           <TheatherInfo
             key={index}
             style={{ left: '0px', top: `${top}px` }}
           >
-            <TheatherName>{data[index].place_name}</TheatherName>
-            {[23, 189, 355, 521, 687].map((left, timeIndex) => (
-              data2 && data2[timeIndex] && ( // Added check for data2 and data2[timeIndex]
-                <TimeInfo
-                  key={timeIndex}
-                  style={{ left: `${left}px`, top: `45px` }}
-                >{data2[timeIndex].playTime}
-                <br/>{data2[timeIndex].screenName}
-                <br/>잔여좌석 {data2[timeIndex].remainingSeats}
-                </TimeInfo>
-              )
-            ))}
+            <TheatherName>{nData[index].place_name}</TheatherName>
+            {[23, 189, 355, 521, 687].map((left, timeIndex) => {
+              // Check if data2 and the required indexes in data2 exist
+              const timeInfoData = data2 && data2[index] && data2[index][timeIndex];
+              return (
+                timeInfoData && (
+                  <TimeInfo
+                    key={timeIndex}
+                    style={{ left: `${left}px`, top: `45px` }}
+                  >{timeInfoData.playTime}
+                  <br/>{timeInfoData.screenName}
+                  <br/>잔여좌석 {timeInfoData.remainingSeats}
+                  </TimeInfo>
+                )
+              );
+            })}
           </TheatherInfo>
         )
       ))}
     </>
   );
+  
   
   
 }

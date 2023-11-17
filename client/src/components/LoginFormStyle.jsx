@@ -53,18 +53,21 @@ export const Label = styled.label`
   margin-left: 24%; /* 레이블의 왼쪽 마진 */
   margin-bottom: 5px; /* 입력 필드 위 간격 */
   font-family: 'Inter';
+  font-size: 12px;
 `;
 
 export const StyledInput = styled.input`
   width: 50%; /* 폼 너비에 맞춤 */
-  height: 40px; /* 입력 필드 높이 */
+  height: 52px; /* 입력 필드 높이 */
   margin-bottom: 15px; /* 입력 필드 간격 */
   padding: 0 15px; /* 내부 여백 */
   border-radius: 5px; /* 모서리 둥글기 */
-  border: 1px solid #fff; /* 테두리 색상 */
-  background-color: #fff; /* 입력 필드 배경색 */
+  background: #D9D9D9;/* 입력 필드 배경색 */
   font-size: 16px; /* 글꼴 크기 */
   font-family: 'Inter';
+  color: black; /* 글자색 */
+  text-indent: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const SubmitButton = styled.button`
@@ -78,6 +81,7 @@ export const SubmitButton = styled.button`
   font-size: 20px; /* 글꼴 크기 */
   cursor: pointer; /* 마우스 오버시 커서 변경 */
   font-family: 'Inter';
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const SignInLink = styled.p`

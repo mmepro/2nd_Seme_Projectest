@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import axios from 'axios';
 
+
 const Name1Box = styled.input`
     position: absolute;
     width: 295px;

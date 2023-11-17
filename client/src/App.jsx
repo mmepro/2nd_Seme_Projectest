@@ -26,15 +26,8 @@ function App() {
         <Route path="/page5" element={<Page5 />}></Route>
         <Route path="/page6" element={<Page6 />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
-<<<<<<< HEAD
         <Route path="/signup" element={<LoginForm />}></Route>
         <Route path="/page7" element={<Page7 />}></Route>
-=======
-        <Route path="/account" element={<Account/>}></Route>
-        <Route path="/selected-movies" element={<SelectedMoviesPage />}></Route>
->>>>>>> f2590c70e109bfb5369be0ae885e7f405f43610f
-        <Route path="/recommend" element={<MovieRecommendation />}></Route>
-        
       </Routes>
     </BrowserRouter>
   </div>

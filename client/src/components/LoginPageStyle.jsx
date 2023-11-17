@@ -37,7 +37,6 @@ display: flex;
 `;
 
 export const Logo1 = styled.div`
-<<<<<<< HEAD
   position: absolute;
   width: 238px;
   height: 45px;
@@ -75,41 +74,6 @@ export const Welcome = styled.div`
   white-space: pre-wrap;
   color: #FFFFFF;
 `;
-=======
-position: absolute;
-width: 238px;
-height: 45px;
-left: 585px;
-top: 106px;
-/* width: 238px;
-height: 45px;
-left: 67px;
-top: 32px;
-font-family: 'Ingrid Darling';
-font-style: normal;
-font-weight: 400;
-font-size: 64px;
-line-height: 79px;
-display: flex;
-align-items: center;
-text-align: center; */
-`;
-
-export const Welcome = styled.div`
-position: absolute;
-width: 500px;
-height: 91px;
-left: 515px;
-top: 152px;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 48px;
-line-height: 39px;
-display: flex;
-align-items: center;
-text-align: center;
->>>>>>> f2590c70e109bfb5369be0ae885e7f405f43610f
 
 export const Icon = styled(FontAwesomeIcon)`
   position: absolute;

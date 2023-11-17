@@ -1,13 +1,13 @@
-// import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { Container,Header,Logo,Body } from './components/Page2Style'
 import Rcmd from './components/Page2/Rcmd';
 import PageButton from './components/Share/PageButton';
 import Search from './components/Share/Search';
 import Login from './components/Share/Login';
 import Chart from './components/Page2/Chart';
+import { Colors } from 'chart.js';
 
 function Page2() {
-  // const [count, setCount] = useState(0)
 
   return (
     <Container>
@@ -18,7 +18,6 @@ function Page2() {
         <PageButton/>
         <Login/>
       </Header>
-
       <Body>
         <Search/>
         <Rcmd/>

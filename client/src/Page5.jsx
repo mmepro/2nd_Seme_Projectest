@@ -1,14 +1,13 @@
-import { useState } from 'react';
-import { useRef } from 'react';
-//import { Link } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { MdRefresh } from 'react-icons/md';
 import { Container, Header, Logo, Body } from './components/Page5Style';
 import Login from './components/Share/Login';
 import PageButton from './components/Share/PageButton';
 import {Text1, Submit, ScrollContent, SubmitBox, SubmitContent} from './components/Page5Style';
 import BoxChange from './components/Page5/BoxChange';
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { MdRefresh } from 'react-icons/md';
+// import MovieFetcher from './components/Page5/MovieFetcher';
+// import MovieSelector from './components/Page5/MovieSelector';
 
 function Page5() {
   // const [count, setCount] = useState(0);
@@ -34,10 +33,10 @@ function Page5() {
     fetchMovies();
   }, []);
   
-// 새로고침 버튼 클릭 핸들러
-const handleRefresh = () => {
-  fetchMovies();
-};
+  // 새로고침 버튼 클릭 핸들러
+  const handleRefresh = () => {
+    fetchMovies();
+  };
   
 
   const handleBoxClick = (movie) => {
@@ -50,10 +49,11 @@ const handleRefresh = () => {
     } else if (selectedMovies.some((m) => m.id === movie.id)) {
       alert('이미 선택된 영화입니다.');
     } else {
-      alert('최대 세 개의 박스까지만 선택 가능합니다.');
+      alert('최대 세 개 영화까지만 선택 가능합니다.');
     }
   };
-
+  localStorage.setItem('selectedMovies', JSON.stringify(selectedMovies));
+  
   const handleDeleteBox = (movie) => {
     const shouldDelete = window.confirm(`"${movie.title}" 영화를 삭제하시겠습니까?`);
     if (shouldDelete) {
@@ -61,23 +61,14 @@ const handleRefresh = () => {
     }
   };
   
-  localStorage.setItem('selectedMovies', JSON.stringify(selectedMovies));
-// Saving selectedMovies to local storage with genre information
-// const selectedMoviesWithGenre = selectedMovies.map((movie) => ({
-//   ...movie,
-//   genres: movie.genre_ids.map((genreId) => tvGenres[genreId]).join(', '),
-// }));
-const handleSubmit = () => {
-  if (selectedMovies.length === 3) {
-    // Save selectedMovies to localStorage just before navigating
-    
-  } else {
-    alert('최소 세 개의 영화를 선택해야 합니다.');
-  }
-};
-
-
-
+  const handleSubmit = () => {
+    if (selectedMovies.length === 3) {
+      // Save selectedMovies to localStorage just before navigating
+      
+    } else {
+      alert('최소 세 개의 영화를 선택해야 합니다.');
+    }
+  };
 
   return (
     <Container>
@@ -91,18 +82,19 @@ const handleSubmit = () => {
       
       <Body>
         <Text1>본인의 취향에 맞는 영화를 3개 골라주세요!</Text1>
-        <MdRefresh onClick={handleRefresh} style={{ cursor: 'pointer', color: 'white'  }} size={40} />
+        <div style={{ position: 'absolute', top: '55px', right: '120px', cursor: 'pointer'}}>
+          <MdRefresh onClick={handleRefresh} style={{ color: 'white'}} size={40} />
+        </div>
         <ScrollContent
           id="scroll"
-          style={{ scrollBehavior: 'smooth', display: 'flex', color: 'white' }}
-          ref={scrollableContentRef}
-        >
+          ref={scrollableContentRef}>
           {movies.map((movie) => (
             <div key={movie.id}>
               <div onClick={() => handleBoxClick(movie)}>
                 <img
                   src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`} // Use the poster_path from the API response
                   alt={movie.title}
+                  style={{borderRadius: '5px'}}
                 />
               </div>            
             </div>
@@ -118,14 +110,14 @@ const handleSubmit = () => {
               <img
                 src={`https://image.tmdb.org/t/p/w185${selectedMovie.poster_path}`}
                 alt={selectedMovie.title}
-                style={{ maxWidth: '150px', maxHeight: '150px' }} // Adjust the size as needed
+                style={{ maxWidth: '150px', maxHeight: '150px', borderRadius: '5px' }} // Adjust the size as needed
               />
             </SubmitContent>
           ))}
         </SubmitBox>
 
         {selectedMovies.length === 3 ? ( // Check if three movies are selected
-          <Link to="/selected-movies" onClick={handleSubmit}>
+          <Link to="/page7" onClick={handleSubmit}>
             <Submit>제출하기</Submit>
           </Link>
         ) : (

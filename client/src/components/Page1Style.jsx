@@ -63,4 +63,3 @@ position: absolute;
 left: 90px;
 display: flex;
 `;
-

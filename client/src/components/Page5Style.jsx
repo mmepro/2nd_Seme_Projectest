@@ -77,6 +77,11 @@ export const ScrollContent = styled.div`
   gap: 25px;
   cursor: pointer;
   background: #4F526B; /* 원하는 색상으로 변경 */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  scroll-behavior: smooth;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
 
   // Add styles for the movie posters
   > div {
@@ -102,21 +107,21 @@ width: 885px;
 height: 44.96px;
 left: calc(50% - 885px/2 - 0.5px);
 top: 57px;
-font-family: 'Noto Sans KR', sans-serif;
+font-family: 'Inter';
 font-style: normal;
 font-weight: 400;
 font-size: 24px;
 line-height: 19px;
 color: #FFFFFF;
+
 `;
 
 export const Submit = styled.button`
 position: absolute;
 width: 150px;
 height: 50px;
-left: 580px;
+left: 563.5px;
 top: 645px;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 background: #898FC0;
 border-radius: 30px;
 transition: background-color 0.2s ease; /* hover 시 배경색 변화를 부드럽게 만들기 위한 트랜지션 설정 */
@@ -124,19 +129,20 @@ transition: background-color 0.2s ease; /* hover 시 배경색 변화를 부드�
 &:hover {
   background: #4F526B; /* 원하는 색상으로 변경 */
 }
-font-family: 'Noto Sans KR', sans-serif;
+font-family: 'Inter';
 font-style: normal;
 font-weight: 400;
 font-size: 20px;
 text-align: center; /* 텍스트 가운데 정렬 */
 line-height: 10px; 
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const SubmitBox = styled.div`
   position: absolute;
   width: 424px;
   height: 154px;
-  left: 428px;
+  left: 408px;
   top: 440px;
   border-radius: 5px;
   background: #4F526B; /* 원하는 색상으로 변경 */
@@ -144,8 +150,12 @@ export const SubmitBox = styled.div`
   justify-content: space-between; /* 컨텐츠를 가운데 정렬하기 위해 */
   align-items: center; /* 세로 가운데 정렬하기 위해 */
   padding: 20px; /* 내부 간격 설정 */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
 `;
 
 export const SubmitContent = styled.div`
 cursor: pointer;
+boxShadow: '0 2px 4px #fff', // Optional, for a drop shadow
+
 `;

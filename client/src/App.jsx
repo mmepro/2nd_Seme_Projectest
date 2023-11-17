@@ -5,10 +5,12 @@ import Page3 from './Page3';
 import Page4 from './Page4';
 import Page5 from './Page5';
 import Page6 from './Page6';
+import Page7 from './Page7';
 import LoginPage from './LoginPage';
-import SelectedMoviesPage from './SelectedMoviesPage'; // Import the new component
+import LoginForm from './LoginForm';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MovieRecommendation from './MovieRecommendation';
+
 
 function App() {
 
@@ -23,7 +25,8 @@ function App() {
         <Route path="/page5" element={<Page5 />}></Route>
         <Route path="/page6" element={<Page6 />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/selected-movies" element={<SelectedMoviesPage />}></Route>
+        <Route path="/signup" element={<LoginForm />}></Route>
+        <Route path="/page7" element={<Page7 />}></Route>
         <Route path="/recommend" element={<MovieRecommendation />}></Route>
         
       </Routes>

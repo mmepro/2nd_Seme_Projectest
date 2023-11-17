@@ -12,9 +12,13 @@ function LoginPage() {
     return (
       <Container>
         <Header>
+<<<<<<< HEAD
         <Logo>
           <img width={'170px'} height={'120px'} src='/logo.png'></img>
         </Logo>
+=======
+          <Logo><img width={'170px'} height={'110px'} src='/logo.png'></img></Logo>
+>>>>>>> f2590c70e109bfb5369be0ae885e7f405f43610f
           <PageButton/>
           <Login/>
         </Header>

@@ -10,6 +10,13 @@ const TheatherInfo = styled.div`
   overflow: hidden;
 `;
 
+const DataLoad = styled.div`
+  position: absolute;
+  width: 735px;
+  height: 145px;
+  line-height: 75px;
+`;
+
 const TheatherName = styled.div`
   font-family: 'Inter';
   font-style: normal;
@@ -35,7 +42,6 @@ const TimeInfo = styled.div`
   justify-content: center;
   background: #898fc0;
   color: #000000;
-
 `;
 
 // eslint-disable-next-line react/prop-types
@@ -45,27 +51,44 @@ function Theather({ nData, movieName, tData }) {
     if (tData) {
       let allData = [];
       let promises = [];
-      for (var i = 0; i < nData.length; i++) {
-        let promise = axios({
-          method: 'get',
-          url: `http://43.201.51.58:3000/crawler/${tData[i].theaterType}/${tData[i].code}`,
-        }, { withCredentials: true })
-        .then((Response) => {
-          const filteredData = Response.data.data.filter(item => item.movieName === movieName);
+  
+      // Function to delay execution
+      const delay = (ms) => new Promise(res => setTimeout(res, ms));
+  
+      const fetchData = async (theaterType, code, retries = 3) => {
+        try {
+          const response = await axios({
+            method: 'get',
+            url: `http://43.201.51.58:3000/crawler/${theaterType}/${code}`,
+            // url: `http://43.201.51.58:3000/crawler/megabox/1211`,
+          }, { withCredentials: true });
+  
+          const filteredData = response.data.data.filter(item => item.movieName === movieName);
           return filteredData;
-        })
-        .catch((Error) => {
-          console.log(Error);
-          return []; // Return an empty array in case of an error
-        });
+        } catch (error) {
+          console.log(error);
+          if (retries > 0) {
+            console.log(`Retrying... Attempts left: ${retries - 1}`);
+            await delay(1000); // Wait for 1 second before retrying
+            return fetchData(theaterType, code, retries - 1);
+          }
+          return []; // Return an empty array if retries are exhausted
+        }
+      };
+  
+      for (var i = 0; i < nData.length; i++) {
+        let promise = fetchData(tData[i].theaterType, tData[i].code);
         promises.push(promise);
       }
-      Promise.all(promises).then((results) => {
+  
+      Promise.all(promises).then(results => {
         allData.push(...results); // Collect all responses
         setData2(allData); // Update the state with the collected data
       });
     }
-  }, [nData, tData]);
+  }, [nData, tData, movieName]);
+  // Added movieName to the dependency array
+  
   
   
 
@@ -93,6 +116,8 @@ function Theather({ nData, movieName, tData }) {
                 )
               );
             })}
+            <DataLoad>{!data2[index] && '데이터를 불러오고 있습니다.'}</DataLoad>
+            <DataLoad>{data2[index] && data2[index].length === 0 && '등록된 정보가 없습니다.'}</DataLoad>
           </TheatherInfo>
         )
       ))}
@@ -104,4 +129,3 @@ function Theather({ nData, movieName, tData }) {
 }
 
 export default Theather;
-// {[0, 152, 304, 456, 608].map((top, index) => (

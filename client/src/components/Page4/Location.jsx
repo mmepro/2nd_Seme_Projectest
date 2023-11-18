@@ -156,7 +156,7 @@ export default function MapTest({onDataChange}) {
         var ps = new window.kakao.maps.services.Places();
         ps.keywordSearch('근처 영화관', placesSearchCB, {
           location: location,
-          radius: 3000,
+          radius: 10000,
         });
       };
 

@@ -33,7 +33,10 @@ function LoginPage() {
         username,
         password,
       });
-      console.log('로그인 성공', res.data);
+
+      const token = res.data.token;
+      console.log('로그인 성공:', res.data, '토큰:', token);
+      localStorage.setItem('token', token);
       navigate('/');
     } catch (error) {
       console.log('로그인 에러', error);

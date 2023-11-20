@@ -5,12 +5,12 @@ import { FaSearch } from 'react-icons/fa';
 
 
 const SearchInfo = styled.div`
-  position: absolute;
+  position: relative;
   width: 885px;
-  height: 72px;
+  height: 62px;
   left: calc(50% - 885px / 2 - 0.5px);
   top: 42px;
-  background: #2a2f42;
+  background: linear-gradient(0deg, #2A2F42 10%, #1C1E2C 90%); // Adjust the gradient direction and color stops
   border: 2px solid #f4f3f3;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
@@ -44,7 +44,7 @@ const SearchInput = styled.input`
 `;
 
 const SearchIcon = styled.div`
-  position: absolute;
+  position: relative;
   right: 30px; /* 원하는 위치로 조정 */
   top: 50%;
   transform: translateY(-50%);
@@ -73,7 +73,7 @@ function Search() {
     <SearchInfo>
       <SearchInput
         type="text"
-        placeholder="영화 제목을 입력하세요"
+        placeholder="영화 제목을 입력해 주세요"
         className="search_input"
         value={inputValue}
         onChange={handleInputChange}
@@ -81,7 +81,7 @@ function Search() {
       />
        <FaSearch
         onClick={handleSearchClick}
-        style={{ cursor: 'pointer', fontSize: '32px', marginLeft: '-80px' }}
+        style={{ cursor: 'pointer', fontSize: '24px', marginLeft: '-80px' }}
       />
     </SearchInfo>
   );

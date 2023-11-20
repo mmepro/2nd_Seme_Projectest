@@ -1,5 +1,6 @@
 import { useState,useEffect } from 'react'
 import { Container,Header,Logo,Body } from './components/Page2Style'
+import { Link } from 'react-router-dom';
 import Rcmd from './components/Page2/Rcmd';
 import PageButton from './components/Share/PageButton';
 import Search from './components/Share/Search';
@@ -13,8 +14,10 @@ function Page2() {
     <Container>
       <Header>
       <Logo>
-        <img width={'170px'} height={'110px'} src='/logo.png'></img>
-      </Logo>
+        <Link to="/">
+            <img width={'112px'} height={'80px'} src='/logo.png' alt='Logo'></img>
+          </Link>
+        </Logo>
         <PageButton/>
         <Login/>
       </Header>

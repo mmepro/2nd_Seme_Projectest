@@ -77,7 +77,7 @@ function BoxOffice() {
     // searchName 파라미터 추가
     const koficResponse = await (
       await fetch(
-        `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=c41addc3237a2809a6569efc778d609e&targetDt=20231028`
+        `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=c41addc3237a2809a6569efc778d609e&targetDt=20231117`
       )
     ).json();
     const boxOfficeData = koficResponse.boxOfficeResult.dailyBoxOfficeList;
@@ -175,6 +175,7 @@ function BoxOffice() {
             예매
           </ReservInfo>
         </Link>
+        
       ))}
     </>
   );

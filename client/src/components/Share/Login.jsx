@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { Link } from 'react-router-dom';
 
 const LoginInfo = styled.div`
-position: absolute;
+position: fixed;
 width: 79px;
-height: 43px;
+height: 3px;
 font-family: 'Noto Sans KR', sans-serif;
 font-style: normal;
 font-weight: 400;

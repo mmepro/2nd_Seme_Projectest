@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { Link } from 'react-router-dom';
 
 const PageButtonInfo = styled.div`
-position: absolute;
+position: fixed;
 width: 180px;
-height: 65px;
-font-family: 'Inter';
+height: 25px;
+font-family: 'Noto Sans KR', sans-serif;
 font-style: normal;
-font-weight: 500;
+font-weight: 400;
 font-size: 24px;
 line-height: 29px;
 display: flex;

@@ -5,61 +5,60 @@ import styled from "styled-components";
 // `;
 
 export const Container = styled.div`
-  position: relative;
-  width: 1280px;
-  height: 832px;
-  color: #f4f3f3;
+  width: 100%; // 너비를 화면의 100%로 설정
 `;
+
 
 export const Body = styled.div`
   position: relative;
-  width: 1280px;
-  height: 721px;
-  left: 0px;
-  top: 111px;
-  background: #2A2F42;
+  color: #f4f3f3;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
 `;
 
-export const Name = styled.div`
-position: absolute;
-width: 149px;
-height: 53px;
-left: calc(50% - 149px/2 - 0.5px);
-top: calc(50% - 53px/2 - 178px);
-
-font-family: 'Noto Sans KR', sans-serif;
-font-style: normal;
-font-weight: 700;
-font-size: 20px;
-line-height: 24px;
-display: flex;
-align-items: center;
-justify-content: center;
-background: #2A2F42;
-color: #F4F3F3;
-`;
 
 export const ImageGroup = styled.div`
-  position: absolute;
-  width: 1067px;
-  height: 363px;
-  left: 106px;
-  top: 220px;
+  position: relative;
+  width: 90%;
+  height: 50vh;
+  top: 150px;
   overflow: hidden;
   color: black;
+  margin: 0 auto;
 `;
 
 export const Header = styled.div`
-position: absolute;
-width: 1280px;
-height: 123px;
+position: fixed;
+width: 100%;
+height: 83px;
 left: 0px;
-top: 0px;
+top: 0;
 background: #1C1E2C;
+z-index: 999; /* 다른 요소들 위에 표시하려면 z-index 설정 */
 `;
 
 export const Logo = styled.div`
-position: absolute;
+position: fixed;
 left: 90px;
 display: flex;
+transition: transform 0.5s ease-in-out;
+&:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
 `;
+
+export const Footer = styled.footer`
+width: 100%;
+padding: 20px;
+position: relative;
+bottom: 0;
+background-color: #f0f0f0;
+text-align: center;
+font-size: 0.8rem;
+color: #333;
+`;
+
+
+

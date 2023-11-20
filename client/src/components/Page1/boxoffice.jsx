@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'; // Import useEffect and useState
+import dayjs from "dayjs";
+import 'dayjs/locale/ko';
+dayjs.locale('ko');
 
 const ImageInfo = styled.div`
   position: absolute;
@@ -72,17 +75,20 @@ const ReservInfo = styled.button`
 function BoxOffice() {
   const [movieData, setMovieData] = useState([]);
   const [moviePost, setMoviePost] = useState([]);
+  const [currentDate, setCurrentDate] = useState(dayjs().subtract(1, 'day').format('YYYYMMDD'));
+
 
   const getMovies = async () => {
     // searchName 파라미터 추가
     const koficResponse = await (
       await fetch(
-        `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=c41addc3237a2809a6569efc778d609e&targetDt=20231117`
+        `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=c41addc3237a2809a6569efc778d609e&targetDt=${currentDate}`
       )
     ).json();
     const boxOfficeData = koficResponse.boxOfficeResult.dailyBoxOfficeList;
     const movieTitles = boxOfficeData.map((movie) => movie.movieNm);
     setMovieData(movieTitles);
+    console.log(currentDate);
   };
 
   const getPost = async (titles) => {

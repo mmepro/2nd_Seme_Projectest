@@ -11,12 +11,17 @@ import {
   StyledInput,
   SubmitButton,
   Caption,
+  AssignComplete,
+  TextOfLogin,
+  LoginButton,
+  CheckLogo,
 } from './components/LoginFormStyle';
 // FontAwesome 및 기타 필요한 컴포넌트 import
 import PageButton from './components/Share/PageButton';
 import Login from './components/Share/Login';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { FaRegCheckCircle } from "react-icons/fa";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -25,6 +30,15 @@ function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [showModal, setShowModal] = useState(false);
+
+  const handleLoginClick = () => {
+    navigate('/login'); // Navigates to the /Login page
+  };
+
+  const handleAssignClick = () => {
+    setShowModal(true);
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,8 +49,7 @@ function LoginForm() {
       .post('http://localhost:3000/signup', userData)
       .then((response) => {
         console.log('회원가입 성공:', response.data);
-        navigate('/Login');
-        // 성공적인 회원가입 후 처리
+        showModal(true)
       })
       .catch((error) => {
         console.error('회원가입 오류:', error);
@@ -55,7 +68,7 @@ function LoginForm() {
       </Header>
 
       <Body>
-        <form onSubmit={handleSubmit}>
+        {!showModal && <form onSubmit={handleSubmit}>
           <FormContainer>
             <FormTitle>회원 가입</FormTitle>
 
@@ -99,12 +112,16 @@ function LoginForm() {
             required
           /> */}
 
-            <SubmitButton type="submit">회원가입</SubmitButton>
+            <SubmitButton onClick={handleAssignClick} type="submit">회원가입</SubmitButton>
             <Caption>
               계정이 있으신가요? | <Link to="/login">로그인</Link>
             </Caption>
           </FormContainer>
-        </form>
+        </form>}
+
+        {showModal&&<><CheckLogo>
+          <FaRegCheckCircle className="logo" />
+        </CheckLogo><AssignComplete>회원가입이 완료 되었습니다.</AssignComplete><TextOfLogin>로그인 하시면 예매 정보와 영화 추천 서비스를 이용하실 수 있습니다.</TextOfLogin><LoginButton onClick={handleLoginClick}>로그인</LoginButton></>}  
       </Body>
     </Container>
   );

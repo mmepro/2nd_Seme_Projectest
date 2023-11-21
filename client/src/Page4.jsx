@@ -85,10 +85,13 @@ function Page4() {
   }
 
   useEffect(() => {
+    const data1 = {
+      title : title,
+      token : localStorage.getItem('token')
+    }
     
-    const token = localStorage.getItem('token');
     axios
-      .post('http://43.201.51.58:3000/movieView', title, token)
+      .post('http://127.0.0.1:3000/movieView', data1)
       .then((response) => {
         // Handle the response here
         console.log(response.data);

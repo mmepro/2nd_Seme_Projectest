@@ -66,9 +66,26 @@ const ReservInfo = styled.button`
   background-color: #898FC0;
   color: black;
   font-family: 'Noto Sans KR', sans-serif;
+  &:hover {
+    background: #535d7e;
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.4);
+    opacity: 100%;
+  }
 `;
-
-
+const Rank = styled.div`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: black;
+  font-weight: bold;
+  font-size: 32px;
+  background-color: #898FC0;
+  font-family: 'Inter';
+  padding: 3px;
+  border-radius: 10 0 0 0;
+  shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  z-index: 1; /* 포스터 이미지 위로 나타나도록 설정 */
+`;
 function BoxOffice() {
   const [movieData, setMovieData] = useState([]);
   const [moviePost, setMoviePost] = useState([]);
@@ -151,6 +168,7 @@ function BoxOffice() {
           onClick={ImageData}
         >
           <PosterImage src={movie.posterUrl} alt={movie.title} />
+          <Rank>{index + 1}</Rank>
           {/* <Title>{movie.title}</Title> Display the movie title */}
         </ImageInfo>
       ))}

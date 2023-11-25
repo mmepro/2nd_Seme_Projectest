@@ -21,6 +21,7 @@ import KakaoMap from './components/Page4/Location';
 import cgv from './components/Page4/TN/cgvTheater.json';
 import lotte from './components/Page4/TN/lotte.json';
 import megabox from './components/Page4/TN/megabox.json';
+import axios from 'axios';
 
 function Page4() {
   // 선택한 영화 정보 불러오기
@@ -84,6 +85,23 @@ function Page4() {
   }
 
   useEffect(() => {
+    const data1 = {
+      title : title,
+      token : localStorage.getItem('token')
+    }
+    
+    axios
+      .post('http://127.0.0.1:3000/movieView', data1)
+      .then((response) => {
+        // Handle the response here
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Handle errors here
+        console.error('There was an error!', error);
+      });
+
+
     if (dataOpen) {
       let theaterData = [];
       for (var i = 0; i < nData.length; i++) {

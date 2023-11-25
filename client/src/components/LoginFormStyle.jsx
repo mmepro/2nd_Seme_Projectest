@@ -105,3 +105,70 @@ color: #FFFFFF;
 font-family: 'Inter';
 font-style: normal;
 `;
+
+
+export const AssignComplete = styled.div`
+  position: absolute;
+  width: 736px;
+  height: 87px;
+  left: 372px;
+  top: 307px;
+
+  font-family: 'Ingrid Darling';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 60px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+`;
+
+export const TextOfLogin = styled.div`
+  position: absolute;
+  width: 902px;
+  height: 65px;
+  left: 310px;
+  top: 394px;
+
+  font-family: 'Ingrid Darling';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #FFFFFF;
+`;
+export const LoginButton = styled.button`
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  left: 522px;
+  top: 483px;
+  font-size: 29px;
+  background: #898FC0;
+  border-radius: 10px;
+  line-height: 15px;
+
+`;
+
+export const CheckLogo = styled.div`
+.logo{
+  position: absolute;
+  top: -230px;
+  left: 420px;
+  font-size: 100px;
+}
+`;
+
+
+// export const AssignComplete = styled.div`
+  
+// `;
+// export const AssignComplete = styled.div`
+  
+// `;

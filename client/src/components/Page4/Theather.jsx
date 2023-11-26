@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import dayjs from "dayjs";
+import 'dayjs/locale/ko';
+dayjs.locale('ko');
 
 const TheatherInfo = styled.div`
   position: absolute;
   width: 735px;
   height: 145px;
   background: #4f526b;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
 `;
 
 const DataLoad = styled.div`
@@ -27,7 +31,7 @@ const TheatherName = styled.div`
   margin-top: 10px;
 `;
 
-const TimeInfo = styled.div`
+const TimeInfo = styled.button`
   position: absolute;
   width: 149px;
   height: 83px;
@@ -42,44 +46,75 @@ const TimeInfo = styled.div`
   justify-content: center;
   background: #898fc0;
   color: #000000;
+  cursor:pointer;
+  z-index: 9999;
 `;
 
-// eslint-disable-next-line react/prop-types
-function Theather({ nData, movieName, tData }) {
-  function getFormattedDate(date) {
-    let year = date.getFullYear();
-    let month = (date.getMonth() + 1).toString().padStart(2, '0');
-    let day = date.getDate().toString().padStart(2, '0');
-
-    return `${year}-${month}-${day}`;
+function checkCinema(code){
+  if(code.charAt(0)=="C"){
+    return "cgv"
   }
+  else if(code.charAt(0)=="롯"){
+    return "lotte"
+  }
+  else if(code.charAt(0)=="메"){
+    return  "megabox"
+  }
+}
+function formatDate(inputDate) {
+  // 입력된 날짜를 '-'로 분리하여 배열로 만들기
+  const dateArray = inputDate.split('-');
 
-  const date = new Date();
+  // 배열의 각 요소를 합쳐서 YYYYMMDD 형식의 문자열 생성
+  const formattedDate = dateArray.join('');
 
-  const newDate = getFormattedDate(date);
+  return formattedDate;
+}
 
+
+function handleCinemaClick(theatertype,code,date){
+  
+  if(theatertype=="cgv")
+  {
+    window.location.href ="http://www.cgv.co.kr/theaters/?areacode=01&theaterCode="+code+"&date="+formatDate(date);
+  }
+  else if(theatertype=="lotte"){
+    window.location.href ="https://www.lottecinema.co.kr/NLCHS/Cinema/Detail?divisionCode=1&detailDivisionCode=1&cinemaID="+code;
+
+  }
+  else if(theatertype=="megabox"){
+    window.location.href ="https://www.megabox.co.kr/theater/time?brchNo="+code;
+  }
+}
+
+// eslint-disable-next-line react/prop-types
+function Theather({ nData, movieName, tData, date }) {
   const [data2, setData2] = useState([]);
+  const [currentDate, setCurrentDate] = useState(dayjs().format("YYYY-MM-DD"));
+  const [selectedDate, setSelectedDate] = useState(currentDate);
+
+  
+  useEffect(() => {
+    setSelectedDate(date);
+  }, [date]);
+
   useEffect(() => {
     if (tData) {
       let allData = [];
       let promises = [];
 
       // Function to delay execution
-      const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
-      const fetchData = async (theaterType, code, retries = 3) => {
+      const delay = (ms) => new Promise(res => setTimeout(res, ms));
+  
+      const fetchData = async (theaterType, code, retries = 4) => {
         try {
-          const response = await axios(
-            {
-              method: 'get',
-              url: `http://localhost:3000/crawler/${theaterType}/${code}/${newDate}`,
-            },
-            { withCredentials: true }
-          );
-
-          const filteredData = response.data.data.filter(
-            (item) => item.movieName === movieName
-          );
+          const response = await axios({
+            method: 'get',
+            url: `http://43.200.133.130:3000/crawler/${theaterType}/${code}/${selectedDate || currentDate}`,
+            // url: `http://43.201.51.58:3000/crawler/megabox/1211`,
+          }, { withCredentials: true });
+  
+          const filteredData = response.data.data.filter(item => item.movieName === movieName);
           return filteredData;
         } catch (error) {
           console.log(error);
@@ -102,48 +137,39 @@ function Theather({ nData, movieName, tData }) {
         setData2(allData); // Update the state with the collected data
       });
     }
-  }, [nData, tData, movieName]);
+  }, [nData, tData, movieName, selectedDate]);
   // Added movieName to the dependency array
 
   return (
     <>
-      {[0, 152, 304, 456, 608].map(
-        (top, index) =>
-          nData[index] && (
-            <TheatherInfo key={index} style={{ left: '0px', top: `${top}px` }}>
-              <TheatherName>{nData[index].place_name}</TheatherName>
-              {[23, 189, 355, 521, 687].map((left, timeIndex) => {
-                // Check if data2 and the required indexes in data2 exist
-                const timeInfoData =
-                  data2 && data2[index] && data2[index][timeIndex];
-                return (
-                  timeInfoData && (
-                    <button>
-                      <TimeInfo
-                        key={timeIndex}
-                        style={{ left: `${left}px`, top: `45px` }}
-                      >
-                        {timeInfoData.playTime}
-                        <br />
-                        {timeInfoData.screenName}
-                        <br />
-                        잔여좌석 {timeInfoData.remainingSeats}
-                      </TimeInfo>
-                    </button>
-                  )
-                );
-              })}
-              <DataLoad>
-                {!data2[index] && '데이터를 불러오고 있습니다.'}
-              </DataLoad>
-              <DataLoad>
-                {data2[index] &&
-                  data2[index].length === 0 &&
-                  '등록된 정보가 없습니다.'}
-              </DataLoad>
-            </TheatherInfo>
-          )
-      )}
+      {[0, 172, 344, 516, 688].map((top, index) => (
+        nData[index] && (
+          <TheatherInfo
+            key={index}
+            style={{ left: '0px', top: `${top}px` }}
+          >
+            <TheatherName>{nData[index].place_name}</TheatherName>
+            {data2[index] && data2[index].map((left, timeIndex) => {
+              // Check if data2 and the required indexes in data2 exist
+              const timeInfoData = data2 && data2[index] && data2[index][timeIndex];
+              return (
+                timeInfoData && (
+                    <TimeInfo
+                      key={timeIndex}
+                      style={{ left: `${23 + 166 * timeIndex}px`, top: `45px` }}
+                      onClick={()=>{handleCinemaClick(checkCinema(nData[index].place_name),timeInfoData.areaCode,selectedDate || currentDate)}}
+                    >{timeInfoData.playTime}
+                    <br/>{timeInfoData.screenName}
+                    <br/>잔여좌석 {timeInfoData.remainingSeats}
+                    </TimeInfo>
+                )
+              );
+            })}
+            <DataLoad>{!data2[index] && '데이터를 불러오고 있습니다.'}</DataLoad>
+            <DataLoad>{data2[index] && data2[index].length === 0 && '등록된 정보가 없습니다.'}</DataLoad>
+          </TheatherInfo>
+        )
+      ))}
     </>
   );
 }

@@ -17,24 +17,37 @@ const DateInfo = styled.div`
   cursor: pointer;
 `;
 
-function Date() {
-  // eslint-disable-next-line no-unused-vars
+function Date({ onDateSelect }) {
   const [currentDate, setCurrentDate] = useState(dayjs());
 
-  const Date = (index) => {
-    return currentDate.add(index, 'day').format('MM.DD');
+  const formatDate = (index) => {
+    return currentDate.add(index, 'day').format("MM.DD");
   };
-  const DayOfWeek = (index) => {
-    return currentDate.add(index, 'day').format('ddd');
+
+  const formatDayOfWeek = (index) => {
+    return currentDate.add(index, 'day').format("ddd");
+  };
+
+  const formatRequestDate = (index) => {
+    return currentDate.add(index, 'day').format("YYYY-MM-DD");
+  };
+
+  const handleClick = (date) => {
+    if (onDateSelect) {
+      onDateSelect(date);
+    }
   };
 
   return (
     <>
       {[19, 126, 233, 340, 447, 554, 661].map((left, index) => (
-        <DateInfo key={index} style={{ left: `${left}px`, top: '15px' }}>
-          {Date(index)}
-          <br />
-          {index === 0 ? '오늘' : DayOfWeek(index)}
+        <DateInfo
+          key={index}
+          style={{ left: `${left}px`, top: "15px" }}
+          onClick={() => handleClick(formatRequestDate(index))}
+        >
+          {formatDate(index)}<br/>
+          {index === 0 ? '오늘' : formatDayOfWeek(index)}
         </DateInfo>
       ))}
     </>

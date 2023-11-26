@@ -11,7 +11,7 @@ const ImageContainer = styled.div`
     url(${props => props.image}), #1c1c1c;
   height: 80vh;
   background-size: 100%, cover;
-  background-position: center, center;
+  background-position: center,top;
   width: 100%;
   position: relative;
   opacity: 0.8;

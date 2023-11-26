@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Header, Logo, Body } from './components/Page7Style'; // 가정한 스타일 컴포넌트 경로
+import { Container, Header, Logo, Body, RecommendBox} from './components/Page7Style'; // 가정한 스타일 컴포넌트 경로
 import PageButton from './components/Share/PageButton';
 import Login from './components/Share/Login';
 import MovieDetailsModal from './components/Page7/MovieDetailsModal';
@@ -31,7 +31,7 @@ function Page7() {
   const [recommendedMovies,   setRecommendedMovies] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [recommendations, setRecommendations] = useState([]);
-
+  const [isTextVisible, setIsTextVisible] = useState(true);
   // Function to fetch movie details
   const fetchMovieDetails = async (title) => {
     const KEY = '0d38cc635c10e090910f3d7ea7194e05';
@@ -59,7 +59,13 @@ function Page7() {
     const details = await fetchMovieDetails(title);
     setMovieDetails(details);
     setIsModalVisible(true);
+    console.log(details);
   };
+
+  const handleBack = () => {
+    setIsTextVisible(true);
+  }
+
 
    // Declare the state and its setter function
 
@@ -68,7 +74,11 @@ function Page7() {
     console.log('Modal should be closed now');
   };  
 
+  const [selectedTitle, setSelectedTitle] = useState(null);
+
   const getRecommendations = (title) => {
+    setSelectedTitle(title);
+    setIsTextVisible(false);
     axios.get(`http://127.0.0.1:5000/movies?title=${encodeURIComponent(title)}`)
       .then(async response => {
         const recommendedTitles = response.data.recommendations;
@@ -136,11 +146,15 @@ function Page7() {
         <PageButton/>
         <Login/>
       </Header>
-      <Body>
-        <h2 style={{ paddingTop: '1rem', textAlign: 'center',  color: '#FFF', margin: '0'}}>영화 추천</h2>
-        <SelectedMoviesDisplay selectedMovies={selectedMovies} getRecommendations={getRecommendations} />
-        <RecommendationsDisplay recommendations={recommendations} onMovieSelect={handleMovieSelection} />
-        {isModalVisible && <MovieDetailsModal movie={movieDetails} onClose={handleCloseModal} />}
+      <Body> 
+        <RecommendBox>
+          <h2 style={{ padding: '1rem', textAlign: 'center',  color: '#FFF', margin: '0'}}>영화를 선택해주세요!</h2>
+          <SelectedMoviesDisplay selectedMovies={selectedMovies} getRecommendations={getRecommendations} />
+          {selectedTitle && <h2 style={{ paddingTop: '1rem', textAlign: 'center',  color: '#FFF', margin: '0'}}>{selectedTitle&& selectedTitle} 관련 영화</h2>}
+          {selectedTitle && <h3 style={{ paddingTop: '1rem', textAlign: 'center',  color: '#d4d4d4', margin: '0'}}>영화 제목을 클릭하시면 정보를 볼 수 있습니다</h3>}
+          <RecommendationsDisplay id='RcmdDP' recommendations={recommendations} onMovieSelect={handleMovieSelection} />
+          {isModalVisible && <MovieDetailsModal movie={movieDetails} onClose={handleCloseModal} />}
+        </RecommendBox>
       </Body>
     </Container>
   );

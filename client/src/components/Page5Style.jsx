@@ -127,6 +127,21 @@ border: 1px solid #535D7E;
 
 `;
 
+export const Text2 = styled.div`
+position: absolute;
+width: 885px;
+height: 44.96px;
+left: calc(50% - 885px/2 - 0.5px);
+top: 70px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+color: #c8c8c8;
+
+`;
+
 export const Submit = styled.button`
   width: 10vw;
   height: 8vh;

@@ -1,5 +1,11 @@
-import { useState,useEffect } from 'react';
-import { Container,Header,Logo,Body, ImageGroup} from './components/Page1Style';
+import { useState, useEffect } from 'react';
+import {
+  Container,
+  Header,
+  Logo,
+  Body,
+  ImageGroup,
+} from './components/Page1Style';
 import { Link } from 'react-router-dom';
 import ImageChange from './components/Page1/Scroll';
 import BoxOffice from './components/Page1/boxoffice';
@@ -10,10 +16,23 @@ import Footer from './components/Share/Footer';
 import MoreMovies from './components/Page1/MoreMovies';
 import LandingPage from './components/Page1/LandingPage';
 import ToTop from './components/Page1/ToTop';
+import Member from './components/Share/Member';
+import { jwtDecode } from 'jwt-decode';
 
 function Page1() {
   // const [count, setCount] = useState(0)
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [token, setToken] = useState(null);
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+      const decodedToken = jwtDecode(storedToken);
+      setUsername(decodedToken.username);
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,27 +52,31 @@ function Page1() {
     <Container>
       <Header isvisible={isHeaderVisible}>
         <Logo>
-        <Link to="/">
-        <img src='/logo2.png' alt='Logo' style={{ width: '100%', height: '100%' }} />
+          <Link to="/">
+            <img
+              src="/logo2.png"
+              alt="Logo"
+              style={{ width: '100%', height: '100%' }}
+            />
           </Link>
         </Logo>
-        <PageButton/>
-        <Login/>
+        <PageButton />
+        {token ? <Member /> : <Login />}
       </Header>
 
       <Body>
-        <LandingPage/>
-        <Search/>
-        <ImageGroup id='scroll'>
-          <BoxOffice/>
-        </ImageGroup>  
-        <ImageChange/> 
-        <MoreMovies/>
+        <LandingPage />
+        <Search />
+        <ImageGroup id="scroll">
+          <BoxOffice />
+        </ImageGroup>
+        <ImageChange />
+        <MoreMovies />
       </Body>
-      <Footer/>
-      <ToTop/>
+      <Footer />
+      <ToTop />
     </Container>
-  )
+  );
 }
 
-export default Page1
+export default Page1;

@@ -11,17 +11,12 @@ import {
   StyledInput,
   SubmitButton,
   Caption,
-  AssignComplete,
-  TextOfLogin,
-  LoginButton,
-  CheckLogo,
 } from './components/LoginFormStyle';
 // FontAwesome 및 기타 필요한 컴포넌트 import
 import PageButton from './components/Share/PageButton';
 import Login from './components/Share/Login';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { FaRegCheckCircle } from "react-icons/fa";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -30,26 +25,17 @@ function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [showModal, setShowModal] = useState(false);
-
-  const handleLoginClick = () => {
-    navigate('/login'); // Navigates to the /Login page
-  };
-
-  const handleAssignClick = () => {
-    setShowModal(true);
-  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const userData = { username, email, password };
-
     // 서버에서 구동할때는 주소 바꿔야 합니다
     await axios
       .post('http://localhost:3000/signup', userData)
       .then((response) => {
         console.log('회원가입 성공:', response.data);
-        showModal(true)
+        navigate('/Login');
+        // 성공적인 회원가입 후 처리
       })
       .catch((error) => {
         console.error('회원가입 오류:', error);
@@ -68,7 +54,7 @@ function LoginForm() {
       </Header>
 
       <Body>
-        {!showModal && <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <FormContainer>
             <FormTitle>회원 가입</FormTitle>
 
@@ -81,7 +67,6 @@ function LoginForm() {
               onChange={(e) => setUsername(e.target.value)}
               required
             />
-
             <Label htmlFor="email">이메일 *</Label>
             <StyledInput
               id="email"
@@ -91,7 +76,6 @@ function LoginForm() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-
             <Label htmlFor="password">비밀번호 *</Label>
             <StyledInput
               id="password"
@@ -112,19 +96,14 @@ function LoginForm() {
             required
           /> */}
 
-            <SubmitButton onClick={handleAssignClick} type="submit">회원가입</SubmitButton>
+            <SubmitButton type="submit">회원가입</SubmitButton>
             <Caption>
               계정이 있으신가요? | <Link to="/login">로그인</Link>
             </Caption>
           </FormContainer>
-        </form>}
-
-        {showModal&&<><CheckLogo>
-          <FaRegCheckCircle className="logo" />
-        </CheckLogo><AssignComplete>회원가입이 완료 되었습니다.</AssignComplete><TextOfLogin>로그인 하시면 예매 정보와 영화 추천 서비스를 이용하실 수 있습니다.</TextOfLogin><LoginButton onClick={handleLoginClick}>로그인</LoginButton></>}  
+        </form>
       </Body>
     </Container>
   );
 }
-
 export default LoginForm;

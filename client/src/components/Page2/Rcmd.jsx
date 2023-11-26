@@ -10,12 +10,13 @@ const TextInfo = styled.div`
   color: #f4f3f3;
   padding: 5px;
   border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   font-family: 'Noto Sans KR', sans-serif;
   border: 1px solid #535D7E;
 `;
 const ImageInfo = styled.div`
   position: relative;
+  border-radius: 10px;
   width: 194px;
   height: 285px;
   background: #d9d9d9;
@@ -58,10 +59,16 @@ const ReservInfo = styled.button`
   border: none;
   cursor: pointer;
 
+  transition: all 0.2s ease;
   &:hover {
-    background: #535d7e;
-    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.4);
-    opacity: 100%;
+    background: #4F526B;
+    transform: translateY(+2px); // 클릭 유도를 위한 애니메이션 효과
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
   }
 `;
 
@@ -187,7 +194,7 @@ function Rcmd({selectedGenre}) {
             {movieDetails.map((movie, index) => (
               <div key={index} style={{ minWidth: '200px' }}>
                 <ImageInfo onClick={() => ImageData(movie)}>
-                  <img src={movie.posterUrl} alt={movie.title} style={{ width: '100%', height: '100%' }} />
+                  <img src={movie.posterUrl} alt={movie.title} style={{ width: '100%', height: '100%', borderRadius: "10px" }} />
                   <GradeInfo onClick={() => GradeData(movie)}>
                     {movie.vote_average === 0 ? 'X.X' : movie.vote_average.toFixed(1)}
                   </GradeInfo>

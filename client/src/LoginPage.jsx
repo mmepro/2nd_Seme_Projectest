@@ -17,10 +17,26 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import axios from 'axios';
 
 function LoginPage() {
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+      setIsHeaderVisible(position === 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []); 
+
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -45,12 +61,14 @@ function LoginPage() {
 
   return (
     <Container>
-      <Header>
-        <Logo>
-          <img width={'170px'} height={'120px'} src="/logo.png"></img>
+       <Header isvisible={isHeaderVisible}>
+      <Logo>
+        <Link to="/">
+           <img src='/logo2.png' alt='Logo' style={{ width: '100%', height: '100%' }} />
+        </Link>
         </Logo>
-        <PageButton />
-        <Login />
+        <PageButton/>
+        <Login/>
       </Header>
 
       <Body>

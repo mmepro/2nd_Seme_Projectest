@@ -21,7 +21,7 @@ const ChartTopInfo = styled.div`
   color: #f4f3f3;
   text-align: center;
   align-items: center;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   border: 1px solid #535D7E;
 

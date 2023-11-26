@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MdRefresh } from 'react-icons/md';
 
 // export const s = styled.div`
 //     position: absolute;
@@ -50,32 +51,42 @@ export const Logo = styled.div`
 `;
 
 export const ScrollContent = styled.div`
-  width: 90%;
+  width: 91vw;
   margin: 0 auto;
   overflow: hidden;
-  color: black;
-  padding: 1vh 3vw;
+  padding: 1vh 1vw;
   margin-bottom: 15vh;
   gap: 1.1vw;
   cursor: pointer;
-  text-align: center;
-align-items: center;
-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-border-radius: 10px;
-border: 3px solid #535D7E;
+  align-items: center;
   scroll-behavior: smooth;
   border-radius: 5px;
   display: flex;
   flex-direction: row;
   > div {
+    flex: 0 0 auto; // flex 아이템 너비 고정
     position: relative;
+    padding: 10px; // 포스터 주변 패딩
+    background: #fff; // 포스터 배경
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); // 그림자 효과
+    border-radius: 10px; // 모서리 둥글게
     cursor: pointer;
-    transition: filter 0.3s;
-    &:hover {
-      filter: brightness(0.7);
-    }
-    &:hover::before {
+    img {
       display: block;
+      width: 100%; // 이미지 가로 크기 조정
+      height: auto; // 이미지 세로 크기 자동 조정
+      border-radius: 8px; // 이미지 모서리 둥글게
+    }
+    transition: all 0.2s ease;
+    &:hover {
+      background: #4F526B;
+      transform: translateY(-2px); // 클릭 유도를 위한 애니메이션 효과
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+  
+    &:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
     }
   }
 `;
@@ -110,7 +121,7 @@ line-height: 35px;
 color: #f4f3f3;
 text-align: center;
 align-items: center;
-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 border-radius: 10px;
 border: 1px solid #535D7E;
 
@@ -151,22 +162,65 @@ export const SubmitContainer = styled.div`
 
 export const SubmitBox = styled.div`
   display: flex;
-  width: 38%;
-  height: 28vh;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 40%;
   margin: 0 auto;
   margin-bottom: 10vh;
-  border-radius: 5px;
-  align-items: center;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  border: 3px solid #535D7E;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.25rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  background: #2A2F42; // 영화 테마 색상
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  border: 1px solid #535D7E;
+
+  .movie-item {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  img {
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+  }
 `;
 
+
 export const SubmitContent = styled.div`
+  margin: 10px; // 주변 요소와의 간격
+  padding: 10px; // 내부 패딩
+  border-radius: 10px; // 모서리 둥글게
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); // 그림자 효과
+  transition: transform 0.3s ease;
   cursor: pointer;
-  boxShadow: '0 2px 4px #fff';
+  &:hover {
+    transform: scale(1.05); // 호버 시 약간 확대
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  img {
+    width: 100%; // 이미지 가로 크기를 부모 요소에 맞춤
+    height: auto; // 이미지 높이 자동 조정
+    border-radius: 8px; // 이미지 모서리 둥글게
+  }
+`;
+
+export const StyledRefreshIcon = styled(MdRefresh)`
+  color: whitesmoke;
+  font-size: 40px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, color 0.2s ease;
+
+  &:hover {
+    color: #4F526B;
+    transform: scale(1.1);
+  }
 `;

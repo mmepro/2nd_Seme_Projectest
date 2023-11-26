@@ -2,11 +2,11 @@ import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const MapWrap = styled.div`
-  position: absolute;
+  position: relative;
   width: 777px;
   height: 589px;
-  left: 50px;
-  top: 90px;
+  left: 60px;
+  top: 30px;
   background: #2a2f42;
   border: 1px solid #f4f3f3;
 `;

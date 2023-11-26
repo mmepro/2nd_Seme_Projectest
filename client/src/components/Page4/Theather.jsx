@@ -10,7 +10,8 @@ const TheatherInfo = styled.div`
   width: 735px;
   height: 145px;
   background: #4f526b;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
 `;
 
 const DataLoad = styled.div`
@@ -52,7 +53,7 @@ function Theather({ nData, movieName, tData, date }) {
   const [data2, setData2] = useState([]);
   const [currentDate, setCurrentDate] = useState(dayjs().format("YYYY-MM-DD"));
   const [selectedDate, setSelectedDate] = useState(currentDate);
-
+  console.log(data2);
   
   useEffect(() => {
     setSelectedDate(date);
@@ -102,21 +103,21 @@ function Theather({ nData, movieName, tData, date }) {
 
   return (
     <>
-      {[0, 152, 304, 456, 608].map((top, index) => (
+      {[0, 172, 344, 516, 688].map((top, index) => (
         nData[index] && (
           <TheatherInfo
             key={index}
             style={{ left: '0px', top: `${top}px` }}
           >
             <TheatherName>{nData[index].place_name}</TheatherName>
-            {[23, 189, 355, 521, 687].map((left, timeIndex) => {
+            {data2[index] && data2[index].map((left, timeIndex) => {
               // Check if data2 and the required indexes in data2 exist
               const timeInfoData = data2 && data2[index] && data2[index][timeIndex];
               return (
                 timeInfoData && (
                     <TimeInfo
                       key={timeIndex}
-                      style={{ left: `${left}px`, top: `45px` }}
+                      style={{ left: `${23 + 166 * timeIndex}px`, top: `45px` }}
                     >{timeInfoData.playTime}
                     <br/>{timeInfoData.screenName}
                     <br/>잔여좌석 {timeInfoData.remainingSeats}

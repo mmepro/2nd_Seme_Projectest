@@ -142,7 +142,7 @@ function Page4() {
     <Container>
       <Header>
         <Logo>
-          <img width={'170px'} height={'110px'} src="/logo.png"></img>
+        <img src='/logo2.png' alt='Logo' style={{ width: '100%', height: '100%' }} />
         </Logo>
         <PageButton />
         <Login />

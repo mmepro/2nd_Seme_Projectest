@@ -115,7 +115,7 @@ function LoginForm() {
             required
           /> */}
 
-            <SubmitButton type="submit">회원가입</SubmitButton>
+            <SubmitButton type="submit">가입하기</SubmitButton>
             <Caption>
               계정이 있으신가요? | <Link to="/login">로그인</Link>
             </Caption>

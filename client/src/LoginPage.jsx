@@ -73,9 +73,9 @@ function LoginPage() {
       </Header>
 
       <Body>
-        {/* <Logo1>
+        <Logo1>
           <img src='/logo2.png' alt='Logo' style={{ width: '100%', height: '100%' }} />
-        </Logo1> */}
+        </Logo1>
         <Welcome>
           반갑습니다.{'\n'}
           <span>

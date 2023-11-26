@@ -13,6 +13,7 @@ export const Container = styled.div`
 
 export const Body = styled.div`
   position: relative;
+  height: 100vh;
   top: 11vh;
   color: #f4f3f3;
   background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
@@ -72,22 +73,24 @@ export const Logo1 = styled.div`
 export const Welcome = styled.div`
   position: relative;
   width: 20vw;
+  top: 7vh;
   margin: 0 auto  ; // 위쪽 여백 조정, 중앙 정렬
   font-family: 'Noto Sans KR';
   font-size: 1.2rem;
   text-align: center;
   color: #FFFFFF;
+  margin-bottom: 10vh;
 `;
 
 export const IdInput = styled.input`
   position: relative;
-  padding-left: 15px; // 입력 필드 내부 여백을 10px로 설정
   width: 30vw;
   height: 5vh;
-  margin: 1vh; // 여백 조정, 중앙 정렬
+  margin: 1vh ; // 여백 조정, 중앙 정렬
   background: transparent;
   border: none;
   border-bottom: 2px solid #fff;
+  font-family: 'Noto Sans KR';
   font-size: 1rem;
   color: #FFFFFF;
 `;
@@ -101,12 +104,13 @@ export const LoginButton = styled.button`
   width: 20vw;
   height: 6vh;
   padding: 0.5vh 0; // 버튼 내부 여백을 0.5vh로 설정
-  margin: 2vh auto 0; // 여백 조정, 중앙 정렬
+  margin: 5vh auto 0; // 여백 조정, 중앙 정렬
   border-radius: 40px;
+  font-family: 'Noto Sans KR';
   background: #898FC0;
   color: #FFFFFF;
   font-size: 1.2rem;
-  transition: all 0.2s ease;
+   transition: all 0.2s ease;
   &:hover {
     background: #4F526B;
     transform: translateY(+2px); // 클릭 유도를 위한 애니메이션 효과
@@ -122,9 +126,10 @@ export const LoginButton = styled.button`
 export const Caption = styled.div`
   position: relative;
   width: 25vw;
-  padding: 1vh 0;
+  padding: 0.5vh 0;
   margin: 2vh auto 0; // 여백 조정, 중앙 정렬
   font-size: 1rem;
+  font-family: 'Noto Sans KR';
   text-align: center;
   color: #FFF;
 
@@ -140,12 +145,13 @@ export const Caption = styled.div`
 export const InputGroup = styled.div`
   display: flex; // Flex 컨테이너로 설정
   align-items: center; // 수직 중앙 정렬
-  width: 40vw;
-  margin: 1vh auto 0;
+  width: 30vw;
+  margin: 0 auto; // 수평 중앙 정렬 ;
 `;
 
 // FontAwesomeIcon 컴포넌트에 대한 스타일을 추가할 수 있습니다.
 export const StyledIcon = styled(FontAwesomeIcon)`
   margin-right: 5px; // 아이콘과 입력 필드 사이의 간격
   color: grey; // 아이콘 색상 설정
+  font-size: 18px; /* 아이콘 크기 설정 */
 `;

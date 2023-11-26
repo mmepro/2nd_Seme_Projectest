@@ -13,10 +13,22 @@ function SelectedMoviesDisplay({ selectedMovies, getRecommendations }) {
   /* justify-content: center; */
   cursor: pointer;
   background-color: #1C1E2C;
+  color: #f4f3f3;
+  transition: all 0.2s ease;
+  &:hover {
+    background: #4F526B;
+    transform: translateY(+2px); // 클릭 유도를 위한 애니메이션 효과
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const MovieText = styled.div`
-    width: 150px;
+    width: 170px;
     height: 225px;
     margin-left: 20px;
     overflow: hidden; // Enable scrolling for overflowing text

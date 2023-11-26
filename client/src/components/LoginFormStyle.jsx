@@ -9,6 +9,7 @@ export const Container = styled.div`
 export const Body = styled.div`
   position: relative;
   top: 11vh;
+  height: 100vh;
   color: #f4f3f3;
   background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
 `;
@@ -62,22 +63,22 @@ export const FormContainer = styled.div`
 `;
 
 export const FormTitle = styled.h2`
-  margin-bottom: 20px; /* 제목 아래 간격 */
+  margin-bottom: 10vh; /* 제목 아래 간격 */
   font-family: 'Noto Sans KR';
 `;
 
 export const Label = styled.label`
   align-self: flex-start;
-  margin-left: 24%; /* 레이블의 왼쪽 마진 */
+  margin-left: 34%; /* 레이블의 왼쪽 마진 */
   margin-bottom: 5px; /* 입력 필드 위 간격 */
-  font-family: 'Inter';
+  font-family: 'Noto Sans KR';
   font-size: 12px;
 `;
 
 export const StyledInput = styled.input`
-  width: 50%; /* 폼 너비에 맞춤 */
-  height: 52px; /* 입력 필드 높이 */
-  margin-bottom: 15px; /* 입력 필드 간격 */
+  width: 30vw; /* 폼 너비에 맞춤 */
+  height: 6vh; /* 입력 필드 높이 */
+  margin-bottom: 3vh; /* 입력 필드 간격 */
   padding: 0 15px; /* 내부 여백 */
   border-radius: 5px; /* 모서리 둥글기 */
   background: #D9D9D9;/* 입력 필드 배경색 */
@@ -89,8 +90,9 @@ export const StyledInput = styled.input`
 `;
 
 export const SubmitButton = styled.button`
-  width: 52.5%; /* 버튼 너비 */
-  height: 65px; /* 버튼 높이 */
+  width: 30vw; /* 버튼 너비 */
+  padding: 0 15px; /* 버튼 여백 */
+  height: 52px; /* 버튼 높이 */
   margin-top: 50px; /* 버튼 위 간격 */
   border-radius: 5px; /* 모서리 둥글기 */
   background: #898FC0;

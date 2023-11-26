@@ -111,7 +111,10 @@ function Page5() {
 
   const handleSubmit = () => {
     if (selectedMovies.length === 3) {
-      // Save selectedMovies to localStorage just before navigating
+      window.scrollTo({
+        top: 0, // Scroll to the top of the page
+        behavior: 'smooth' // Optional: for smooth scrolling
+      });
     } else {
       alert('최소 세 개의 영화를 선택해야 합니다.');
     }

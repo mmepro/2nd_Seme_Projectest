@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const PageButtonInfo = styled.div`
   position: fixed;
@@ -13,7 +14,7 @@ const PageButtonInfo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #F4F3F3;
+  color: #f4f3f3;
 
   &:hover {
     color: #f4f3f3;
@@ -24,16 +25,33 @@ const PageButtonInfo = styled.div`
 `;
 
 function PageButton() {
+  const navigate = useNavigate();
+
+  async function handleTest() {
+    try {
+      navigate('/page2');
+      const response = await axios.get('http://localhost:3000/userRecord/');
+    } catch (error) {
+      console.error('Error fetching data: ', error);
+    }
+  }
   return (
     <>
       <Link to="/">
-        <PageButtonInfo id="page1" style={{ left: '25.125vw', top: '4.583vh' }}>박스오피스</PageButtonInfo>
+        <PageButtonInfo style={{ left: '25.125vw', top: '4.583vh' }}>
+          박스오피스
+        </PageButtonInfo>
       </Link>
-      <Link to="/page2">
-        <PageButtonInfo id="page2" style={{ left: '39.375vw', top: '4.583vh' }}>상영작 추천</PageButtonInfo>
-      </Link>
+      <PageButtonInfo
+        style={{ left: '39.375vw', top: '4.583vh' }}
+        onClick={handleTest}
+      >
+        상영작 추천
+      </PageButtonInfo>
       <Link to="/page5">
-        <PageButtonInfo id="page5" style={{ left: '54.625vw', top: '4.583vh' }}>내게 맞는 영화</PageButtonInfo>
+        <PageButtonInfo style={{ left: '54.625vw', top: '4.583vh' }}>
+          내게 맞는 영화
+        </PageButtonInfo>
       </Link>
     </>
   );

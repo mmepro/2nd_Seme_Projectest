@@ -1,5 +1,5 @@
-import { useState,useEffect } from 'react'
-import { Container,Header,Logo,Body} from './components/Page2Style'
+import { useState, useEffect } from 'react';
+import { Container, Header, Logo, Body } from './components/Page2Style';
 import { Link } from 'react-router-dom';
 import Rcmd from './components/Page2/Rcmd';
 import PageButton from './components/Share/PageButton';
@@ -12,6 +12,7 @@ import { Colors } from 'chart.js';
 
 function Page2() {
   const [selectedGenre, setSelectedGenre] = useState(''); // 초기값 설정
+  const [responseData, setResponseData] = useState(null);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
   useEffect(() => {
@@ -26,29 +27,33 @@ function Page2() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []); 
+  }, []);
 
   return (
     <Container>
       <Header isvisible={isHeaderVisible}>
-      <Logo>
-        <Link to="/">
-           <img src='/logo2.png' alt='Logo' style={{ width: '100%', height: '100%' }} />
-        </Link>
+        <Logo>
+          <Link to="/">
+            <img
+              src="/logo2.png"
+              alt="Logo"
+              style={{ width: '100%', height: '100%' }}
+            />
+          </Link>
         </Logo>
-        <PageButton/>
-        <Login/>
+        <PageButton setResponseData={setResponseData} />
+        <Login />
       </Header>
 
       <Body>
-        <Search/>
-        <Chart setSelectedGenre={setSelectedGenre} />
+        <Search />
+        <Chart selectedGenre={selectedGenre} responseData={responseData} />{' '}
         <Rcmd selectedGenre={selectedGenre} />
       </Body>
-      <Footer/>
-      <ToTop/>
+      <Footer />
+      <ToTop />
     </Container>
-  )
+  );
 }
 
-export default Page2
+export default Page2;

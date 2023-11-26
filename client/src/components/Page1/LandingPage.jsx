@@ -36,7 +36,7 @@ const LandingPage = () => {
   const currentMovie = Movies[currentMovieIndex];
 
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%'}}>
       {/*Main Image */}
       {currentMovie && (
         <MainImage

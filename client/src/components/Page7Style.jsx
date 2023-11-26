@@ -6,8 +6,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   position: relative;
-  width: 1280px;
-  height: 832px;
 `;
 export const Body = styled.div`
   position: relative;
@@ -32,6 +30,29 @@ export const Logo = styled.div`
 position: absolute;
 left: 90px;
 display: flex;
+`;
+
+export const SelectBox = styled.div`
+  position: absolute;
+  width: 1000px;
+  height: 721px;
+  left: 100px;
+  top: 111px;
+  overflow: hidden;
+  justify-content: center;
+`;
+
+export const RecommendBox = styled.div`
+  position: absolute;
+  width: 1280px;
+  top: 100px;
+  font-size: 36px;
+
+`;
+
+export const RecommendText = styled.span`
+  font-size: 36px;
+  top: -100px;
 `;
 
 

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { MdRefresh } from 'react-icons/md';
-import { Container, Header, Logo, Body } from './components/Page5Style';
+import { Container, Header, Logo, Body, Text2 } from './components/Page5Style';
 import Login from './components/Share/Login';
 import PageButton from './components/Share/PageButton';
 import {Text1, Submit, ScrollContent, SubmitBox, SubmitContent} from './components/Page5Style';
@@ -81,7 +81,8 @@ function Page5() {
       </Header>
       
       <Body>
-        <Text1>본인의 취향에 맞는 영화를 3개 골라주세요!</Text1>
+        <Text1>본인의 취향에 맞는 영화를 골라주세요!</Text1><br/>
+        <Text2>선택한 결과는 내게 맞는 영화 추천에 사용됩니다.</Text2>
         <div style={{ position: 'absolute', top: '55px', right: '120px', cursor: 'pointer'}}>
           <MdRefresh onClick={handleRefresh} style={{ color: 'white'}} size={40} />
         </div>
@@ -117,9 +118,9 @@ function Page5() {
         </SubmitBox>
 
         {selectedMovies.length === 3 ? ( // Check if three movies are selected
-          <Link to="/page7" onClick={handleSubmit}>
+          // <Link to="/page7" onClick={handleSubmit}>
             <Submit>제출하기</Submit>
-          </Link>
+          // </Link>
         ) : (
           <Submit onClick={handleSubmit}>제출하기</Submit> // Use the same function for the onClick event
         )}

@@ -84,22 +84,25 @@ function Page4() {
     return null; // 일치하는 장소가 없을 경우
   }
 
+  const [selectedDate, setSelectedDate] = useState(null);
+  console.log(selectedDate);
+
   useEffect(() => {
-    const data1 = {
-      title : title,
-      token : localStorage.getItem('token')
-    }
+    // const data1 = {
+    //   title : title,
+    //   token : localStorage.getItem('token')
+    // }
     
-    axios
-      .post('http://127.0.0.1:3000/movieView', data1)
-      .then((response) => {
-        // Handle the response here
-        console.log(response.data);
-      })
-      .catch((error) => {
-        // Handle errors here
-        console.error('There was an error!', error);
-      });
+    // axios
+    //   .post('http://43.200.133.130:3000//movieView', data1)
+    //   .then((response) => {
+    //     // Handle the response here
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => {
+    //     // Handle errors here
+    //     console.error('There was an error!', error);
+    //   });
 
 
     if (dataOpen) {
@@ -157,10 +160,10 @@ function Page4() {
               genres={genres}
             />
             <Reservation>
-              <Date />
+              <Date onDateSelect={setSelectedDate} />
               <NearTheather>가까운 극장순 ↓</NearTheather>
               <TheatherGroup id="scroll">
-                <Theather nData={nData} movieName={title} tData={tData} />
+                <Theather nData={nData} movieName={title} tData={tData} date={selectedDate} />
               </TheatherGroup>
               <Scroll />
             </Reservation>

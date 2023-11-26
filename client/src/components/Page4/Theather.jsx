@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react'
 import axios from 'axios';
+import dayjs from "dayjs";
+import 'dayjs/locale/ko';
+dayjs.locale('ko');
 
 const TheatherInfo = styled.div`
   position: absolute;
@@ -27,7 +30,7 @@ const TheatherName = styled.div`
   margin-top: 10px;
 `;
 
-const TimeInfo = styled.div`
+const TimeInfo = styled.button`
   position: absolute;
   width: 149px;
   height: 83px;
@@ -45,8 +48,16 @@ const TimeInfo = styled.div`
 `;
 
 // eslint-disable-next-line react/prop-types
-function Theather({ nData, movieName, tData }) {
+function Theather({ nData, movieName, tData, date }) {
   const [data2, setData2] = useState([]);
+  const [currentDate, setCurrentDate] = useState(dayjs().format("YYYY-MM-DD"));
+  const [selectedDate, setSelectedDate] = useState(currentDate);
+
+  
+  useEffect(() => {
+    setSelectedDate(date);
+  }, [date]);
+
   useEffect(() => {
     if (tData) {
       let allData = [];
@@ -55,11 +66,11 @@ function Theather({ nData, movieName, tData }) {
       // Function to delay execution
       const delay = (ms) => new Promise(res => setTimeout(res, ms));
   
-      const fetchData = async (theaterType, code, retries = 3) => {
+      const fetchData = async (theaterType, code, retries = 4) => {
         try {
           const response = await axios({
             method: 'get',
-            url: `http://43.201.51.58:3000/crawler/${theaterType}/${code}`,
+            url: `http://43.200.133.130:3000/crawler/${theaterType}/${code}/${selectedDate || currentDate}`,
             // url: `http://43.201.51.58:3000/crawler/megabox/1211`,
           }, { withCredentials: true });
   
@@ -86,7 +97,7 @@ function Theather({ nData, movieName, tData }) {
         setData2(allData); // Update the state with the collected data
       });
     }
-  }, [nData, tData, movieName]);
+  }, [nData, tData, movieName, selectedDate]);
   // Added movieName to the dependency array
   
   
@@ -106,13 +117,13 @@ function Theather({ nData, movieName, tData }) {
               const timeInfoData = data2 && data2[index] && data2[index][timeIndex];
               return (
                 timeInfoData && (
-                  <TimeInfo
-                    key={timeIndex}
-                    style={{ left: `${left}px`, top: `45px` }}
-                  >{timeInfoData.playTime}
-                  <br/>{timeInfoData.screenName}
-                  <br/>잔여좌석 {timeInfoData.remainingSeats}
-                  </TimeInfo>
+                    <TimeInfo
+                      key={timeIndex}
+                      style={{ left: `${left}px`, top: `45px` }}
+                    >{timeInfoData.playTime}
+                    <br/>{timeInfoData.screenName}
+                    <br/>잔여좌석 {timeInfoData.remainingSeats}
+                    </TimeInfo>
                 )
               );
             })}

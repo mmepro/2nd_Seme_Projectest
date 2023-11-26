@@ -6,15 +6,20 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%; // 너비를 화면의 100%로 설정
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100vh;
 `;
 
 
 export const Body = styled.div`
-  position: relative;
+  position: fixed;
   color: #f4f3f3;
   width: 100%;
   height: 100%;
   background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
+  overflow-y: visible;
+  overflow-x: hidden;
 `;
 
 
@@ -52,8 +57,6 @@ transition: transform 0.5s ease-in-out;
 export const Footer = styled.footer`
 width: 100%;
 padding: 20px;
-position: relative;
-bottom: 0;
 background-color: #f0f0f0;
 text-align: center;
 font-size: 0.8rem;

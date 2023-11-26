@@ -51,7 +51,7 @@ function Theather({ nData, movieName, tData }) {
     let month = (date.getMonth() + 1).toString().padStart(2, '0');
     let day = date.getDate().toString().padStart(2, '0');
 
-    return `${year}${month}${day}`;
+    return `${year}-${month}-${day}`;
   }
 
   const date = new Date();
@@ -72,7 +72,7 @@ function Theather({ nData, movieName, tData }) {
           const response = await axios(
             {
               method: 'get',
-              url: `http://43.200.133.130:3000/crawler/${theaterType}/${code}/${newDate}`,
+              url: `http://localhost:3000/crawler/${theaterType}/${code}/${newDate}`,
             },
             { withCredentials: true }
           );
@@ -118,16 +118,18 @@ function Theather({ nData, movieName, tData }) {
                   data2 && data2[index] && data2[index][timeIndex];
                 return (
                   timeInfoData && (
-                    <TimeInfo
-                      key={timeIndex}
-                      style={{ left: `${left}px`, top: `45px` }}
-                    >
-                      {timeInfoData.playTime}
-                      <br />
-                      {timeInfoData.screenName}
-                      <br />
-                      잔여좌석 {timeInfoData.remainingSeats}
-                    </TimeInfo>
+                    <button>
+                      <TimeInfo
+                        key={timeIndex}
+                        style={{ left: `${left}px`, top: `45px` }}
+                      >
+                        {timeInfoData.playTime}
+                        <br />
+                        {timeInfoData.screenName}
+                        <br />
+                        잔여좌석 {timeInfoData.remainingSeats}
+                      </TimeInfo>
+                    </button>
                   )
                 );
               })}

@@ -86,10 +86,10 @@ function Page4() {
 
   useEffect(() => {
     const data1 = {
-      title : title,
-      token : localStorage.getItem('token')
-    }
-    
+      title: title,
+      token: localStorage.getItem('token'),
+    };
+
     axios
       .post('http://127.0.0.1:3000/movieView', data1)
       .then((response) => {
@@ -100,7 +100,6 @@ function Page4() {
         // Handle errors here
         console.error('There was an error!', error);
       });
-
 
     if (dataOpen) {
       let theaterData = [];

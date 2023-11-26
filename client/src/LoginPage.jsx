@@ -13,12 +13,13 @@ import {
   InputGroup,
   LoginButton,
   Caption,
+  StyledIcon,
 } from './components/LoginPageStyle';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import Footer from './components/Share/Footer';
 
 function LoginPage() {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -72,45 +73,40 @@ function LoginPage() {
       </Header>
 
       <Body>
-        <Logo1>
-          <img width={'170px'} height={'120px'} src="/logo2.png"></img>
-        </Logo1>
+        {/* <Logo1>
+          <img src='/logo2.png' alt='Logo' style={{ width: '100%', height: '100%' }} />
+        </Logo1> */}
         <Welcome>
           반갑습니다.{'\n'}
           <span>
             TGI의 <BoldText>MOVIEPARTNER </BoldText>입니다.{' '}
           </span>
         </Welcome>
-        <InputGroup>
-          <FontAwesomeIcon
-            icon={faUser}
-            style={{ position: 'absolute', left: '415px', top: '295px' }}
-          />
-          <IdInput
-            type="text"
-            placeholder="아이디를 입력해 주세요"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </InputGroup>
+              <InputGroup>
+        <StyledIcon icon={faUser} />
+        <IdInput
+          type="text"
+          placeholder="아이디를 입력해 주세요"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </InputGroup>
 
-        <InputGroup>
-          <FontAwesomeIcon
-            icon={faLock}
-            style={{ position: 'absolute', left: '415px', top: '360px' }}
-          />
-          <PwInput
-            type="password"
-            placeholder="비밀번호를 입력해 주세요"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </InputGroup>
+      <InputGroup>
+        <StyledIcon icon={faLock} />
+        <PwInput
+          type="password"
+          placeholder="비밀번호를 입력해 주세요"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </InputGroup>
         <LoginButton onClick={handleLogin}>로그인하기</LoginButton>
         <Caption>
           새로운 회원이신가요? |&nbsp; <Link to="/signup"> 회원가입</Link>
         </Caption>
       </Body>
+      <Footer/>
     </Container>
   );
 }

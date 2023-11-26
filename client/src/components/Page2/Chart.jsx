@@ -3,8 +3,9 @@ import { PieChart } from './Pie';
 
 const ChartContainer = styled.div`
   position: relative;
+  top: 5vh;
   text-align: center; // 차트와 타이틀을 중앙 정렬
-  margin-bottom: 50px; // 영화 목록과의 간격
+  padding-bottom: 80px; // 영화 목록과의 간격
 `;
 
 const ChartTopInfo = styled.div`
@@ -28,6 +29,7 @@ const ChartTopInfo = styled.div`
 `;
 
 const ChartImage = styled.div`
+  position: relative;
   display: inline-block; // 차트를 인라인 블록으로 만들어 중앙 정렬 가능하게 함
   margin: auto;
 `;

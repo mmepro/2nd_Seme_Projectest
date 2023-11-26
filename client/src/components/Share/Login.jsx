@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const LoginInfo = styled.div`
 position: fixed;
-width: 10vw;
 height: 5vh;
 font-family: 'Noto Sans KR', sans-serif;
 font-style: normal;

@@ -43,7 +43,7 @@ background: ${({ isvisible }) => (isvisible ? 'rgba(28, 30, 44, 1)' : 'rgba(28, 
 
 export const Logo = styled.div`
   position: fixed;
-  width: 7vw; // Start with a base size
+  width: 110px; // Start with a base size
   height: 11vh; // Maintain aspect ratio
   left: 6vw;
   transition: transform 0.5s ease-in-out;

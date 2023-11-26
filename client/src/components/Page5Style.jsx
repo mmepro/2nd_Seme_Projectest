@@ -34,7 +34,7 @@ export const Header = styled.div`
 
 export const Logo = styled.div`
   position: fixed;
-  width: 7vw;
+  width: 110px;
   height: 11vh;
   left: 6vw;
   transition: transform 0.5s ease-in-out;

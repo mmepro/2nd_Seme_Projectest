@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Header, Logo, Body } from './components/Page7Style'; // 가정한 스타일 컴포넌트 경로
+import { Container, Header, Logo, Body} from './components/Page7Style'; // 가정한 스타일 컴포넌트 경로
 import PageButton from './components/Share/PageButton';
 import Login from './components/Share/Login';
 import MovieDetailsModal from './components/Page7/MovieDetailsModal';
@@ -31,7 +31,7 @@ function Page7() {
   const [recommendedMovies,   setRecommendedMovies] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [recommendations, setRecommendations] = useState([]);
-
+  const [isTextVisible, setIsTextVisible] = useState(true);
   // Function to fetch movie details
   const fetchMovieDetails = async (title) => {
     const KEY = '0d38cc635c10e090910f3d7ea7194e05';
@@ -59,7 +59,13 @@ function Page7() {
     const details = await fetchMovieDetails(title);
     setMovieDetails(details);
     setIsModalVisible(true);
+    console.log(details);
   };
+
+  const handleBack = () => {
+    setIsTextVisible(true);
+  }
+
 
    // Declare the state and its setter function
 
@@ -69,6 +75,7 @@ function Page7() {
   };  
 
   const getRecommendations = (title) => {
+    setIsTextVisible(false);
     axios.get(`http://127.0.0.1:5000/movies?title=${encodeURIComponent(title)}`)
       .then(async response => {
         const recommendedTitles = response.data.recommendations;

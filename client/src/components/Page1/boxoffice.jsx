@@ -111,7 +111,6 @@ function BoxOffice() {
     const boxOfficeData = koficResponse.boxOfficeResult.dailyBoxOfficeList;
     const movieTitles = boxOfficeData.map((movie) => movie.movieNm);
     setMovieData(movieTitles);
-    console.log(currentDate);
   };
 
   const getPost = async (titles) => {

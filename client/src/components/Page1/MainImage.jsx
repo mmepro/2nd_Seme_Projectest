@@ -9,7 +9,7 @@ const ImageContainer = styled.div`
       rgba(0, 0, 0, 0.65) 100%
     ),
     url(${props => props.image}), #1c1c1c;
-  height: 600px;
+  height: 80vh;
   background-size: 100%, cover;
   background-position: center, center;
   width: 100%;
@@ -36,10 +36,10 @@ const ImageContainer = styled.div`
 
 const MainImage = ({ image, title, text }) => {
   return (
-    <ImageContainer image={image}>
+    <ImageContainer image={image} >
       <div>
-        <h2>{title}</h2>
-        <p>{text}</p>
+        <h2 style={{fontSize:'1.7vw'}}>{title}</h2>
+        <p style={{fontSize:'1.2vw'}}>{text}</p>
       </div>
     </ImageContainer>
   );

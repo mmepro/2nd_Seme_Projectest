@@ -6,8 +6,25 @@ import Login from './components/Share/Login';
 import MovieDetailsModal from './components/Page7/MovieDetailsModal';
 import SelectedMoviesDisplay from './components/Page7/SelectedMoviesDisplay';
 import RecommendationsDisplay from './components/Page7/RecommendationsDisplay';
+import { Link } from 'react-router-dom';
 
 function Page7() {
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+      setIsHeaderVisible(position === 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []); 
+
   const [movieDetails, setMovieDetails] = useState(null);
   const [selectedMovies, setSelectedMovies] = useState([]);
   const [tvGenres, setTVGenres] = useState({});
@@ -110,15 +127,17 @@ function Page7() {
 
   return (
     <Container>
-      <Header>
+      <Header isvisible={isHeaderVisible}>
       <Logo>
-          <img width={'170px'} height={'120px'} src='/logo.png'></img>
+        <Link to="/">
+           <img src='/logo2.png' alt='Logo' style={{ width: '100%', height: '100%' }} />
+        </Link>
         </Logo>
-        <PageButton />
-        <Login />
+        <PageButton/>
+        <Login/>
       </Header>
       <Body>
-        <h2 style={{ paddingTop: '1rem', textAlign: 'center',  color: '#FFF'}}>영화 추천</h2>
+        <h2 style={{ paddingTop: '1rem', textAlign: 'center',  color: '#FFF', margin: '0'}}>영화 추천</h2>
         <SelectedMoviesDisplay selectedMovies={selectedMovies} getRecommendations={getRecommendations} />
         <RecommendationsDisplay recommendations={recommendations} onMovieSelect={handleMovieSelection} />
         {isModalVisible && <MovieDetailsModal movie={movieDetails} onClose={handleCloseModal} />}

@@ -6,19 +6,14 @@ import { FaSearch } from 'react-icons/fa';
 
 const SearchInfo = styled.div`
   position: relative;
-  width: 885px;
-  height: 62px;
-  left: calc(50% - 885px / 2 - 0.5px);
-  top: 42px;
+  width: 55vw;
+  height: 7vh;
+  left: calc(50% - 55vw/ 2 );
+  top: 5vh;
   background: linear-gradient(0deg, #2A2F42 10%, #1C1E2C 90%); // Adjust the gradient direction and color stops
   border: 2px solid #f4f3f3;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 29px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,22 +30,13 @@ const SearchInput = styled.input`
   font-family: 'Noto Sans KR', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 24px;
-  line-height: 29px;
+  font-size: 1.3vw;
+  line-height: 2vw;
   text-align: center;
   ::placeholder {
     color: #f4f3f3; /* 원하는 색상으로 변경 */
   }
 `;
-
-const SearchIcon = styled.div`
-  position: relative;
-  right: 30px; /* 원하는 위치로 조정 */
-  top: 50%;
-  transform: translateY(-50%);
-  color: #f4f3f3;
-`;
-
 function Search() {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
@@ -81,7 +67,7 @@ function Search() {
       />
        <FaSearch
         onClick={handleSearchClick}
-        style={{ cursor: 'pointer', fontSize: '24px', marginLeft: '-80px' }}
+        style={{ cursor: 'pointer', fontSize: '1.5vw', marginLeft: '-5vw' }}
       />
     </SearchInfo>
   );

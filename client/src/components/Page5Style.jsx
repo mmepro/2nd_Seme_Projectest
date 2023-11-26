@@ -5,157 +5,168 @@ import styled from "styled-components";
 // `;
 
 export const Container = styled.div`
-  position: relative;
-  width: 1280px;
-  height: 832px;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // 헤더와 푸터 사이의 공간을 균등하게 분배
+  background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%);
 `;
+
 export const Body = styled.div`
   position: relative;
-  width: 1280px;
-  height: 721px;
-  left: 0px;
-  top: 111px;
-  background: #2A2F42;
+  top: 11vh;
+  color: #f4f3f3;
+  background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
 `;
 
-
-
 export const Header = styled.div`
-  position: absolute;
-  width: 1280px;
-  height: 123px;
-  left: 0px;
-  top: 0px;
-
-  background: #1C1E2C;
+  position: fixed;
+  width: 100%;
+  min-width: 500px;
+  height: 11vh;
+  top: 0;
+  z-index: 999;
+  background: ${({ isvisible }) => (isvisible ? 'rgba(28, 30, 44, 1)' : 'rgba(28, 30, 44, 0.5)')};
+  transition: background 0.5s ease;
 `;
 
 export const Logo = styled.div`
-position: absolute;
-left: 90px;
-display: flex;
-`;
-
-export const ButtonPage1 = styled.button`
-  position: absolute;
-  width: 180px;
-  height: 58px;
-  left: 469px;
-  top: 42px;
-
-  background: #c9c5c5;
-`;
-
-export const ButtonPage2 = styled.button`
-  position: absolute;
-  width: 180px;
-  height: 58px;
-  left: 655px;
-  top: 42px;
-
-  background: #c9c5c5;
-`;
-
-export const ButtonPage3 = styled.button`
-  position: absolute;
-  width: 180px;
-  height: 58px;
-  left: 841px;
-  top: 42px;
-
-  background: #c9c5c5;
+  position: fixed;
+  width: 7vw;
+  height: 11vh;
+  left: 6vw;
+  transition: transform 0.5s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+  @media (max-width: 768px) {
+    width: 16vw;
+  }
+  @media (max-width: 480px) {
+    width: 12vw;
+  }
 `;
 
 export const ScrollContent = styled.div`
-  position: absolute;
-  left: 106px;
-  right: 106px;
-  top: 100px;
+  width: 90%;
+  margin: 0 auto;
   overflow: hidden;
   color: black;
-  padding: 20px;
-  gap: 25px;
+  padding: 1vh 3vw;
+  margin-bottom: 15vh;
+  gap: 1.1vw;
   cursor: pointer;
-  background: #4F526B; /* 원하는 색상으로 변경 */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+align-items: center;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+border-radius: 10px;
+border: 3px solid #535D7E;
   scroll-behavior: smooth;
   border-radius: 5px;
   display: flex;
   flex-direction: row;
-
-  // Add styles for the movie posters
   > div {
     position: relative;
     cursor: pointer;
-    transition: filter 0.3s; /* Add a transition for smooth effect */
-
-    // Darken the poster on hover
+    transition: filter 0.3s;
     &:hover {
-      filter: brightness(0.7); /* Darken the poster */
+      filter: brightness(0.7);
     }
-
-    // Show the overlay when hovering over the movie poster
     &:hover::before {
       display: block;
     }
   }
 `;
 
+export const TopSection = styled.div`
+  display: flex;
+  margin-bottom: 20vh;
+  align-items: center; // 세로 중앙 정렬
+  padding: 0 20px; // 필요한 경우 양쪽 패딩을 조정
+`;
+
+// export const RefreshIcon = styled.img`
+//   cursor: pointer;
+//   width: 80px;
+//   height: 80px;
+// `;
+
 export const Text1 = styled.div`
-position: absolute;
-width: 885px;
-height: 44.96px;
-left: calc(50% - 885px/2 - 0.5px);
-top: 57px;
-font-family: 'Inter';
+position: relative;
+margin-bottom: 5vh;
+margin: 0 auto;
+top: 15vh;
+width: 430px;
+display: flex;
+padding: 1vh 2vw;
+height: 50px;
+font-family: 'Noto Sans KR';
 font-style: normal;
-font-weight: 400;
+font-weight: 400; 
 font-size: 24px;
-line-height: 19px;
-color: #FFFFFF;
+line-height: 35px;
+color: #f4f3f3;
+text-align: center;
+align-items: center;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+border-radius: 10px;
+border: 1px solid #535D7E;
 
 `;
 
 export const Submit = styled.button`
-position: absolute;
-width: 150px;
-height: 50px;
-left: 563.5px;
-top: 645px;
-background: #898FC0;
-border-radius: 30px;
-transition: background-color 0.2s ease; /* hover 시 배경색 변화를 부드럽게 만들기 위한 트랜지션 설정 */
-/* hover 시 배경색 변경 */
-&:hover {
-  background: #4F526B; /* 원하는 색상으로 변경 */
-}
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-text-align: center; /* 텍스트 가운데 정렬 */
-line-height: 10px; 
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 10vw;
+  height: 8vh;
+  background: #898FC0;
+  color: #FFF; // 버튼 텍스트 색상
+  border: none; // 기본 테두리 제거
+  border-radius: 1.875rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 1.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25); // 그림자 조정
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #4F526B;
+    transform: translateY(-2px); // 클릭 유도를 위한 애니메이션 효과
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  }
 `;
 
-export const SubmitBox = styled.div`
-  position: absolute;
-  width: 424px;
-  height: 154px;
-  left: 408px;
-  top: 440px;
-  border-radius: 5px;
-  background: #4F526B; /* 원하는 색상으로 변경 */
+export const SubmitContainer = styled.div`
   display: flex;
-  justify-content: space-between; /* 컨텐츠를 가운데 정렬하기 위해 */
-  align-items: center; /* 세로 가운데 정렬하기 위해 */
-  padding: 20px; /* 내부 간격 설정 */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-bottom: 10vh;
+`;
 
+
+export const SubmitBox = styled.div`
+  display: flex;
+  width: 38%;
+  height: 28vh;
+  margin: 0 auto;
+  margin-bottom: 10vh;
+  border-radius: 5px;
+  align-items: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: 3px solid #535D7E;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 `;
 
 export const SubmitContent = styled.div`
-cursor: pointer;
-boxShadow: '0 2px 4px #fff', // Optional, for a drop shadow
-
+  cursor: pointer;
+  boxShadow: '0 2px 4px #fff';
 `;

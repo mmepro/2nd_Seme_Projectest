@@ -8,9 +8,20 @@ const Page1ScrollButton = styled.button`
   width: 55px;
   height: 55px;
   background: #434b69;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.3);
   border-radius: 100%;
   opacity: 80%;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #535d7e;
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.4);
+    opacity: 100%;
+  }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 function Page1Scroll() {
@@ -33,20 +44,20 @@ function Page1Scroll() {
       {count > 0 && (
         <Page1ScrollButton
           id='scrollLeft'
-          style={{ left: '45px', top: '1000px' }}
+          style={{ left: '3vw', top: '145vh' }}
           onClick={scrollLeft}
         >
-          <FontAwesomeIcon icon={faAngleLeft} color="black" />
+          <FontAwesomeIcon icon={faAngleLeft} color="white" />
         </Page1ScrollButton>
       )}
 
       {count < 4 && (
         <Page1ScrollButton
           id='scrollRight'
-          style={{ left: '1413px', top: '1000px' }}
+          style={{ right: '3vw', top: '145vh'  }}
           onClick={scrollRight}
         >
-          <FontAwesomeIcon icon={faAngleRight} color="black" />
+          <FontAwesomeIcon icon={faAngleRight} color="white" />
         </Page1ScrollButton>
       )}
     </>

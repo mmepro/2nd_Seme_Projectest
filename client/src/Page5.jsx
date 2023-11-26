@@ -4,21 +4,37 @@ import { MdRefresh } from 'react-icons/md';
 import { Container, Header, Logo, Body } from './components/Page5Style';
 import Login from './components/Share/Login';
 import PageButton from './components/Share/PageButton';
-import {Text1, Submit, ScrollContent, SubmitBox, SubmitContent} from './components/Page5Style';
+import {Text1, Submit, ScrollContent, SubmitBox, SubmitContent, SubmitContainer,TopSection} from './components/Page5Style';
 import BoxChange from './components/Page5/BoxChange';
+import Footer from './components/Share/Footer';
+import Search from './components/Share/Search';
 // import MovieFetcher from './components/Page5/MovieFetcher';
 // import MovieSelector from './components/Page5/MovieSelector';
 
 function Page5() {
-  // const [count, setCount] = useState(0);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+      setIsHeaderVisible(position === 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const scrollableContentRef = useRef(null);
   const [selectedMovies, setSelectedMovies] = useState([]);
   const [movies, setMovies] = useState([]);
-  
-  const fetchMovies = () => {
+  const [page, setPage] = useState(1); // 페이지 번호를 상태로 관리
+  const fetchMovies = (pageNumber) => {
     const apiKey = 'c4e59022826dc465ea5620d6adaa6813';
-    const randomPage = Math.floor(Math.random() * 3) + 1;
-    const apiUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=ko&page=${randomPage}`;
+    const apiUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=ko&page=${pageNumber}`;
     
     fetch(apiUrl)
       .then((response) => response.json())
@@ -30,15 +46,25 @@ function Page5() {
   };
 
   useEffect(() => {
-    fetchMovies();
+    fetchMovies(page);
   }, []);
   
-  // 새로고침 버튼 클릭 핸들러
-  const handleRefresh = () => {
-    fetchMovies();
+  const handleNextPage = () => {
+    let nextPage;
+    if (page < 10) {
+      // 현재 페이지가 10 미만이면 다음 페이지로 이동
+      nextPage = page + 1;
+    } else {
+      // 현재 페이지가 10이면 다시 1로 리셋
+      alert('처음 목록으로 돌아갑니다.');
+      nextPage = 1;
+    }
+    setPage(nextPage); // 페이지 번호 업데이트
+    fetchMovies(nextPage); // 해당 페이지의 영화 불러오기
   };
   
-
+  
+  const submitBoxRef = useRef(null);
   const handleBoxClick = (movie) => {
     // Check if the movie is not already in selectedMovies
     if (
@@ -50,6 +76,15 @@ function Page5() {
       alert('이미 선택된 영화입니다.');
     } else {
       alert('최대 세 개 영화까지만 선택 가능합니다.');
+    }
+    if (selectedMovies.length === 2 && !selectedMovies.some((m) => m.id === movie.id)) {
+      // 새 영화를 선택 목록에 추가
+      setSelectedMovies([...selectedMovies, movie]);
+  
+      // SubmitBox로 스크롤
+      if (submitBoxRef.current) {
+        submitBoxRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
   localStorage.setItem('selectedMovies', JSON.stringify(selectedMovies));
@@ -72,19 +107,24 @@ function Page5() {
 
   return (
     <Container>
-      <Header>
-        <Logo>
-          <img width={'170px'} height={'110px'} src='/logo.png'></img>
+      <Header isvisible={isHeaderVisible}>
+      <Logo>
+        <Link to="/">
+           <img src='/logo2.png' alt='Logo' style={{ width: '100%', height: '100%' }} />
+        </Link>
         </Logo>
-        <PageButton />
-        <Login />
+        <PageButton/>
+        <Login/>
       </Header>
       
       <Body>
+      <Search/>
+      <TopSection>
         <Text1>본인의 취향에 맞는 영화를 3개 골라주세요!</Text1>
-        <div style={{ position: 'absolute', top: '55px', right: '120px', cursor: 'pointer'}}>
-          <MdRefresh onClick={handleRefresh} style={{ color: 'white'}} size={40} />
+        <div style={{ position: 'relative', top: '55px', right: '120px', cursor: 'pointer'}}>
+          <MdRefresh onClick={handleNextPage} style={{ color: 'whitesmoke'}} size={40} />
         </div>
+      </TopSection>
         <ScrollContent
           id="scroll"
           ref={scrollableContentRef}>
@@ -101,29 +141,32 @@ function Page5() {
           ))}
         </ScrollContent>
         <BoxChange />
-        <SubmitBox>
-          {selectedMovies.map((selectedMovie) => (
-            <SubmitContent
-              key={selectedMovie.id}
-              onClick={() => handleDeleteBox(selectedMovie)}
-            >
-              <img
-                src={`https://image.tmdb.org/t/p/w185${selectedMovie.poster_path}`}
-                alt={selectedMovie.title}
-                style={{ maxWidth: '150px', maxHeight: '150px', borderRadius: '5px' }} // Adjust the size as needed
-              />
-            </SubmitContent>
-          ))}
-        </SubmitBox>
+        <SubmitContainer>
+    <SubmitBox ref={submitBoxRef}>
+      {selectedMovies.map((selectedMovie) => (
+        <SubmitContent
+          key={selectedMovie.id}
+          onClick={() => handleDeleteBox(selectedMovie)}
+        >
+          <img
+            src={`https://image.tmdb.org/t/p/w185${selectedMovie.poster_path}`}
+            alt={selectedMovie.title}
+            style={{ maxWidth: '200px', maxHeight: '200px', borderRadius: '5px' }}
+          />
+        </SubmitContent>
+      ))}
+    </SubmitBox>
 
-        {selectedMovies.length === 3 ? ( // Check if three movies are selected
-          <Link to="/page7" onClick={handleSubmit}>
-            <Submit>제출하기</Submit>
-          </Link>
-        ) : (
-          <Submit onClick={handleSubmit}>제출하기</Submit> // Use the same function for the onClick event
-        )}
+    {selectedMovies.length === 3 ? (
+      <Link to="/page7" onClick={handleSubmit}>
+        <Submit>제출하기</Submit>
+      </Link>
+    ) : (
+      <Submit onClick={handleSubmit}>제출하기</Submit>
+    )}
+  </SubmitContainer>
       </Body>
+      <Footer/>
     </Container>
   );
 }

@@ -1,23 +1,40 @@
-// import { useState } from 'react';
-import { Container,Header,Logo,Body, ImageGroup,Footer} from './components/Page1Style';
+import { useState,useEffect } from 'react';
+import { Container,Header,Logo,Body, ImageGroup} from './components/Page1Style';
 import { Link } from 'react-router-dom';
 import ImageChange from './components/Page1/Scroll';
 import BoxOffice from './components/Page1/boxoffice';
 import PageButton from './components/Share/PageButton';
 import Search from './components/Share/Search';
 import Login from './components/Share/Login';
+import Footer from './components/Share/Footer';
 import MoreMovies from './components/Page1/MoreMovies';
 import LandingPage from './components/Page1/LandingPage';
+import ToTop from './components/Page1/ToTop';
+
 function Page1() {
   // const [count, setCount] = useState(0)
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+      setIsHeaderVisible(position === 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <Container>
-      <Header>
+      <Header isvisible={isHeaderVisible}>
         <Logo>
         <Link to="/">
-            <img width={'112px'} height={'80px'} src='/logo.png' alt='Logo'></img>
+        <img src='/logo2.png' alt='Logo' style={{ width: '100%', height: '100%' }} />
           </Link>
         </Logo>
         <PageButton/>
@@ -33,9 +50,8 @@ function Page1() {
         <ImageChange/> 
         <MoreMovies/>
       </Body>
-      <Footer>
-        © 2023 MOVIEPARTNER. All Rights Reserved.
-      </Footer>
+      <Footer/>
+      <ToTop/>
     </Container>
   )
 }

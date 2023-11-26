@@ -3,23 +3,31 @@ import { Link } from 'react-router-dom';
 import { useEffect,useState } from "react";
 
 const MoviesWrapper = styled.div`
-  position: relative;
-  width: 80%; // 화면 너비의 80%를 사용
+  width: 90%; // 화면 너비의 80%를 사용
   margin: 0 auto; // 중앙 정렬
+  padding-bottom: 5vh; // 하단 여백
 `;
+const MoviesGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;  
+  gap: 80px; /* 원하는 간격 설정 */
+  padding: 30px; /* 여백 설정 */
+  justify-content: center; /* 가로 중앙 정렬 */
+`;
+
 const MovieContainer = styled.div`
-  position: absolute;
-  left: ${props => (props.index % 4) * 340}px; // 4개의 영화를 한 줄에 배치
-  top: ${props => Math.floor(props.index / 4) * 360 +100}px; // 행 당 360px의 간격
+  position: relative; // 이제 MovieContainer는 position context를 제공합니다.
   width: 194px;
-  height: 312px; // 285px + 27px for GradeInfo
+  height: 312px; // GradeInfo와 ReservInfo를 포함할 공간을 확보해야 합니다.
   background: #d9d9d9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 20px; // GradeInfo와 ReservInfo가 아래쪽에 위치할 공간을 확보합니다.
 `;
+
 
 
 const ImageInfo = styled.img`
@@ -31,10 +39,10 @@ const ImageInfo = styled.img`
 
 const GradeInfo = styled.div`
   position: absolute;
+  bottom: -27px; /* 아래쪽 여백 설정 */
+  left: 0px; /* 왼쪽 여백 설정 */
   width: 65px;
   height: 27px;
-  top: 320px;
-  left: 0px;
   background: #1C1E2C;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
@@ -68,10 +76,10 @@ const GradeInfo = styled.div`
 
 const ReservInfo = styled.button`
   position: absolute;
+  bottom: -27px; /* 아래쪽 여백 설정 */
+  right: 0px; /* 오른쪽 여백 설정 */
   width: 119px;
   height: 27px;
-  top: 320px;
-  left: 75px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
@@ -79,7 +87,14 @@ const ReservInfo = styled.button`
   border-radius: 5px;
   background-color: #898FC0;
   color: black;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'inter';
+  font-style: normal;
+  font-weight: 600;
+  &:hover {
+    background: #535d7e;
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.4);
+    opacity: 100%;
+  }
 `;
 
 
@@ -88,7 +103,10 @@ function MoreMovies() {
   const [movieData, setMovieData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const ReservData = (movie) => {
+    alert(`예매하기: ${movie.title}`);
+  };
+  
   const getMovies = async () => {
     setIsLoading(true);
     setError(null);
@@ -114,21 +132,25 @@ function MoreMovies() {
 
   return (
     <MoviesWrapper>
-      <div style={{ width: '100%', margin: '10rem auto' }}>
+      <div style={{ width: '100%', margin: '10rem auto', marginTop: '8rem', marginBottom: '4rem'  }}>
         <hr />
-        <h2>무비 차트</h2>
+        <h2 style={{fontSize:'1.6vw', fontFamily: 'Noto Sans KR, sans-serif'}}>무비 차트</h2>
       </div>
+      <MoviesGrid>
       {movieData.map((movie, index) => (
         <MovieContainer key={movie.id} index={index}>
           <ImageInfo src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster of ${movie.title}`} />
           <GradeInfo rating={movie.vote_average}>
             {movie.vote_average === 0 ? 'X.X' : movie.vote_average.toFixed(1)}
           </GradeInfo>
-          <Link to={`/page4?voteAvg=${movie.vote_average}&posterUrl=${movie.posterUrl}&directorName=${movie.director}&releaseDate=${movie.release_date}&genres=${movie.genres}&title=${movie.title}`}>
-            <ReservInfo>예매</ReservInfo>
+          <Link key={index} to={`/page4?voteAvg=${movie.vote_average}&posterUrl=${movie.posterUrl}&directorName=${movie.director}&releaseDate=${movie.release_date}&genres=${movie.genres}&title=${movie.title}`}>
+            <ReservInfo
+              onClick={() => ReservData(movie)}
+            >예매</ReservInfo>
           </Link>
         </MovieContainer>
       ))}
+      </MoviesGrid>
     </MoviesWrapper >
   );
 }

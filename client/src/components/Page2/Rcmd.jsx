@@ -1,25 +1,21 @@
+//Rcmd.jsx
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useState,useEffect,useRef } from 'react'; // Import useEffect and useState
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 const TextInfo = styled.div`
-  position: absolute;
-  width: 403px;
-  height: 53px;
-  left: 540px;
-  top: 155px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 29px;
-  display: flex;
-  align-items: center;
-  text-align: center;
+  width: 40vw;
+  margin: 0 auto;
+  font-size: 18px;
   color: #f4f3f3;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  font-family: 'Noto Sans KR', sans-serif;
+  border: 1px solid #535D7E;
 `;
 const ImageInfo = styled.div`
-  position: absolute;
+  position: relative;
   width: 194px;
   height: 285px;
   background: #d9d9d9;
@@ -30,15 +26,15 @@ const ImageInfo = styled.div`
 
 const GradeInfo = styled.div`
   position: absolute;
+  bottom: -27px;
+  left: 0;
   width: 65px;
   height: 27px;
-  background: #1c1e2c;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #1C1E2C;
   border-radius: 5px;
-  font-family: 'Inter';
-  font-style: normal;
+  font-family: 'Noto Sans KR';
   font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,77 +43,73 @@ const GradeInfo = styled.div`
 
 const ReservInfo = styled.button`
   position: absolute;
+  bottom: -27px;
+  right: 0;
   width: 119px;
   height: 27px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  background-color: #898FC0;
+  color: black;
+  font-family: 'Noto Sans KR';
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
-  background-color: #898fc0;
-  color: black;
-  font-family: 'Inter';
-  font-style: normal;
-  left: 75px;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: #535d7e;
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.4);
+    opacity: 100%;
+  }
 `;
 
 
 // Arrow styles
 const Arrow = styled.div`
-  cursor: pointer;
+  cursor: pointer;  
   position: absolute;
-  top: 50%;
+  top: 80%;
   transform: translateY(-50%);
   z-index: 1000; // Ensure arrows are above other elements
   // Conditional styling based on props
   ${props => props.direction === 'left' ? 'left: 0;' : 'right: 0;'}
 `;
 
-
-// Adjust the existing ScrollContainer to handle overflow and hide scrollbar
+// ScrollContainer 스타일링 개선
 const ScrollContainer = styled.div`
-  display: flex;
-  overflow-x: auto;
+  display: flex; // Flexbox를 사용하여 내부 아이템들을 가로로 배치
+  overflow-x: auto; // 가로 스크롤 가능
   gap: 20px;
-  padding: 20px;
+  padding: 8vh;
   margin: 0 auto;
-  position: relative;
-  width: 60%; // Adjust based on the size of the container
-  top: 260px;
-  height: 330px;
-  left: 230px;
-  max-width: 630px; 
-
+  justify-content: center;
+  width: 80vw;
+  height: 45vh;
   &::-webkit-scrollbar {
-    height: 15px; // Height of the scrollbar
-    background-color: #2C3440; // Background color of the scrollbar track
+    // 스크롤바 스타일 설정
   }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #1c1e2c; // Background color of the scrollbar thumb
-    border-radius: 10px; // Rounded corners for the scrollbar thumb
-    border: 3px solid #2C3440; // Creates padding effect for the thumb
-    
-    &:hover {
-      background-color: #f4f3f3; // Changes the thumb color when hovered
-    }
-  }
-
   &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; // Adds a shadow effect inside the track
-    border-radius: 10px; // Rounded corners for the scrollbar track
+    // 스크롤바 스타일 설정
   }
-
-  /* For other browsers like Firefox */
-  scrollbar-width: thin; // Makes the scrollbar 'thin'
-  scrollbar-color: #1c1e2c #2C3440; // Sets the thumb and track color, respectively
 `;
 
-function Rcmd() {
-  const scrollRef = useRef(null);
+function Rcmd({selectedGenre}) {
 
-  // Function to scroll left
-  const scrollLeft = () => {
+  // const scrollContainerRef = useRef(null);
+
+  // useEffect(() => {
+  //   if (selectedGenre && scrollContainerRef.current) {
+  //     const { current } = scrollContainerRef;
+  //     current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  //   }
+  // }, [selectedGenre]);
+
+  const scrollRef = useRef(null);
+  
+   // Function to scroll left
+   const scrollLeft = () => {
     scrollRef.current.scrollBy({ left: -244, behavior: 'smooth' }); // scroll by the width of one movie container plus gap
   };
 
@@ -125,6 +117,7 @@ function Rcmd() {
   const scrollRight = () => {
     scrollRef.current.scrollBy({ left: 244, behavior: 'smooth' }); // scroll by the width of one movie container plus gap
   };
+  
   const [recommendations, setRecommendations] = useState([]);
   const [movieDetails, setMovieDetails] = useState([]);
 
@@ -153,7 +146,8 @@ function Rcmd() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/nowplaying?watched_genres=${encodeURIComponent('액션')}`)
+    console.log("Selected Genre: ", selectedGenre);   
+    fetch(`http://localhost:5000/nowplaying?watched_genres=${encodeURIComponent(selectedGenre)}`)
       .then(response => response.json())
       .then(data => {
         if (data.recommendations) {
@@ -168,19 +162,9 @@ function Rcmd() {
       .catch(error => {
         console.error('Error fetching data: ', error);
       });
-  }, []);
+  }, [selectedGenre]);
 
-  // const [slideIndex, setSlideIndex] = useState(0);
 
-  // // 슬라이더를 왼쪽으로 이동하는 함수
-  // const moveLeft = () => {
-  //   setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 0);
-  // };
-
-  // // 슬라이더를 오른쪽으로 이동하는 함수
-  // const moveRight = () => {
-  //   setSlideIndex(slideIndex < movieDetails.length - 3 ? slideIndex + 1 : movieDetails.length - 3);
-  // };
   const ImageData = () => {};
 
   const GradeData = () => {};
@@ -189,32 +173,38 @@ function Rcmd() {
 
   return (
     <>
-      <TextInfo>000님에게 추천드리는 현재 상영작</TextInfo>
-      <Arrow direction="left" onClick={scrollLeft}>
-        <MdChevronLeft size="3rem" />
-      </Arrow>
-      <ScrollContainer ref={scrollRef}>
-        {movieDetails.map((movie, index) => (
-          // Make sure each movie is wrapped in a div or similar container
-          <div key={index} style={{ minWidth: '200px' /* Adjust as needed */ }}>
-            <ImageInfo key={index} onClick={() => ImageData(movie)}>
-              <img src={movie.posterUrl} alt={movie.title} style={{ width: '100%', height: '100%' }} />
-              <GradeInfo onClick={() => GradeData(movie)}>
-                {movie.vote_average === 0 ? 'X.X' : movie.vote_average.toFixed(1)}
-              </GradeInfo>
-              <Link to={`/page4?movieId=${movie.id}`}>
-              <ReservInfo onClick={() => ReservData(movie)}>
-                예매
-              </ReservInfo>
-            </Link>
-            </ImageInfo>
-           
-          </div>
-        ))}
-      </ScrollContainer>
-      <Arrow direction="right" onClick={scrollRight}>
-        <MdChevronRight size="3rem" />
-      </Arrow>
+      {!selectedGenre && (
+        <TextInfo>Waiting...</TextInfo>
+      )}
+
+      {selectedGenre && ( // selectedGenre가 있을 때만 추천 영화를 표시합니다.
+        <>
+          <TextInfo>{selectedGenre} 장르의 추천 영화 목록입니다.</TextInfo>
+          <Arrow direction="left" onClick={scrollLeft}>
+            <MdChevronLeft size="3rem" />
+          </Arrow>
+          <ScrollContainer ref={scrollRef}>
+            {movieDetails.map((movie, index) => (
+              <div key={index} style={{ minWidth: '200px' }}>
+                <ImageInfo onClick={() => ImageData(movie)}>
+                  <img src={movie.posterUrl} alt={movie.title} style={{ width: '100%', height: '100%' }} />
+                  <GradeInfo onClick={() => GradeData(movie)}>
+                    {movie.vote_average === 0 ? 'X.X' : movie.vote_average.toFixed(1)}
+                  </GradeInfo>
+                  <Link to={`/page4?movieId=${movie.id}`}>
+                    <ReservInfo onClick={() => ReservData(movie)}>
+                      예매
+                    </ReservInfo>
+                  </Link>
+                </ImageInfo>
+              </div>
+            ))}
+          </ScrollContainer>
+          <Arrow direction="right" onClick={scrollRight}>
+            <MdChevronRight size="3rem" />
+          </Arrow>
+        </>
+      )}
     </>
   );
 }

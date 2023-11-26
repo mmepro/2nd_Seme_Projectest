@@ -3,18 +3,23 @@ import { Link } from 'react-router-dom';
 
 const LoginInfo = styled.div`
 position: fixed;
-width: 79px;
-height: 3px;
+width: 10vw;
+height: 5vh;
 font-family: 'Noto Sans KR', sans-serif;
 font-style: normal;
 font-weight: 400;
-font-size: 16px;
-line-height: 19px;
+font-size: 1.8vh;
+line-height: 1.5rem;
 display: flex;
 align-items: center;
 justify-content: center;
-
 color: #F4F3F3;
+&:hover {
+    color: #f4f3f3;
+    text-decoration: underline;
+    text-underline-position: under;
+    transition: 0.5s;
+  }
 `;
 
 
@@ -27,9 +32,8 @@ function Login() {
 
     return(
 <>
-        <Link to="/Login"><LoginInfo style={{left:'987px',top:'15px'}}>로그인</LoginInfo></Link>
-        <Link to="/signup"><LoginInfo style={{left:'1066px',top:'15px'}}>회원가입</LoginInfo></Link>
-        <Link to="/page5"><LoginInfo style={{left:'1145px',top:'15px'}}>내 정보</LoginInfo></Link>
+        <Link to="/Login"><LoginInfo style={{left:'80vw',top:'1vh'}}>로그인</LoginInfo></Link>
+        <Link to="/signup"><LoginInfo style={{left:'85vw',top:'1vh'}}>회원가입</LoginInfo></Link>
   </>
     )
 }

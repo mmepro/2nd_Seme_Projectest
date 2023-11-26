@@ -29,10 +29,10 @@ const scrollRight = () => {
 
   return (
     <>
-      <BoxChangeButton style={{ left: '1200px', top: '237px' }} onClick={scrollRight}>
+      <BoxChangeButton style={{ right: '10px', top: '387px' }} onClick={scrollRight}>
          <FontAwesomeIcon icon={faAngleRight} color="black" />
       </BoxChangeButton>
-      <BoxChangeButton style={{ left: '25px', top: '237px' }} onClick={scrollLeft}>
+      <BoxChangeButton style={{ left: '10px', top: '387px' }} onClick={scrollLeft}>
         <FontAwesomeIcon icon={faAngleLeft} color="black" />
       </BoxChangeButton>
     </>

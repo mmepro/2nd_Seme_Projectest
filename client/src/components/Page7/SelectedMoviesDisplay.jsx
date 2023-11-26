@@ -3,16 +3,16 @@ import styled from 'styled-components';
 
 
 function SelectedMoviesDisplay({ selectedMovies, getRecommendations }) {
-
-
-  console.log(selectedMovies)
   const MovieBox = styled.button`
+  position: relative;
   height: 280px;
+  left: 10vw;
   display: flex; // Use flexbox
-  flex-direction: row; // Align items horizontally
+  /* flex-direction: row; // Align items horizontally */
   align-items: center; // Center items vertically
+  /* justify-content: center; */
   cursor: pointer;
-  background-color: #1C1E2C;;
+  background-color: #1C1E2C;
 `;
 
 const MovieText = styled.div`
@@ -22,8 +22,8 @@ const MovieText = styled.div`
     overflow: hidden; // Enable scrolling for overflowing text
     /* display: flex;
     flex-direction: column; */
-
 `;
+
   // Style for the movie container
   const movieContainerStyle = {
     // display: 'flex',

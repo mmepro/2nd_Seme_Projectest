@@ -11,13 +11,14 @@ export const Body = styled.div`
   background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
   overflow-y: visible;
   overflow-x: hidden;
+  height: 89vh;
 `;
 
 export const Reservation = styled.div`
   position: relative;
   width: 777px;
   height: 589px;
-  left: 464px;
+  left: 520px;
   top: 30px;
   background: #2A2F42;
   border: 1px solid #F4F3F3;

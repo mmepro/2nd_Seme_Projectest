@@ -46,14 +46,53 @@ const TimeInfo = styled.button`
   justify-content: center;
   background: #898fc0;
   color: #000000;
+  cursor:pointer;
+  z-index: 9999;
 `;
+
+function checkCinema(code){
+  if(code.charAt(0)=="C"){
+    return "cgv"
+  }
+  else if(code.charAt(0)=="롯"){
+    return "lotte"
+  }
+  else if(code.charAt(0)=="메"){
+    return  "megabox"
+  }
+}
+function formatDate(inputDate) {
+  // 입력된 날짜를 '-'로 분리하여 배열로 만들기
+  const dateArray = inputDate.split('-');
+
+  // 배열의 각 요소를 합쳐서 YYYYMMDD 형식의 문자열 생성
+  const formattedDate = dateArray.join('');
+
+  return formattedDate;
+}
+
+
+function handleCinemaClick(theatertype,code,date){
+  
+  if(theatertype=="cgv")
+  {
+    window.location.href ="http://www.cgv.co.kr/theaters/?areacode=01&theaterCode="+code+"&date="+formatDate(date);
+  }
+  else if(theatertype=="lotte"){
+    window.location.href ="https://www.lottecinema.co.kr/NLCHS/Cinema/Detail?divisionCode=1&detailDivisionCode=1&cinemaID="+code;
+
+  }
+  else if(theatertype=="megabox"){
+    window.location.href ="https://www.megabox.co.kr/theater/time?brchNo="+code;
+  }
+}
 
 // eslint-disable-next-line react/prop-types
 function Theather({ nData, movieName, tData, date }) {
   const [data2, setData2] = useState([]);
   const [currentDate, setCurrentDate] = useState(dayjs().format("YYYY-MM-DD"));
   const [selectedDate, setSelectedDate] = useState(currentDate);
-  console.log(data2);
+
   
   useEffect(() => {
     setSelectedDate(date);
@@ -118,6 +157,7 @@ function Theather({ nData, movieName, tData, date }) {
                     <TimeInfo
                       key={timeIndex}
                       style={{ left: `${23 + 166 * timeIndex}px`, top: `45px` }}
+                      onClick={()=>{handleCinemaClick(checkCinema(nData[index].place_name),timeInfoData.areaCode,selectedDate || currentDate)}}
                     >{timeInfoData.playTime}
                     <br/>{timeInfoData.screenName}
                     <br/>잔여좌석 {timeInfoData.remainingSeats}

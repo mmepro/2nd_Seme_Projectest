@@ -15,7 +15,7 @@ const PageButtonInfo = styled.div`
   align-items: center;
   justify-content: center;
   color: #f4f3f3;
-
+  cursor: pointer;
   &:hover {
     color: #f4f3f3;
     text-decoration: underline;

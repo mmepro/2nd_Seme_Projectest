@@ -103,15 +103,18 @@ const ScrollContainer = styled.div`
 `;
 
 function Rcmd({selectedGenre}) {
-
-  // const scrollContainerRef = useRef(null);
-
-  // useEffect(() => {
-  //   if (selectedGenre && scrollContainerRef.current) {
-  //     const { current } = scrollContainerRef;
-  //     current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  //   }
-  // }, [selectedGenre]);
+  
+  useEffect(() => {
+    if (selectedGenre) {
+      // 다른 로직 ...
+      // 스크롤을 이동시키는 부분
+      const scrollContainerPosition = scrollRef.current.offsetTop;
+      window.scrollTo({
+        top: scrollContainerPosition,
+        behavior: 'smooth'
+      });
+    }
+  }, [selectedGenre]);
 
   const scrollRef = useRef(null);
   

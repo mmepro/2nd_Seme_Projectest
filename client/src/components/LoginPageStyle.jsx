@@ -13,6 +13,7 @@ export const Container = styled.div`
 
 export const Body = styled.div`
   position: relative;
+  height: 100vh;
   top: 11vh;
   color: #f4f3f3;
   background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
@@ -33,7 +34,7 @@ background: ${({ isvisible }) => (isvisible ? 'rgba(28, 30, 44, 1)' : 'rgba(28, 
 
 export const Logo = styled.div`
   position: fixed;
-  width: 7vw; // Start with a base size
+  width: 110px; // Start with a base size
   height: 11vh; // Maintain aspect ratio
   left: 6vw;
   transition: transform 0.5s ease-in-out;
@@ -55,118 +56,102 @@ export const Logo = styled.div`
   }
 `;
 
+export const BoldText = styled.span`
+  font-weight: 800;  font-size: 24px;  
+`;
 export const Logo1 = styled.div`
-  position: absolute;
-  width: 238px;
-  height: 45px;
-  left: 555px; /* 변경된 값으로 수정 */
-  top: 100px; /* 변경된 값으로 수정 */
-
-  /* 기존 스타일 유지 */
-  font-family: 'Ingrid Darling';
+  position: relative;
+  width: 15vw;
+  margin: 0 auto;
+  top: 5vh;
   font-style: normal;
-  font-size: 64px;
-  font-weight: 100;
-  line-height: 79px;
-  display: flex;
   align-items: center;
   text-align: center;
-`;
-
-export const BoldText = styled.span`
-  font-weight: 800;
-  font-size: 24px;
+  // 기타 스타일 유지
 `;
 
 export const Welcome = styled.div`
-  position: absolute;
-  width: 500px;
-  left: 400px; /* 변경된 값으로 수정 */
-  top: 220px; /* 변경된 값으로 수정 */
-
-  font-family: 'Inter';
-  font-style: normal;
-  font-size: 18px;
-  line-height: 25px;
-  align-items: center;
-  text-align: left;
-  white-space: pre-wrap;
+  position: relative;
+  width: 20vw;
+  top: 7vh;
+  margin: 0 auto  ; // 위쪽 여백 조정, 중앙 정렬
+  font-family: 'Noto Sans KR';
+  font-size: 1.2rem;
+  text-align: center;
   color: #FFFFFF;
-`;
-
-export const Icon = styled(FontAwesomeIcon)`
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: grey;
+  margin-bottom: 10vh;
 `;
 
 export const IdInput = styled.input`
-position: absolute;
-width: 460px;
-height: 52px;
-left: 400px;
-top: 276px;
-background: transparent;
-border: none;
-border-bottom: 0.5px solid #fff; 
-padding-left: 40px; /* 아이콘을 위한 공간 확보 */
-font-family: 'Inter';
-font-style: normal;
-color: #FFFFFF;
-font-weight:400;
-font-size: 15px;
+  position: relative;
+  width: 30vw;
+  height: 5vh;
+  margin: 1vh ; // 여백 조정, 중앙 정렬
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #fff;
+  font-family: 'Noto Sans KR';
+  font-size: 1rem;
+  color: #FFFFFF;
 `;
 
-export const PwInput = styled(IdInput)` // Extend IdInput to maintain styles
-  top: 340px; // Adjust top if necessary
+export const PwInput = styled(IdInput)`
+  // IdInput 스타일 상속
 `;
 
 export const LoginButton = styled.button`
+  position: relative;
+  width: 20vw;
+  height: 6vh;
+  padding: 0.5vh 0; // 버튼 내부 여백을 0.5vh로 설정
+  margin: 5vh auto 0; // 여백 조정, 중앙 정렬
+  border-radius: 40px;
+  font-family: 'Noto Sans KR';
+  background: #898FC0;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+   transition: all 0.2s ease;
+  &:hover {
+    background: #4F526B;
+    transform: translateY(+2px); // 클릭 유도를 위한 애니메이션 효과
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
 
-position: absolute;
-width: 505px;
-left: 400px;
-top: 420px;
-border-radius: 40px;
-background: #898FC0;
-color: #FFFFFF;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 export const Caption = styled.div`
-position: absolute;
-width: 505px;
-height: 47px;
-left: 525px;
-top: 486px;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-line-height: 29px;
-display: flex;
-align-items: center;
-text-align: center;
-
-color: #FFF;
-
-a {
-  color: #9AB0FF; // <Link> 컴포넌트에 적용될 색상
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-`;
-export const InputGroup = styled.div`
   position: relative;
-  width: 540px; // 아이콘 공간 포함 너비
-  margin-bottom: 20px; // 각 InputGroup 사이의 간격
+  width: 25vw;
+  padding: 0.5vh 0;
+  margin: 2vh auto 0; // 여백 조정, 중앙 정렬
+  font-size: 1rem;
+  font-family: 'Noto Sans KR';
+  text-align: center;
+  color: #FFF;
+
+  a {
+    color: #9AB0FF;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
+export const InputGroup = styled.div`
+  display: flex; // Flex 컨테이너로 설정
+  align-items: center; // 수직 중앙 정렬
+  width: 30vw;
+  margin: 0 auto; // 수평 중앙 정렬 ;
+`;
+
+// FontAwesomeIcon 컴포넌트에 대한 스타일을 추가할 수 있습니다.
+export const StyledIcon = styled(FontAwesomeIcon)`
+  margin-right: 5px; // 아이콘과 입력 필드 사이의 간격
+  color: grey; // 아이콘 색상 설정
+  font-size: 18px; /* 아이콘 크기 설정 */
+`;

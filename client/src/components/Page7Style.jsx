@@ -7,21 +7,22 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%; // 너비를 화면의 100%로 설정
   height: 100vh; // 높이를 화면의 100%로 설정
-  background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); 
 `;
 
 
 export const Body = styled.div`
   position: relative;
   top: 11vh;
+  height: 89vh;
   color: #f4f3f3;
-  height: 100%;
+  background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
 `;
 
 export const RecommendBox = styled.div`
   position: relative;
-  top: 50px;
+  top: 10vh;
   background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); 
+  font-family: 'Noto Sans KR', sans-serif;
 `;
 
 export const Header = styled.div`

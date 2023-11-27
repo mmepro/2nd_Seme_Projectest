@@ -71,12 +71,10 @@ export function PieChart({onGenreSelect}) { // onGenreSelect 추가} {
   return (
     <>
       {/* <GuideText>추천받고 싶은 장르를 차트에서 클릭해주세요</GuideText> */}
-      <br />
       <Pie data={data} options={options} />
       {selectedInfo && (
         <div style={{ 
           color: 'white', 
-          marginTop: '5vh', // 차트와의 간격 조정
           fontSize: '18px', // 폰트 크기 조정
           textAlign: 'center', // 텍스트 중앙 정렬
           fontFamily: 'Noto Sans KR, sans-serif',

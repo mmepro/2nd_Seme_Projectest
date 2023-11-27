@@ -13,8 +13,7 @@ import MovieDetailsModal from './components/Page7/MovieDetailsModal';
 import SelectedMoviesDisplay from './components/Page7/SelectedMoviesDisplay';
 import RecommendationsDisplay from './components/Page7/RecommendationsDisplay';
 import { Link } from 'react-router-dom';
-import Member from './components/Share/Member';
-import { jwtDecode } from 'jwt-decode';
+import Footer from './components/Share/Footer';
 
 function Page7() {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -236,6 +235,7 @@ function Page7() {
           )}
         </RecommendBox>
       </Body>
+      {/* <Footer/> */}
     </Container>
   );
 }

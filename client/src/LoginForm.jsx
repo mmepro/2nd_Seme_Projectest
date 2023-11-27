@@ -1,5 +1,5 @@
 // LoginForm.jsx
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
   Container,
   Header,
@@ -17,8 +17,25 @@ import PageButton from './components/Share/PageButton';
 import Login from './components/Share/Login';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Footer from './components/Share/Footer';
 
 function LoginForm() {
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+      setIsHeaderVisible(position === 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []); 
+
   const navigate = useNavigate();
   // State hooks for each form field
   const [username, setUsername] = useState('');
@@ -45,12 +62,14 @@ function LoginForm() {
 
   return (
     <Container>
-      <Header>
-        <Logo>
-          <img width={'170px'} height={'120px'} src="/logo.png" alt="Logo" />
+      <Header isvisible={isHeaderVisible}>
+      <Logo>
+        <Link to="/">
+           <img src='/logo2.png' alt='Logo' style={{ width: '100%', height: '100%' }} />
+        </Link>
         </Logo>
-        <PageButton />
-        <Login />
+        <PageButton/>
+        <Login/>
       </Header>
 
       <Body>
@@ -96,13 +115,14 @@ function LoginForm() {
             required
           /> */}
 
-            <SubmitButton type="submit">회원가입</SubmitButton>
+            <SubmitButton type="submit">가입하기</SubmitButton>
             <Caption>
               계정이 있으신가요? | <Link to="/login">로그인</Link>
             </Caption>
           </FormContainer>
         </form>
       </Body>
+      <Footer/>
     </Container>
   );
 }

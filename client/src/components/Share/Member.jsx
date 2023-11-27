@@ -27,7 +27,7 @@ function Member() {
   return (
     <>
       <LoginInfo style={{ left: '75vw', top: '2vh' }}>
-        {localStorage.username}회원님
+        {localStorage.username} 님
       </LoginInfo>
 
       <Link to="/page5">

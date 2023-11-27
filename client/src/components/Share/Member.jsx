@@ -18,16 +18,28 @@ const LoginInfo = styled.div`
 `;
 
 function Member() {
-  // const Data = () => {
-
-  // }
+  function signOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    window.location.reload();
+  }
 
   return (
     <>
-      <LoginInfo style={{ left: '80vw', top: '2vh' }}>회원이지롱</LoginInfo>
+      <LoginInfo style={{ left: '75vw', top: '2vh' }}>
+        {localStorage.username} 님
+      </LoginInfo>
 
       <Link to="/page5">
-        <LoginInfo style={{ left: '1145px', top: '15px' }}>내 정보</LoginInfo>
+        <LoginInfo style={{ left: '80vw', top: '2vh' }}>내 정보</LoginInfo>
+      </Link>
+
+      <Link to="/">
+        <LoginInfo style={{ left: '85vw', top: '2vh', width: '5vw' }}>
+          <button style={{ background: 'none' }} onClick={signOut}>
+            로그아웃
+          </button>
+        </LoginInfo>
       </Link>
     </>
   );

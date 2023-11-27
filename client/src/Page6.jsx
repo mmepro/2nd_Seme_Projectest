@@ -4,9 +4,15 @@ import PageButton from './components/Share/PageButton';
 import Login from './components/Share/Login';
 import Search from './components/Share/Search';
 import Movie from './components/Page6/MovieDB';
-import { ResultContainer, ResultGroup, SearchText } from './components/Page6Style';
+import {
+  ResultContainer,
+  ResultGroup,
+  SearchText,
+} from './components/Page6Style';
 import Page6Scroll from './components/Page6/Scroll';
 import { useLocation } from 'react-router-dom';
+import Member from './components/Share/Member';
+import { jwtDecode } from 'jwt-decode';
 
 function Page6() {
   // const [count, setCount] = useState(0)
@@ -18,14 +24,30 @@ function Page6() {
 
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
-  const [NAME, setNAME] = useState(''); 
+  const [NAME, setNAME] = useState('');
+  const [token, setToken] = useState(null);
+  const [username, setUsername] = useState('');
 
-  const getMovies = async (searchName) => { // searchName 파라미터 추가
-    const json = await (await fetch(`${URL}?api_key=${KEY}&language=ko-KR&page=1&query=${searchName}`)).json();
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+      const decodedToken = jwtDecode(storedToken);
+      setUsername(decodedToken.username);
+    }
+  }, []);
+
+  const getMovies = async (searchName) => {
+    // searchName 파라미터 추가
+    const json = await (
+      await fetch(
+        `${URL}?api_key=${KEY}&language=ko-KR&page=1&query=${searchName}`
+      )
+    ).json();
     setMovies(json.results);
     setLoading(false);
   };
-  
+
   useEffect(() => {
     if (searchQuery) {
       setNAME(searchQuery);
@@ -53,33 +75,33 @@ function Page6() {
     <Container>
       <Header>
         <Logo>
-          <img width={'170px'} height={'110px'} src='logo.png'></img>
+          <img width={'170px'} height={'110px'} src="logo.png"></img>
         </Logo>
         <PageButton />
-        <Login />
+        {token ? <Member /> : <Login />}
       </Header>
 
       <Body>
-        <Search/>
-        { NAME ? <SearchText>{NAME}의 검색결과입니다</SearchText> : ''}
-          <ResultContainer id='page6scroll'>
-            {loading ? (
-              <h1>Loading...</h1>
-            ) : (
-              <ResultGroup>
-                {movies.map((movie) => (
-                  <Movie
-                    key={movie.id}
-                    poster_path={movie.poster_path}
-                    title={movie.title}
-                    overview={movie.overview}
-                    genre_ids={movie.genre_ids}
-                  />
-                ))}{' '}
-              </ResultGroup>
-            )}
-          </ResultContainer>
-          { NAME ? <Page6Scroll/> : null}
+        <Search />
+        {NAME ? <SearchText>{NAME}의 검색결과입니다</SearchText> : ''}
+        <ResultContainer id="page6scroll">
+          {loading ? (
+            <h1>Loading...</h1>
+          ) : (
+            <ResultGroup>
+              {movies.map((movie) => (
+                <Movie
+                  key={movie.id}
+                  poster_path={movie.poster_path}
+                  title={movie.title}
+                  overview={movie.overview}
+                  genre_ids={movie.genre_ids}
+                />
+              ))}{' '}
+            </ResultGroup>
+          )}
+        </ResultContainer>
+        {NAME ? <Page6Scroll /> : null}
       </Body>
     </Container>
   );

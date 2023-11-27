@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Header, Logo, Body, RecommendBox} from './components/Page7Style'; // 가정한 스타일 컴포넌트 경로
+import {
+  Container,
+  Header,
+  Logo,
+  Body,
+  RecommendBox,
+} from './components/Page7Style'; // 가정한 스타일 컴포넌트 경로
 import PageButton from './components/Share/PageButton';
 import Login from './components/Share/Login';
 import MovieDetailsModal from './components/Page7/MovieDetailsModal';
@@ -11,6 +17,17 @@ import Footer from './components/Share/Footer';
 
 function Page7() {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [token, setToken] = useState(null);
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+      const decodedToken = jwtDecode(storedToken);
+      setUsername(decodedToken.username);
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,12 +41,12 @@ function Page7() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []); 
+  }, []);
 
   const [movieDetails, setMovieDetails] = useState(null);
   const [selectedMovies, setSelectedMovies] = useState([]);
   const [tvGenres, setTVGenres] = useState({});
-  const [recommendedMovies,   setRecommendedMovies] = useState([]);
+  const [recommendedMovies, setRecommendedMovies] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [recommendations, setRecommendations] = useState([]);
   const [isTextVisible, setIsTextVisible] = useState(true);
@@ -39,16 +56,24 @@ function Page7() {
     const URL = 'https://api.themoviedb.org/3';
 
     try {
-      const response = await fetch(`${URL}/search/movie?api_key=${KEY}&language=ko-KR&page=1&query=${encodeURIComponent(title)}`);
+      const response = await fetch(
+        `${URL}/search/movie?api_key=${KEY}&language=ko-KR&page=1&query=${encodeURIComponent(
+          title
+        )}`
+      );
       const data = await response.json();
       const movie = data.results[0];
-      return movie ? {
-        title,
-        posterUrl: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : null,
-        vote_average: movie.vote_average,
-        synopsis: movie.overview,
-        // ... other details you want to include ...
-      } : { title, posterUrl: null, vote_average: null };
+      return movie
+        ? {
+            title,
+            posterUrl: movie.poster_path
+              ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+              : null,
+            vote_average: movie.vote_average,
+            synopsis: movie.overview,
+            // ... other details you want to include ...
+          }
+        : { title, posterUrl: null, vote_average: null };
     } catch (error) {
       console.error('Error fetching movie details:', error);
       return { title, posterUrl: null, vote_average: null };
@@ -65,32 +90,38 @@ function Page7() {
 
   const handleBack = () => {
     setIsTextVisible(true);
-  }
+  };
 
-
-   // Declare the state and its setter function
+  // Declare the state and its setter function
 
   const handleCloseModal = () => {
     setIsModalVisible(false);
     console.log('Modal should be closed now');
-  };  
+  };
 
   const [selectedTitle, setSelectedTitle] = useState(null);
 
   const getRecommendations = (title) => {
     setSelectedTitle(title);
     setIsTextVisible(false);
-    axios.get(`http://127.0.0.1:5000/movies?title=${encodeURIComponent(title)}`)
-      .then(async response => {
+    axios
+      .get(`http://127.0.0.1:5000/movies?title=${encodeURIComponent(title)}`)
+      .then(async (response) => {
         const recommendedTitles = response.data.recommendations;
-        const detailedRecommendations = await Promise.all(recommendedTitles.map(async (title) => {
-          const movieResponse = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=0d38cc635c10e090910f3d7ea7194e05&language=ko-KR&query=${encodeURIComponent(title)}`);
-          const movieData = await movieResponse.json();
-          return movieData.results[0]; // Assuming the first result is the correct movie
-        }));
+        const detailedRecommendations = await Promise.all(
+          recommendedTitles.map(async (title) => {
+            const movieResponse = await fetch(
+              `https://api.themoviedb.org/3/search/movie?api_key=0d38cc635c10e090910f3d7ea7194e05&language=ko-KR&query=${encodeURIComponent(
+                title
+              )}`
+            );
+            const movieData = await movieResponse.json();
+            return movieData.results[0]; // Assuming the first result is the correct movie
+          })
+        );
         setRecommendations(detailedRecommendations);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('There was an error!', error);
       });
   };
@@ -102,7 +133,7 @@ function Page7() {
       setSelectedMovies(JSON.parse(storedMovies));
     }
   }, []);
-  
+
   useEffect(() => {
     // Fetch TV show genre data from the API when the component mounts
     const apiKey = 'c4e59022826dc465ea5620d6adaa6813';
@@ -139,22 +170,69 @@ function Page7() {
   return (
     <Container>
       <Header isvisible={isHeaderVisible}>
-      <Logo>
-        <Link to="/">
-           <img src='/logo2.png' alt='Logo' style={{ width: '100%', height: '100%' }} />
-        </Link>
+        <Logo>
+          <Link to="/">
+            <img
+              src="/logo2.png"
+              alt="Logo"
+              style={{ width: '100%', height: '100%' }}
+            />
+          </Link>
         </Logo>
-        <PageButton/>
-        <Login/>
+        <PageButton />
+        {token ? <Member /> : <Login />}
       </Header>
-      <Body> 
+      <Body>
         <RecommendBox>
-          <h2 style={{ padding: '1rem', textAlign: 'center',  color: '#FFF', margin: '0'}}>영화를 선택해주세요!</h2>
-          <SelectedMoviesDisplay selectedMovies={selectedMovies} getRecommendations={getRecommendations} />
-          {selectedTitle && <h2 style={{ paddingTop: '1rem', textAlign: 'center',  color: '#FFF', margin: '0'}}>{selectedTitle&& selectedTitle} 관련 영화</h2>}
-          {selectedTitle && <h3 style={{ paddingTop: '1rem', textAlign: 'center',  color: '#d4d4d4', margin: '0'}}>영화 제목을 클릭하시면 정보를 볼 수 있습니다</h3>}
-          <RecommendationsDisplay id='RcmdDP' recommendations={recommendations} onMovieSelect={handleMovieSelection} />
-          {isModalVisible && <MovieDetailsModal movie={movieDetails} onClose={handleCloseModal} />}
+          <h2
+            style={{
+              padding: '1rem',
+              textAlign: 'center',
+              color: '#FFF',
+              margin: '0',
+            }}
+          >
+            영화를 선택해주세요!
+          </h2>
+          <SelectedMoviesDisplay
+            selectedMovies={selectedMovies}
+            getRecommendations={getRecommendations}
+          />
+          {selectedTitle && (
+            <h2
+              style={{
+                paddingTop: '1rem',
+                textAlign: 'center',
+                color: '#FFF',
+                margin: '0',
+              }}
+            >
+              {selectedTitle && selectedTitle} 관련 영화
+            </h2>
+          )}
+          {selectedTitle && (
+            <h3
+              style={{
+                paddingTop: '1rem',
+                textAlign: 'center',
+                color: '#d4d4d4',
+                margin: '0',
+              }}
+            >
+              영화 제목을 클릭하시면 정보를 볼 수 있습니다
+            </h3>
+          )}
+          <RecommendationsDisplay
+            id="RcmdDP"
+            recommendations={recommendations}
+            onMovieSelect={handleMovieSelection}
+          />
+          {isModalVisible && (
+            <MovieDetailsModal
+              movie={movieDetails}
+              onClose={handleCloseModal}
+            />
+          )}
         </RecommendBox>
       </Body>
       {/* <Footer/> */}

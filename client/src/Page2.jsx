@@ -8,12 +8,25 @@ import Login from './components/Share/Login';
 import Footer from './components/Share/Footer';
 import ToTop from './components/Page1/ToTop';
 import Chart from './components/Page2/Chart';
+import Member from './components/Share/Member';
 import { Colors } from 'chart.js';
+import { jwtDecode } from 'jwt-decode';
 
 function Page2() {
   const [selectedGenre, setSelectedGenre] = useState(''); // 초기값 설정
   const [responseData, setResponseData] = useState(null);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [token, setToken] = useState(null);
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+      const decodedToken = jwtDecode(storedToken);
+      setUsername(decodedToken.username);
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +55,7 @@ function Page2() {
           </Link>
         </Logo>
         <PageButton setResponseData={setResponseData} />
-        <Login />
+        {token ? <Member /> : <Login />}
       </Header>
 
       <Body>

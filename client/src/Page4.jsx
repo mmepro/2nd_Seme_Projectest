@@ -22,6 +22,8 @@ import cgv from './components/Page4/TN/cgvTheater.json';
 import lotte from './components/Page4/TN/lotte.json';
 import megabox from './components/Page4/TN/megabox.json';
 import axios from 'axios';
+import Member from './components/Share/Member';
+import { jwtDecode } from 'jwt-decode';
 
 function Page4() {
   // 선택한 영화 정보 불러오기
@@ -41,6 +43,17 @@ function Page4() {
     setMapOpen(false);
     setDataOpen(true);
   };
+  const [token, setToken] = useState(null);
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+      const decodedToken = jwtDecode(storedToken);
+      setUsername(decodedToken.username);
+    }
+  }, []);
 
   function find3Theaters(theaters) {
     const targetTheaters = ['CGV', '메가박스', '롯데시네마'];
@@ -92,7 +105,7 @@ function Page4() {
     //   title : title,
     //   token : localStorage.getItem('token')
     // }
-    
+
     // axios
     //   .post('http://43.200.133.130:3000//movieView', data1)
     //   .then((response) => {
@@ -142,10 +155,14 @@ function Page4() {
     <Container>
       <Header>
         <Logo>
-        <img src='/logo2.png' alt='Logo' style={{ width: '100%', height: '100%' }} />
+          <img
+            src="/logo2.png"
+            alt="Logo"
+            style={{ width: '100%', height: '100%' }}
+          />
         </Logo>
         <PageButton />
-        <Login />
+        {token ? <Member /> : <Login />}
       </Header>
 
       <Body>
@@ -162,7 +179,12 @@ function Page4() {
               <Date onDateSelect={setSelectedDate} />
               <NearTheather>가까운 극장순 ↓</NearTheather>
               <TheatherGroup id="scroll">
-                <Theather nData={nData} movieName={title} tData={tData} date={selectedDate} />
+                <Theather
+                  nData={nData}
+                  movieName={title}
+                  tData={tData}
+                  date={selectedDate}
+                />
               </TheatherGroup>
               <Scroll />
             </Reservation>

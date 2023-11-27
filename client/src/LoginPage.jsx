@@ -17,7 +17,7 @@ import {
 } from './components/LoginPageStyle';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Footer from './components/Share/Footer';
 
@@ -36,7 +36,7 @@ function LoginPage() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []); 
+  }, []);
 
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
@@ -54,6 +54,7 @@ function LoginPage() {
       const token = res.data.token;
       console.log('로그인 성공:', res.data, '토큰:', token);
       localStorage.setItem('token', token);
+      localStorage.setItem('username', username);
       navigate('/');
     } catch (error) {
       console.log('로그인 에러', error);
@@ -62,14 +63,18 @@ function LoginPage() {
 
   return (
     <Container>
-       <Header isvisible={isHeaderVisible}>
-      <Logo>
-        <Link to="/">
-           <img src='/logo2.png' alt='Logo' style={{ width: '100%', height: '100%' }} />
-        </Link>
+      <Header isvisible={isHeaderVisible}>
+        <Logo>
+          <Link to="/">
+            <img
+              src="/logo2.png"
+              alt="Logo"
+              style={{ width: '100%', height: '100%' }}
+            />
+          </Link>
         </Logo>
-        <PageButton/>
-        <Login/>
+        <PageButton />
+        <Login />
       </Header>
 
       <Body>

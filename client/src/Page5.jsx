@@ -17,11 +17,25 @@ import BoxChange from './components/Page5/BoxChange';
 import Footer from './components/Share/Footer';
 import Search from './components/Share/Search';
 import ToTop from './components/Page1/ToTop';
+import Member from './components/Share/Member';
+import { jwtDecode } from 'jwt-decode';
+
 // import MovieFetcher from './components/Page5/MovieFetcher';
 // import MovieSelector from './components/Page5/MovieSelector';
 
 function Page5() {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [token, setToken] = useState(null);
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+      const decodedToken = jwtDecode(storedToken);
+      setUsername(decodedToken.username);
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -113,7 +127,7 @@ function Page5() {
     if (selectedMovies.length === 3) {
       window.scrollTo({
         top: 0, // Scroll to the top of the page
-        behavior: 'smooth' // Optional: for smooth scrolling
+        behavior: 'smooth', // Optional: for smooth scrolling
       });
     } else {
       alert('최소 세 개의 영화를 선택해야 합니다.');
@@ -133,7 +147,7 @@ function Page5() {
           </Link>
         </Logo>
         <PageButton />
-        <Login />
+        {token ? <Member /> : <Login />}
       </Header>
 
       <Body>

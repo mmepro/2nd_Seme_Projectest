@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useEffect,useState } from "react";
 
 const MoviesWrapper = styled.div`
+  position: relative; // 이제 MoviesWrapper는 position context를 제공합니다.
   width: 90%; // 화면 너비의 80%를 사용
   margin: 0 auto; // 중앙 정렬
   padding-bottom: 5vh; // 하단 여백

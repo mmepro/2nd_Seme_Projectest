@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import { FaArrowCircleUp } from 'react-icons/fa';
-
+import { useState,useEffect,useRef } from 'react'; // Import useEffect and useState
 const ScrollToTopButton = styled.div`
   position: fixed;
   bottom: 20px;
@@ -13,6 +13,10 @@ const ScrollToTopButton = styled.div`
     cursor: pointer;
     transform: scale(1.2); // 호버될 때 확대 효과 적용
   }
+
+  /* 초기에 숨기기 */
+  opacity: ${({ isVisible }) => (isVisible ? '1' : '0')};
+  pointer-events: ${({ isVisible }) => (isVisible ? 'auto' : 'none')};
 `;
 
 
@@ -24,8 +28,33 @@ const scrollToTop = () => {
 };
 
 const ToTop = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const scrollListener = () => {
+      if (window.scrollY > 200) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', scrollListener);
+
+    return () => {
+      window.removeEventListener('scroll', scrollListener);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
-    <ScrollToTopButton onClick={scrollToTop}>
+    <ScrollToTopButton onClick={scrollToTop}  isVisible={isVisible}>
       <FaArrowCircleUp size="2em" color="#898FC0" />
     </ScrollToTopButton>
   );

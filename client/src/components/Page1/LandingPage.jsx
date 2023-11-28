@@ -3,19 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import MainImage from './MainImage';
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../Config';
 import styled from 'styled-components';
+import { FaArrowCircleRight } from 'react-icons/fa';
 const CustomButton = styled.button`
   position: absolute;
-  top: 68vh;
+  top: 85vh;
   right: 2.5vw;
   z-index: 500;
-  color: #f3f3f3;
   background-color: #1c1e2c;
-  border: none;
   border-radius: 50%;
-  padding: 10px;
-  font-size: 1.1rem;
+  padding: 1vh 2vw;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.99);
   transition: all 0.3s;
   font-family: 'Noto Sans KR', sans-serif;
 
@@ -29,6 +27,8 @@ const CustomButton = styled.button`
     transform: translateY(1px);
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
   }
+`;
+const NextIcon = styled(FaArrowCircleRight)`
 `;
 
 const LandingPage = () => {
@@ -51,8 +51,10 @@ const LandingPage = () => {
         //안그러면 로그창에 오류발생
       });
   }, []);
+  const [arrowRight, setArrowRight] = useState(false);
   const goToNextMovie = () => {
     setCurrentMovieIndex((prevIndex) => (prevIndex + 1) % Movies.length);
+    setArrowRight(!arrowRight); // Toggle the arrow direction
   };
 
   useEffect(() => {
@@ -74,10 +76,13 @@ const LandingPage = () => {
             title={currentMovie.title}
             text={currentMovie.overview}
           />
-          <CustomButton onClick={goToNextMovie}>다음</CustomButton>
+          <CustomButton onClick={goToNextMovie}>
+            <NextIcon size="2em" color="#f3f3f3"
+            />
+          </CustomButton>
         </>
       )}
-      <div style={{ width: '80vw', margin: '2rem auto' }}>
+      <div style={{ width: '80vw', margin: '2rem auto', marginBottom: '-6vh' }}>
         <hr />
         <h2
           style={{ fontSize: '1.6vw', fontFamily: 'Noto Sans KR, sans-serif' }}

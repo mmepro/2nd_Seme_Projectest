@@ -14,6 +14,7 @@ import {
   LoginButton,
   Caption,
   StyledIcon,
+  BodyContainer,
 } from './components/LoginPageStyle';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
@@ -78,6 +79,7 @@ function LoginPage() {
       </Header>
 
       <Body>
+        <BodyContainer>
         <Logo1>
           <img src='/logo2.png' alt='Logo' style={{ width: '100%', height: '100%' }} />
         </Logo1>
@@ -110,6 +112,7 @@ function LoginPage() {
         <Caption>
           새로운 회원이신가요? |&nbsp; <Link to="/signup"> 회원가입</Link>
         </Caption>
+        </BodyContainer>
       </Body>
       <Footer/>
     </Container>

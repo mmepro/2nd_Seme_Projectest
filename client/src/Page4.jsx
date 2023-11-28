@@ -49,15 +49,11 @@ function Page4() {
   const [username, setUsername] = useState('');
   const [selection, setSelection] = useState('');
 
+  // 드롭다운 선택
   const DropDown = (event) => {
     setSelection(event.target.value);
     // 여기에서 선택된 값을 처리할 수 있습니다.
   };
-
-  useEffect(() => {
-    setSelection(selection);
-    console.log(selection);
-  }, [selection]);
 
   // 유저 토큰 받아오기
   useEffect(() => {
@@ -69,6 +65,7 @@ function Page4() {
     }
   }, []);
 
+  // 많은 영화관중 주요 3사 영화관만 선별
   function find3Theaters(theaters) {
     const targetTheaters = ['CGV', '메가박스', '롯데시네마'];
     return theaters.filter((theater) =>
@@ -90,7 +87,7 @@ function Page4() {
         return theater.theatercode;
       }
     }
-    return null; // 일치하는 장소가 없을 경우
+    return null; 
   }
 
   function findLOTTECode(theaters, place) {
@@ -99,7 +96,7 @@ function Page4() {
         return theater.cinemaID;
       }
     }
-    return null; // 일치하는 장소가 없을 경우
+    return null;
   }
 
   function findMEGABOXCode(theaters, place) {
@@ -108,7 +105,7 @@ function Page4() {
         return theater.brchNo;
       }
     }
-    return null; // 일치하는 장소가 없을 경우
+    return null; 
   }
 
   const [selectedDate, setSelectedDate] = useState(null);
@@ -141,21 +138,16 @@ function Page4() {
         const MEGABOX = megabox;
         let code;
         let theaterType;
-
         if (theather === 'CGV') {
-          // console.log(`CGVCode: ${findCGVCode(CGV, place)}`); // CGV 성공
           code = findCGVCode(CGV, place);
           theaterType = 'cgv';
         } else if (theather === '롯데시네마') {
-          // console.log(`LotteCode: ${findLOTTECode(LOTTE, place)}`); // 롯데시네마 성공
           code = findLOTTECode(LOTTE, place);
           theaterType = 'lotte';
         } else if (theather === '메가박스') {
-          // console.log(`MegaboxCode : ${findMEGABOXCode(MEGABOX, place)}`); //메가박스 성공
           code = findMEGABOXCode(MEGABOX, place);
           theaterType = 'megabox';
         }
-
         if (code && theaterType) {
           theaterData.push({ code, theaterType });
         }

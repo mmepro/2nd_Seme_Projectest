@@ -116,24 +116,35 @@ function Theather({ nData, movieName, tData, date}) {
     else if (selectedType === 'price') {
       for (let i = 0; i < sortedData.length; i++) {
         sortedData[i] = sortedData[i].sort((a, b) => {
-          let isAIMAX = a.screenName.includes('IMAX');
-          let isALaser = a.screenName.includes('Laser');
-          let isBIMAX = b.screenName.includes('IMAX');
-          let isBLaser = b.screenName.includes('Laser');
-          if (isAIMAX && !isBIMAX) {
-            return -1; 
-          } else if (!isAIMAX && isBIMAX) {
-            return 1; 
+          // 1순위 조건 체크
+          let isAFirstPriority = ['RECLINER', 'THEBOUTIQUE', 'BOUTIQUE', 'PRIVATE', 'SUITE', 'CINE', 'TEMPUR'].some(type => a.screenName.toUpperCase().includes(type));
+          let isBFirstPriority = ['RECLINER', 'THEBOUTIQUE', 'BOUTIQUE', 'PRIVATE', 'SUITE', 'CINE', 'TEMPUR'].some(type => b.screenName.toUpperCase().includes(type));
+          // 2순위 조건 체크
+          let isASecondPriority = ['COMFORT', 'IMAX', '4DX', 'SCREENX'].some(type => a.screenName.toUpperCase().includes(type));
+          let isBSecondPriority = ['COMFORT', 'IMAX', '4DX', 'SCREENX'].some(type => b.screenName.toUpperCase().includes(type));
+          // 3순위 조건 체크
+          let isALaser = a.screenName.toUpperCase().includes('LASER');
+          let isBLaser = b.screenName.toUpperCase().includes('LASER');
+          // 우선 순위에 따른 정렬 로직
+          if (isAFirstPriority && !isBFirstPriority) {
+            return -1;
+          } else if (!isAFirstPriority && isBFirstPriority) {
+            return 1;
+          } else if (isASecondPriority && !isBSecondPriority) {
+            return -1;
+          } else if (!isASecondPriority && isBSecondPriority) {
+            return 1;
           } else if (isALaser && !isBLaser) {
-            return -1; 
+            return -1;
           } else if (!isALaser && isBLaser) {
-            return 1; 
+            return 1;
           } else {
             return 0;
           }
         });
       }
     } 
+    
     // 시간순 정렬
     else if(selectedType==='time'){
       for (let i = 0; i < sortedData.length; i++) {
@@ -141,7 +152,7 @@ function Theather({ nData, movieName, tData, date}) {
       }
     }
     setData2(sortedData); 
-    // console.log(data2);
+    console.log(data2);
   }, [selectedType]); 
   
   // 날짜 선택 후 날짜 업데이트

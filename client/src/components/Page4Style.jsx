@@ -22,15 +22,16 @@ export const Reservation = styled.div`
   top: 30px;
   background: #2A2F42;
   border: 1px solid #F4F3F3;
+  border-radius: 10px;
 `;
 
-export const NearTheather = styled.div`
+export const DropDownOption = styled.select`
 position: absolute;
 width: 143px;
 height: 31px;
 left: 621px;
 top: 79px;
-
+border-radius:5px;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 400;
@@ -39,7 +40,7 @@ line-height: 19px;
 display: flex;
 align-items: center;
 text-align: center;
-
+background: none;
 color: #F4F3F3;
 `;
 

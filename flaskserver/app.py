@@ -2,11 +2,13 @@ from flask import Flask, request, jsonify
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
-from flask_cors import CORS
 from collections import Counter
+from flask_cors import CORS
 
 app = Flask(__name__)
+# 모든 도메인에서의 요청을 허용
 CORS(app)
+
 # 기존의 영화 데이터셋 로드
 df = pd.read_csv('movieDataSet.csv')
 df['genres'] = df['genres'].fillna('')
@@ -95,5 +97,5 @@ def recommend_playing_movies():
 
     return jsonify(recommendations=recommended_movies['title'].tolist())
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+app.run(debug=True)

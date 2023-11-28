@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import {
   Container,
   Header,
@@ -6,9 +6,9 @@ import {
   Reservation,
   TheatherGroup,
   Body,
-  NearTheather,
   TextBox,
   StyledButton,
+  DropDownOption,
 } from './components/Page4Style';
 // import Scroll from './components/Page4/Scroll';
 import Theather from './components/Page4/Theather';
@@ -21,9 +21,11 @@ import KakaoMap from './components/Page4/Location';
 import cgv from './components/Page4/TN/cgvTheater.json';
 import lotte from './components/Page4/TN/lotte.json';
 import megabox from './components/Page4/TN/megabox.json';
-import axios from 'axios';
+// import axios from 'axios';
 import Member from './components/Share/Member';
 import { jwtDecode } from 'jwt-decode';
+
+export const Page4Context = createContext();
 
 function Page4() {
   // 선택한 영화 정보 불러오기
@@ -45,7 +47,19 @@ function Page4() {
   };
   const [token, setToken] = useState(null);
   const [username, setUsername] = useState('');
+  const [selection, setSelection] = useState('');
 
+  const DropDown = (event) => {
+    setSelection(event.target.value);
+    // 여기에서 선택된 값을 처리할 수 있습니다.
+  };
+
+  useEffect(() => {
+    setSelection(selection);
+    console.log(selection);
+  }, [selection]);
+
+  // 유저 토큰 받아오기
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
@@ -98,7 +112,6 @@ function Page4() {
   }
 
   const [selectedDate, setSelectedDate] = useState(null);
-  console.log(selectedDate);
 
   useEffect(() => {
     // const data1 = {
@@ -152,68 +165,75 @@ function Page4() {
   }, [dataOpen, nData]);
 
   return (
-    <Container>
-      <Header>
-        <Logo>
-          <img
-            src="/logo2.png"
-            alt="Logo"
-            style={{ width: '100%', height: '100%' }}
-          />
-        </Logo>
-        <PageButton />
-        {token ? <Member /> : <Login />}
-      </Header>
-
-      <Body>
-        {dataOpen && (
-          <>
-            <MovieInfo
-              posterUrl={posterUrl}
-              voteAvg={voteAvg}
-              directorName={directorName}
-              releaseDate={releaseDate}
-              genres={genres}
+      <Container>
+        <Header>
+          <Logo>
+            <img
+              src="/logo2.png"
+              alt="Logo"
+              style={{ width: '100%', height: '100%' }}
             />
-            <Reservation>
-              <Date onDateSelect={setSelectedDate} />
-              <NearTheather>가까운 극장순 ↓</NearTheather>
-              <TheatherGroup id="scroll">
-                <Theather
-                  nData={nData}
-                  movieName={title}
-                  tData={tData}
-                  date={selectedDate}
-                />
-              </TheatherGroup>
-              {/* <Scroll /> */}
-            </Reservation>
-          </>
-        )}
+          </Logo>
+          <PageButton />
+          {token ? <Member /> : <Login />}
+        </Header>
 
-        {mapOpen && (
-          <>
-            <KakaoMap onDataChange={handleDataChange} />
-            <TextBox>
-              <span>근처 영화관 검색결과입니다.</span>
-              <br />
-              <span>원하시는 버튼을 눌러주세요.</span>
-              <br />
-              <br />
-              <StyledButton onClick={ShowMovieData}>
-                실시간 예매 현황
-              </StyledButton>
-              <br />
-              <StyledButton onClick={() => window.location.reload()}>
-                위치 새로고침
-              </StyledButton>
-              <br />
-              <StyledButton>위치 직접 설정</StyledButton>
-            </TextBox>
-          </>
-        )}
-      </Body>
-    </Container>
+        <Body>
+          {dataOpen && (
+            <>
+              <MovieInfo
+                posterUrl={posterUrl}
+                voteAvg={voteAvg}
+                directorName={directorName}
+                releaseDate={releaseDate}
+                genres={genres}
+              />
+              <Reservation>
+                <Date onDateSelect={setSelectedDate} />
+                <DropDownOption onChange={DropDown}>
+                  <option value="">정렬기준 선택</option>
+                  <option value="time">상영시간순</option>
+                  <option value="price">좌석가격순</option>
+                  <option value="seats">잔여좌석순</option>
+                </DropDownOption>
+                <TheatherGroup id="scroll">
+                  <Page4Context.Provider value={selection}>
+                  <Theather
+                    nData={nData}
+                    movieName={title}
+                    tData={tData}
+                    date={selectedDate}
+                  />
+                  </Page4Context.Provider>
+                </TheatherGroup>
+                {/* <Scroll /> */}
+              </Reservation>
+            </>
+          )}
+
+          {mapOpen && (
+            <>
+              <KakaoMap onDataChange={handleDataChange} />
+              <TextBox>
+                <span>근처 영화관 검색결과입니다.</span>
+                <br />
+                <span>원하시는 버튼을 눌러주세요.</span>
+                <br />
+                <br />
+                <StyledButton onClick={ShowMovieData}>
+                  실시간 예매 현황
+                </StyledButton>
+                <br />
+                <StyledButton onClick={() => window.location.reload()}>
+                  위치 새로고침
+                </StyledButton>
+                <br />
+                <StyledButton>위치 직접 설정</StyledButton>
+              </TextBox>
+            </>
+          )}
+        </Body>
+      </Container>
   );
 }
 

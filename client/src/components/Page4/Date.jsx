@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 dayjs.locale('ko');
 
-const DateInfo = styled.div`
+const DateInfo = styled.button`
   position: absolute;
   width: 100px;
   height: 52px;
@@ -14,7 +14,7 @@ const DateInfo = styled.div`
   justify-content: center;
   align-items: center;
   color: #ffffff;
-  cursor: pointer;
+  border-radius: 5px;
 `;
 
 function Date({ onDateSelect }) {

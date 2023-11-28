@@ -49,7 +49,8 @@ export const TheatherGroup = styled.div`
   height: 433px;
   left: 19px;
   top: 121px;
-  overflow: hidden;
+  overflow-y : auto;
+  overflow-x : hidden;
 `;
 
 export const Header = styled.div`

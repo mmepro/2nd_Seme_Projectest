@@ -10,7 +10,7 @@ import {
   TextBox,
   StyledButton,
 } from './components/Page4Style';
-import Scroll from './components/Page4/Scroll';
+// import Scroll from './components/Page4/Scroll';
 import Theather from './components/Page4/Theather';
 import Date from './components/Page4/Date';
 import PageButton from './components/Share/PageButton';
@@ -186,7 +186,7 @@ function Page4() {
                   date={selectedDate}
                 />
               </TheatherGroup>
-              <Scroll />
+              {/* <Scroll /> */}
             </Reservation>
           </>
         )}

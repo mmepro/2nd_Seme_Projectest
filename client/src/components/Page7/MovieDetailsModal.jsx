@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export default function MovieDetailsModal({ movie, onClose }) {
-
   if (!movie) return null;
 
   // Modal overlay styling
@@ -60,43 +59,57 @@ export default function MovieDetailsModal({ movie, onClose }) {
     const searchType = event.target.value; // 버튼의 value 읽기
     const query = searchType === 'preview' ? '예고편' : '영화리뷰';
     setShowReview(true);
-    searchYouTube(movie.title, query).then(videoId => setYoutubeVideoId(videoId));
+    searchYouTube(movie.title, query).then((videoId) =>
+      setYoutubeVideoId(videoId)
+    );
   };
 
-  async function searchYouTube(title,type) {
-    const apiKey = 'AIzaSyCVAt52Jg1IiOj4XrbYvBQB78iOV6NW0xY'; // API 키를 여기에 입력
+  async function searchYouTube(title, type) {
+    const apiKey = 'AIzaSyCAeJovYWAAohqbpHHgOft4WU5wQO9kmKM'; // API 키를 여기에 입력
     const query = `${title} ${type}`;
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&key=${apiKey}`;
-    
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(
+      query
+    )}&key=${apiKey}`;
+
     const response = await fetch(url);
     const data = await response.json();
     return data.items[0]?.id.videoId; // 첫 번째 검색 결과의 비디오 ID 반환
   }
-  
-  
 
   return (
     <div style={overlayStyle}>
       <div style={contentStyle}>
         <h3>{movie.title}</h3>
         {youtubeVideoId && showReview && (
-        <iframe
-          width="560"
-          height="315"
-          src={`https://www.youtube.com/embed/${youtubeVideoId}`}
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-      )}
+          <iframe
+            width="560"
+            height="315"
+            src={`https://www.youtube.com/embed/${youtubeVideoId}`}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        )}
         {!showReview && movie.posterUrl && (
-            <img src={movie.posterUrl} alt={movie.title} style={imageStyle} />
+          <img src={movie.posterUrl} alt={movie.title} style={imageStyle} />
         )}
         <p>평점 : {movie.vote_average}</p>
         <div>
-          <button onClick={handleReviewClick} value='preview'style={{margin:'5px'}}>예고편 보기</button>
-          <button onClick={handleReviewClick} value='review' style={{margin:'5px'}}>리뷰영상 보기</button>
+          <button
+            onClick={handleReviewClick}
+            value="preview"
+            style={{ margin: '5px' }}
+          >
+            예고편 보기
+          </button>
+          <button
+            onClick={handleReviewClick}
+            value="review"
+            style={{ margin: '5px' }}
+          >
+            리뷰영상 보기
+          </button>
         </div>
         {/* Display the synopsis */}
         {movie.synopsis && (

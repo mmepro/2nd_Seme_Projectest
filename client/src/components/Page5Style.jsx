@@ -16,7 +16,6 @@ export const Container = styled.div`
 
 export const Body = styled.div`
   position: relative;
-  top: 11vh;
   color: #f4f3f3;
   background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
 `;
@@ -51,6 +50,8 @@ export const Logo = styled.div`
 `;
 
 export const ScrollContent = styled.div`
+  position: relative;
+  top: 11vh;
   width: 91vw;
   margin: 0 auto;
   overflow: hidden;
@@ -94,6 +95,8 @@ export const ScrollContent = styled.div`
 export const TopSection = styled.div`
   display: flex;
   margin-bottom: 20vh;
+  position: relative;
+  top: 11vh;
   align-items: center; // 세로 중앙 정렬
   padding: 0 20px; // 필요한 경우 양쪽 패딩을 조정
 `;
@@ -169,6 +172,7 @@ export const Submit = styled.button`
 export const SubmitContainer = styled.div`
   display: flex;
   flex-direction: column;
+  top: 6vh;
   align-items: center;
   position: relative;
   padding-bottom: 10vh;
@@ -236,6 +240,11 @@ export const StyledRefreshIcon = styled(MdRefresh)`
 
   &:hover {
     color: #4F526B;
-    transform: scale(1.1);
+    transform: translateY(-1px); // 클릭 유도를 위한 애니메이션 효과
+
+  }
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
   }
 `;

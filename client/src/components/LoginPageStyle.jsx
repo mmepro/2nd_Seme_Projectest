@@ -14,7 +14,6 @@ export const Container = styled.div`
 export const Body = styled.div`
   position: relative;
   height: 100vh;
-  top: 11vh;
   color: #f4f3f3;
   background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
 `;
@@ -154,4 +153,9 @@ export const StyledIcon = styled(FontAwesomeIcon)`
   margin-right: 5px; // 아이콘과 입력 필드 사이의 간격
   color: grey; // 아이콘 색상 설정
   font-size: 18px; /* 아이콘 크기 설정 */
+`;
+
+export const BodyContainer = styled.div`
+position: relative;  
+top: 11vh;
 `;

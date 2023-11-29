@@ -9,7 +9,7 @@ const FooterContainer = styled.footer`
   text-align: center;
   font-size: 0.8rem;
   color: #333;
-  top: 11vh;
+  
 
 `;
 

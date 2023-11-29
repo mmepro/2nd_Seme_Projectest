@@ -4,7 +4,7 @@ import useFetchData from './FetchData';
 
 const ChartContainer = styled.div`
   position: relative;
-  top: 5vh;
+  top: 16vh;
   text-align: center; // 차트와 타이틀을 중앙 정렬
   padding-bottom: 80px; // 영화 목록과의 간격
 `;
@@ -34,7 +34,7 @@ const ChartImage = styled.div`
   margin: auto;
 `;
 
-function Chart({ setSelectedGenre }) {
+function Chart({setSelectedGenre, selectedGenre, responseData}) {
   const { data, loading, error } = useFetchData(
     'http://localhost:3000/userRecord/'
   );
@@ -73,7 +73,11 @@ function Chart({ setSelectedGenre }) {
         <br /> 가장 많이 보신 장르 top3입니다.
       </ChartTopInfo>
       <ChartImage>
-        <PieChart onGenreSelect={(genre) => setSelectedGenre(genre)} />
+      <PieChart
+          selectedGenre={selectedGenre}
+          responseData={responseData}
+          setSelectedGenre={setSelectedGenre}
+        />
       </ChartImage>
     </ChartContainer>
   );

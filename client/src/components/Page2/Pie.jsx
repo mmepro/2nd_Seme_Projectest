@@ -39,8 +39,8 @@ export const data = {
 //   font-family: 'Noto Sans KR', sans-serif;
 //   border: 1px solid #535D7E;
 // `;
-export function PieChart({onGenreSelect}) { // onGenreSelect 추가} {
-  
+export function PieChart({selectedGenre, responseData, setSelectedGenre}) { // onGenreSelect 추가} {
+  console.log('onGenreSelect prop in PieChart:', setSelectedGenre);
   const [selectedInfo, setSelectedInfo] = useState(''); // 클릭된 섹션 정보를 저장할 상태
   const options = {
     plugins: {
@@ -65,7 +65,8 @@ export function PieChart({onGenreSelect}) { // onGenreSelect 추가} {
 
       const clickedElementIndex = elements[0].index; // 클릭된 섹션의 인덱스
       const label = data.labels[clickedElementIndex]; // 클릭된 섹션의 라벨 (장르)
-      onGenreSelect(label); // 상위 컴포넌트의 함수 호출
+      console.log('Label:', label);
+      setSelectedGenre(label); // 상위 컴포넌트의 함수 호출
     },
   };
   return (

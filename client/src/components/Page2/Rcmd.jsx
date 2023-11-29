@@ -13,6 +13,26 @@ const TextInfo = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   font-family: 'Noto Sans KR', sans-serif;
   border: 1px solid #535D7E;
+  top: 11vh;
+  position: relative;
+`;
+const TextInfo2 = styled.div`
+  width: 40vw;
+  height: 11vh;
+  margin: 0 auto;
+  font-size: 24px;
+  color: #f4f3f3;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  font-family: 'Noto Sans KR', sans-serif;
+  border: 1px solid #535D7E;
+  margin-top: 10vh;
+  position: relative;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 const ImageInfo = styled.div`
   position: relative;
@@ -89,10 +109,12 @@ const ScrollContainer = styled.div`
   display: flex; // Flexbox를 사용하여 내부 아이템들을 가로로 배치
   overflow-x: auto; // 가로 스크롤 가능
   gap: 20px;
-  padding: 8vh;
+  padding: 2vh 8vh;
   margin: 0 auto;
-  justify-content: center;
-  width: 80vw;
+  position: relative;
+  margin-top: 11vh;
+  width: auto;
+  max-width: 82vw;
   height: 45vh;
   &::-webkit-scrollbar {
     // 스크롤바 스타일 설정
@@ -174,7 +196,13 @@ function Rcmd({selectedGenre}) {
       });
   }, [selectedGenre]);
 
-
+  const calculateScrollContainerPosition = (movieCount) => {
+    if (movieCount > 5) {
+      return '11vh'; // 원하는 위치로 설정
+    } else {
+      return '11vh'; // 다른 위치로 설정
+    }
+  };
   const ImageData = () => {};
 
   const GradeData = () => {};
@@ -184,7 +212,7 @@ function Rcmd({selectedGenre}) {
   return (
     <>
       {!selectedGenre && (
-        <TextInfo>Waiting...</TextInfo>
+        <TextInfo2>Waiting...</TextInfo2>
       )}
 
       {selectedGenre && ( // selectedGenre가 있을 때만 추천 영화를 표시합니다.
@@ -193,7 +221,13 @@ function Rcmd({selectedGenre}) {
           <Arrow direction="left" onClick={scrollLeft}>
             <MdChevronLeft size="3rem" />
           </Arrow>
-          <ScrollContainer ref={scrollRef}>
+          <ScrollContainer
+            ref={scrollRef}
+            style={{
+              marginTop: calculateScrollContainerPosition(movieDetails.length),
+              justifyContent: movieDetails.length <= 5 ? 'center' : 'flex-start'
+            }}
+          >
             {movieDetails.map((movie, index) => (
               <div key={index} style={{ minWidth: '200px' }}>
                 <ImageInfo onClick={() => ImageData(movie)}>

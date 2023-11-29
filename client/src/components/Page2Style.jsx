@@ -12,7 +12,7 @@ export const Container = styled.div`
 
 export const Body = styled.div`
   position: relative;
-  top: 11vh;
+  height: auto;
   color: #f4f3f3;
   background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
 `;

@@ -69,6 +69,8 @@ const ReservInfo = styled.button`
   background-color: #898FC0;
   color: black;
   font-family: 'Noto Sans KR', sans-serif;
+  font-style: normal;
+  font-weight: 600;
   transition: all 0.2s ease;
   &:hover {
     background: #4F526B;
@@ -85,14 +87,14 @@ const Rank = styled.div`
   position: absolute;
   top: 0px;
   left: 0px;
-  color: black;
+  color: #f3f3f3;
   font-weight: bold;
-  font-size: 32px;
-  background-color: #898FC0;
+  font-size: 42px;
+  // background-color: #898FC0;
   font-family: 'Inter';
-  padding: 3px;
+  padding: 0px 4px;
   border-radius: 10 0 0 0;
-  shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.99);
   z-index: 1; /* 포스터 이미지 위로 나타나도록 설정 */
 `;
 function BoxOffice() {

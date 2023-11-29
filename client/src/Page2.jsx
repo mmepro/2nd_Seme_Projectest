@@ -60,7 +60,11 @@ function Page2() {
 
       <Body>
         <Search />
-        <Chart selectedGenre={selectedGenre} responseData={responseData} />{' '}
+        <Chart
+          setSelectedGenre={setSelectedGenre}
+          selectedGenre={selectedGenre}
+          responseData={responseData}
+        />
         <Rcmd selectedGenre={selectedGenre} />
       </Body>
       <Footer />

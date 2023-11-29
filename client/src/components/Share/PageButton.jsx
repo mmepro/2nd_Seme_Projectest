@@ -16,6 +16,7 @@ const PageButtonInfo = styled.div`
   justify-content: center;
   color: #f4f3f3;
   cursor: pointer;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.99); /* 그림자 효과 추가 */
   &:hover {
     color: #f4f3f3;
     text-decoration: underline;

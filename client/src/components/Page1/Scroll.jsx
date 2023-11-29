@@ -15,7 +15,7 @@ const Page1ScrollButton = styled.button`
 
   &:hover {
     background: #535d7e;
-    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
     opacity: 100%;
   }
 
@@ -44,7 +44,7 @@ function Page1Scroll() {
       {count > 0 && (
         <Page1ScrollButton
           id='scrollLeft'
-          style={{ left: '3vw', top: '145vh' }}
+          style={{ left: '3vw', top: '155vh' }}
           onClick={scrollLeft}
         >
           <FontAwesomeIcon icon={faAngleLeft} color="white" />
@@ -54,7 +54,7 @@ function Page1Scroll() {
       {count < 4 && (
         <Page1ScrollButton
           id='scrollRight'
-          style={{ right: '3vw', top: '145vh'  }}
+          style={{ right: '3vw', top: '155vh'  }}
           onClick={scrollRight}
         >
           <FontAwesomeIcon icon={faAngleRight} color="white" />

@@ -9,7 +9,7 @@ const ImageContainer = styled.div`
       rgba(0, 0, 0, 0.65) 100%
     ),
     url(${props => props.image}), #1c1c1c;
-  height: 80vh;
+  height: 100vh;
   background-size: 100%, cover;
   background-position: center,top;
   width: 100%;
@@ -22,11 +22,13 @@ const ImageContainer = styled.div`
     margin-left: 2rem;
 
     h2 {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
       color: white;
       font-family: 'Noto Sans KR', sans-serif;
     }
 
     p {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
       color: white;
       font-size: 1rem;
       font-family: 'Noto Sans KR', sans-serif;

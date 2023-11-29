@@ -12,10 +12,9 @@ export const Container = styled.div`
 
 export const Body = styled.div`
   position: relative;
-  top: 11vh;
   color: #f4f3f3;
   background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
-  overflow-y: visible;
+  overflow-y: hidden;
   overflow-x: hidden;
 `;
 
@@ -39,7 +38,7 @@ height: 11vh;
 left: 0px;
 top: 0;
 z-index: 999;
-background: ${({ isvisible }) => (isvisible ? 'rgba(28, 30, 44, 1)' : 'rgba(28, 30, 44, 0.5)')};
+background: ${({ isvisible }) => (isvisible ? 'rgba(28, 30, 44, 0)' : 'rgba(28, 30, 44, 0.99)')};
  transition: background 0.5s ease; /* 배경 전환에 애니메이션 추가 */
 `;
 
@@ -50,7 +49,7 @@ export const Logo = styled.div`
   left: 6vw;
   transition: transform 0.5s ease-in-out;
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.1); /* 마우스 호버 시 1.1배 확대 효과 */
     cursor: pointer;
   }
 
@@ -67,6 +66,17 @@ export const Logo = styled.div`
   }
 `;
 
-
+  
+export const Footer = styled.footer`
+  text-align: center;
+  width: 100%;
+  padding: 1vh 0;
+  position: relative;
+  background-color: #f0f0f0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #333;
+  top: auto !important;
+`;
 
 

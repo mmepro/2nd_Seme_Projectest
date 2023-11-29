@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'; // Import useEffect and useState
 import dayjs from "dayjs";
 import 'dayjs/locale/ko';
 dayjs.locale('ko');
+import {Grid} from "react-loader-spinner"; 
 
 const ImageInfo = styled.div`
   position: absolute;
@@ -97,10 +98,17 @@ const Rank = styled.div`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.99);
   z-index: 1; /* 포스터 이미지 위로 나타나도록 설정 */
 `;
+
+const GridContainer = styled.div`
+  display: flex; /* Flexbox 사용 */
+  justify-content: space-between;
+`;
+
 function BoxOffice() {
   const [movieData, setMovieData] = useState([]);
   const [moviePost, setMoviePost] = useState([]);
   const [currentDate, setCurrentDate] = useState(dayjs().subtract(1, 'day').format('YYYYMMDD'));
+  const [isLoading, setIsLoading] = useState(true);
 
 
   const getMovies = async () => {
@@ -162,7 +170,7 @@ function BoxOffice() {
 
   useEffect(() => {
     if (movieData.length > 0) {
-      getPost(movieData).then(setMoviePost);
+      getPost(movieData).then(setMoviePost).finally(() => setIsLoading(false));
     }
   }, [movieData]);
 
@@ -174,17 +182,27 @@ function BoxOffice() {
 
   return (
     <>
-      {moviePost.map((movie, index) => (
-        <ImageInfo
-          key={index}
-          style={{ left: `${index * 291}px`, top: '0px' }}
-          onClick={ImageData}
-        >
-          <PosterImage src={movie.posterUrl} alt={movie.title} />
-          <Rank>{index + 1}</Rank>
-          {/* <Title>{movie.title}</Title> Display the movie title */}
-        </ImageInfo>
-      ))}
+      {isLoading ? (  
+        <GridContainer>
+            <Grid color="#2f5792" height={350} width={200} />
+            <Grid color="#2f5792" height={350} width={200} />
+            <Grid color="#2f5792" height={350} width={200} />
+            <Grid color="#2f5792" height={350} width={200} />
+            <Grid color="#2f5792" height={350} width={200} />
+        </GridContainer>
+      ) : (
+  
+        moviePost.map((movie, index) => (
+          <ImageInfo
+            key={index}
+            style={{ left: `${index * 291}px`, top: '0px' }}
+            onClick={ImageData}
+          >
+            <PosterImage src={movie.posterUrl} alt={movie.title} />
+            <Rank>{index + 1}</Rank>
+          </ImageInfo>
+        ))
+      )}
 
       {moviePost.map((movie, index) => (
         <GradeInfo
@@ -198,7 +216,10 @@ function BoxOffice() {
       ))}
 
       {moviePost.map((movie, index) => (
-        <Link key={index} to={`/page4?voteAvg=${movie.vote_average}&posterUrl=${movie.posterUrl}&directorName=${movie.director}&releaseDate=${movie.release_date}&genres=${movie.genres}&title=${movie.title}`}>
+        <Link
+          key={index}
+          to={`/page4?voteAvg=${movie.vote_average}&posterUrl=${movie.posterUrl}&directorName=${movie.director}&releaseDate=${movie.release_date}&genres=${movie.genres}&title=${movie.title}`}
+        >
           <ReservInfo
             style={{ left: `${index * 291 + 75}px`, top: '295px' }}
             onClick={ReservData}
@@ -206,7 +227,6 @@ function BoxOffice() {
             예매
           </ReservInfo>
         </Link>
-        
       ))}
     </>
   );

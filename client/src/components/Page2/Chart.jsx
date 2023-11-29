@@ -69,7 +69,7 @@ function Chart({ setSelectedGenre }) {
   return (
     <ChartContainer>
       <ChartTopInfo>
-        {data?.[0]?.username}님의 관람 기록중
+        {localStorage.username}님의 관람 기록중
         <br /> 가장 많이 보신 장르 top3입니다.
       </ChartTopInfo>
       <ChartImage>

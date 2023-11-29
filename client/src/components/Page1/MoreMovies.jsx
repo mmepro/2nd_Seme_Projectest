@@ -19,8 +19,7 @@ const MoviesGrid = styled.div`
 const MovieContainer = styled.div`
   position: relative; // 이제 MovieContainer는 position context를 제공합니다.
   width: 194px;
-  height: 312px; // GradeInfo와 ReservInfo를 포함할 공간을 확보해야 합니다.
-  background: #d9d9d9;
+  height: 295px; // GradeInfo와 ReservInfo를 포함할 공간을 확보해야 합니다.
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   display: flex;
@@ -29,13 +28,13 @@ const MovieContainer = styled.div`
   margin-bottom: 20px; // GradeInfo와 ReservInfo가 아래쪽에 위치할 공간을 확보합니다.
 `;
 
-
-
 const ImageInfo = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  position: absolute;
+  width: 194px;
+  height: 285px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+  overflow: hidden; /* Ensure the image doesn't overflow the div */
 `;
 
 const GradeInfo = styled.div`

@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'; // Import useEffect and useState
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
+import axios from 'axios';
 dayjs.locale('ko');
 import {Grid} from "react-loader-spinner"; 
 
@@ -26,7 +27,7 @@ const GradeInfo = styled.div`
   position: absolute;
   width: 65px;
   height: 27px;
-  background: #1C1E2C;
+  background: #1c1e2c;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   font-family: 'Inter';
@@ -35,8 +36,7 @@ const GradeInfo = styled.div`
   font-size: ${(props) => {
     if (props.rating == 0) {
       return '17px';
-    } 
-    else {
+    } else {
       return '20px';
     }
   }};
@@ -50,12 +50,10 @@ const GradeInfo = styled.div`
       return '#6BCB77';
     } else if (props.rating >= 6.5) {
       return '#FFD93D';
-    }
-    else {
+    } else {
       return '#FF6B6B';
     }
   }};
-
 `;
 
 const ReservInfo = styled.button`
@@ -67,14 +65,14 @@ const ReservInfo = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  background-color: #898FC0;
+  background-color: #898fc0;
   color: black;
   font-family: 'Noto Sans KR', sans-serif;
   font-style: normal;
   font-weight: 600;
   transition: all 0.2s ease;
   &:hover {
-    background: #4F526B;
+    background: #4f526b;
     transform: translateY(+2px); // 클릭 유도를 위한 애니메이션 효과
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   }
@@ -107,9 +105,10 @@ const GridContainer = styled.div`
 function BoxOffice() {
   const [movieData, setMovieData] = useState([]);
   const [moviePost, setMoviePost] = useState([]);
-  const [currentDate, setCurrentDate] = useState(dayjs().subtract(1, 'day').format('YYYYMMDD'));
   const [isLoading, setIsLoading] = useState(true);
-
+  const [currentDate, setCurrentDate] = useState(
+    dayjs().subtract(1, 'day').format('YYYYMMDD')
+  );
 
   const getMovies = async () => {
     // searchName 파라미터 추가
@@ -139,18 +138,24 @@ function BoxOffice() {
           `${URL}/movie/${movie.id}?api_key=${KEY}&language=ko-KR&append_to_response=credits`
         );
         const movieDetailsJson = await movieDetailsResponse.json();
-        const director = movieDetailsJson.credits.crew.find((person) => person.job === 'Director');
-        const genres = movieDetailsJson.genres.slice(0, 2).map((genre) => genre.name);
+        const director = movieDetailsJson.credits.crew.find(
+          (person) => person.job === 'Director'
+        );
+        const genres = movieDetailsJson.genres
+          .slice(0, 2)
+          .map((genre) => genre.name);
         return {
           title,
-          posterUrl: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : null,
+          posterUrl: movie.poster_path
+            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+            : null,
           vote_average: movie.vote_average,
-          release_date : movie.release_date,
+          release_date: movie.release_date,
           director: director ? director.name : 'Director not found',
           genres: genres.join(' / '),
         };
       }
-  
+
       // Return a placeholder if the movie is not found
       return {
         title,
@@ -162,7 +167,6 @@ function BoxOffice() {
     });
     return Promise.all(promises);
   };
-  
 
   useEffect(() => {
     getMovies();
@@ -178,7 +182,29 @@ function BoxOffice() {
 
   const GradeData = () => {};
 
-  const ReservData = () => {};
+  const ReservData = async (movieTitle) => {
+    try {
+      const selectedTitle = movieTitle;
+
+      console.log('title', selectedTitle);
+
+      const headers = {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      };
+
+      console.log('headers : ', headers);
+
+      const response = await axios.post(
+        'http://localhost:3000/movieView',
+        { title: selectedTitle },
+        { headers }
+      );
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -222,7 +248,7 @@ function BoxOffice() {
         >
           <ReservInfo
             style={{ left: `${index * 291 + 75}px`, top: '295px' }}
-            onClick={ReservData}
+            onClick={() => ReservData(movie.title)}
           >
             예매
           </ReservInfo>

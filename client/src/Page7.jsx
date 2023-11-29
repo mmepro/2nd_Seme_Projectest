@@ -13,7 +13,9 @@ import MovieDetailsModal from './components/Page7/MovieDetailsModal';
 import SelectedMoviesDisplay from './components/Page7/SelectedMoviesDisplay';
 import RecommendationsDisplay from './components/Page7/RecommendationsDisplay';
 import { Link } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 import Footer from './components/Share/Footer';
+import Member from './components/Share/Member';
 
 function Page7() {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);

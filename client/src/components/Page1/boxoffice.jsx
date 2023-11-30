@@ -237,7 +237,9 @@ function BoxOffice() {
           onClick={GradeData}
           rating={movie.vote_average} // Pass the rating as a prop
         >
-          {movie.vote_average === 0 ? 'X.X' : movie.vote_average.toFixed(1)}
+          {movie.vote_average === 0 ? '합산중' : 
+          movie.vote_average?.toFixed(1)}
+          {/* {movie.vote_average} */}
         </GradeInfo>
       ))}
 

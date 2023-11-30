@@ -6,6 +6,7 @@ export const Container = styled.div`
 `;
 export const Body = styled.div`
   position: relative;
+  display: flex;
   top: 11vh;
   color: #f4f3f3;
   background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
@@ -91,12 +92,10 @@ export const Logo = styled.div`
 `;
 
 export const TextBox = styled.div`
-  position: absolute;
+  position: relative;
   height: 559px;
-  left: 880px;
-  top: 30px;
-  padding-left: 20px;
-  padding-top: 30px;
+  left: 15vw;
+  top: 10vh;
   font-size: 27px;
   font-weight: bold;
   line-height: 50px;
@@ -112,7 +111,7 @@ export const StyledButton = styled.button`
   color: white; /* Dark text color for the button */
   font-weight: bold;
   font-size: 30px;
-  border-radius: 5px; /* Rounded corners for the button */
+  border-radius: 10px; /* Rounded corners for the button */
   border: 1px solid #F4F3F3;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;

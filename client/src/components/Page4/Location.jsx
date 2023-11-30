@@ -1,23 +1,27 @@
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import {Rings} from "react-loader-spinner"; 
+
 
 const MapWrap = styled.div`
   position: relative;
-  width: 777px;
-  height: 589px;
-  left: 60px;
-  top: 30px;
+  width: 720px;
+  height: 420px;
+  left: 8vw;
+  top: 8vh;
   background: #2a2f42;
   border: 1px solid #f4f3f3;
+  border-radius: 10px;
 `;
 
 const Map = styled.div`
   position: absolute;
-  width: 744px;
-  height: 560px;
-  left: 19px;
-  top: 15px;
-  text-align: center;
+  width: 700px;
+  height: 400px;
+  left: 10px;
+  top: 10px;
+  border-radius: 5px;
+  font-size: 36px;
 `;
 
 const MenuWrap = styled.div`
@@ -59,7 +63,7 @@ export const StyledButton = styled.button`
   color: white; /* Dark text color for the button */
   font-weight: bold;
   font-size: 30px;
-  border-radius: 5px; /* Rounded corners for the button */
+  border-radius: 10px; /* Rounded corners for the button */
   border: 1px solid #F4F3F3;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
@@ -74,7 +78,16 @@ export const StyledButton = styled.button`
   }
 `;
 
-const LoadingText = styled.h1``;
+const LoaderWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Option = styled.div`
   text-align: center;
@@ -156,7 +169,7 @@ export default function MapTest({onDataChange}) {
         var ps = new window.kakao.maps.services.Places();
         ps.keywordSearch('근처 영화관', placesSearchCB, {
           location: location,
-          radius: 10000,
+          radius: 3000,
         });
       };
 
@@ -353,8 +366,15 @@ export default function MapTest({onDataChange}) {
 
   return (
     <MapWrap>
-      <LoadingText>Loading..</LoadingText>
-      <Map ref={mapElement} id="map"></Map>
+      <Map ref={mapElement} id="map">
+        <LoaderWrapper>
+          <Rings
+            color="#2f5792" 
+            height={200} 
+            width={200}
+            />
+        </LoaderWrapper>
+      </Map>
 
       <MenuWrap id="menu_wrap" className="bg_white">
         <Option className="option">

@@ -211,7 +211,6 @@ function Page4() {
                 <br />
                 <span>원하시는 버튼을 눌러주세요.</span>
                 <br />
-                <br />
                 <StyledButton onClick={ShowMovieData}>
                   실시간 예매 현황
                 </StyledButton>
@@ -220,7 +219,6 @@ function Page4() {
                   위치 새로고침
                 </StyledButton>
                 <br />
-                <StyledButton>위치 직접 설정</StyledButton>
               </TextBox>
             </>
           )}

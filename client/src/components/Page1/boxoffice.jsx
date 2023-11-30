@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'; // Import useEffect and useState
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
+import axios from 'axios';
 dayjs.locale('ko');
+import {Grid} from "react-loader-spinner"; 
 
 const ImageInfo = styled.div`
   position: absolute;
@@ -25,7 +27,7 @@ const GradeInfo = styled.div`
   position: absolute;
   width: 65px;
   height: 27px;
-  background: #1C1E2C;
+  background: #1c1e2c;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   font-family: 'Inter';
@@ -34,8 +36,7 @@ const GradeInfo = styled.div`
   font-size: ${(props) => {
     if (props.rating == 0) {
       return '17px';
-    } 
-    else {
+    } else {
       return '20px';
     }
   }};
@@ -49,12 +50,10 @@ const GradeInfo = styled.div`
       return '#6BCB77';
     } else if (props.rating >= 6.5) {
       return '#FFD93D';
-    }
-    else {
+    } else {
       return '#FF6B6B';
     }
   }};
-
 `;
 
 const ReservInfo = styled.button`
@@ -66,14 +65,14 @@ const ReservInfo = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  background-color: #898FC0;
+  background-color: #898fc0;
   color: black;
   font-family: 'Noto Sans KR', sans-serif;
   font-style: normal;
   font-weight: 600;
   transition: all 0.2s ease;
   &:hover {
-    background: #4F526B;
+    background: #4f526b;
     transform: translateY(+2px); // 클릭 유도를 위한 애니메이션 효과
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   }
@@ -97,11 +96,24 @@ const Rank = styled.div`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.99);
   z-index: 1; /* 포스터 이미지 위로 나타나도록 설정 */
 `;
+
+const GridContainer = styled.div`
+  display: flex; /* Flexbox 사용 */
+  justify-content: space-between;
+`;
+
 function BoxOffice() {
   const [movieData, setMovieData] = useState([]);
   const [moviePost, setMoviePost] = useState([]);
+<<<<<<< HEAD
   const [currentDate, setCurrentDate] = useState(dayjs().subtract(1, 'day').format('YYYYMMDD'));
   
+=======
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentDate, setCurrentDate] = useState(
+    dayjs().subtract(1, 'day').format('YYYYMMDD')
+  );
+>>>>>>> 726f0e745dbeff52362e7f6ce69fab084514c6b1
 
   const getMovies = async () => {
     // searchName 파라미터 추가
@@ -131,18 +143,24 @@ function BoxOffice() {
           `${URL}/movie/${movie.id}?api_key=${KEY}&language=ko-KR&append_to_response=credits`
         );
         const movieDetailsJson = await movieDetailsResponse.json();
-        const director = movieDetailsJson.credits.crew.find((person) => person.job === 'Director');
-        const genres = movieDetailsJson.genres.slice(0, 2).map((genre) => genre.name);
+        const director = movieDetailsJson.credits.crew.find(
+          (person) => person.job === 'Director'
+        );
+        const genres = movieDetailsJson.genres
+          .slice(0, 2)
+          .map((genre) => genre.name);
         return {
           title,
-          posterUrl: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : null,
+          posterUrl: movie.poster_path
+            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+            : null,
           vote_average: movie.vote_average,
-          release_date : movie.release_date,
+          release_date: movie.release_date,
           director: director ? director.name : 'Director not found',
           genres: genres.join(' / '),
         };
       }
-  
+
       // Return a placeholder if the movie is not found
       return {
         title,
@@ -154,7 +172,6 @@ function BoxOffice() {
     });
     return Promise.all(promises);
   };
-  
 
   useEffect(() => {
     getMovies();
@@ -162,7 +179,7 @@ function BoxOffice() {
 
   useEffect(() => {
     if (movieData.length > 0) {
-      getPost(movieData).then(setMoviePost);
+      getPost(movieData).then(setMoviePost).finally(() => setIsLoading(false));
     }
   }, [movieData]);
 
@@ -170,24 +187,53 @@ function BoxOffice() {
 
   const GradeData = () => {};
 
-  const ReservData = (movie) => {
-    alert(`예매하기: "${movie.title}"`);
-    // 여기에 예매와 관련된 로직을 추가할 수 있습니다.
+  const ReservData = async (movieTitle) => {
+    try {
+      const selectedTitle = movieTitle;
+
+      console.log('title', selectedTitle);
+
+      const headers = {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      };
+
+      console.log('headers : ', headers);
+
+      const response = await axios.post(
+        'http://localhost:3000/movieView',
+        { title: selectedTitle },
+        { headers }
+      );
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <>
-      {moviePost.map((movie, index) => (
-        <ImageInfo
-          key={index}
-          style={{ left: `${index * 291}px`, top: '0px' }}
-          onClick={ImageData}
-        >
-          <PosterImage src={movie.posterUrl} alt={movie.title} />
-          <Rank>{index + 1}</Rank>
-          {/* <Title>{movie.title}</Title> Display the movie title */}
-        </ImageInfo>
-      ))}
+      {isLoading ? (  
+        <GridContainer>
+            <Grid color="#2f5792" height={350} width={200} />
+            <Grid color="#2f5792" height={350} width={200} />
+            <Grid color="#2f5792" height={350} width={200} />
+            <Grid color="#2f5792" height={350} width={200} />
+            <Grid color="#2f5792" height={350} width={200} />
+        </GridContainer>
+      ) : (
+  
+        moviePost.map((movie, index) => (
+          <ImageInfo
+            key={index}
+            style={{ left: `${index * 291}px`, top: '0px' }}
+            onClick={ImageData}
+          >
+            <PosterImage src={movie.posterUrl} alt={movie.title} />
+            <Rank>{index + 1}</Rank>
+          </ImageInfo>
+        ))
+      )}
 
       {moviePost.map((movie, index) => (
         <GradeInfo
@@ -196,20 +242,32 @@ function BoxOffice() {
           onClick={GradeData}
           rating={movie.vote_average} // Pass the rating as a prop
         >
+<<<<<<< HEAD
           {movie.vote_average === 0 ? 'X.X' : movie.vote_average?.toFixed(1)}
+=======
+          {movie.vote_average === 0 ? '합산중' : 
+          movie.vote_average?.toFixed(1)}
+          {/* {movie.vote_average} */}
+>>>>>>> 726f0e745dbeff52362e7f6ce69fab084514c6b1
         </GradeInfo>
       ))}
 
       {moviePost.map((movie, index) => (
-        <Link key={index} to={`/page4?voteAvg=${movie.vote_average}&posterUrl=${movie.posterUrl}&directorName=${movie.director}&releaseDate=${movie.release_date}&genres=${movie.genres}&title=${movie.title}`}>
+        <Link
+          key={index}
+          to={`/page4?voteAvg=${movie.vote_average}&posterUrl=${movie.posterUrl}&directorName=${movie.director}&releaseDate=${movie.release_date}&genres=${movie.genres}&title=${movie.title}`}
+        >
           <ReservInfo
             style={{ left: `${index * 291 + 75}px`, top: '295px' }}
+<<<<<<< HEAD
             onClick={() => ReservData(movie)}
+=======
+            onClick={() => ReservData(movie.title)}
+>>>>>>> 726f0e745dbeff52362e7f6ce69fab084514c6b1
           >
             예매
           </ReservInfo>
         </Link>
-        
       ))}
     </>
   );

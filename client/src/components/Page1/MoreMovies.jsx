@@ -111,7 +111,7 @@ function MoreMovies() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const ReservData = (movie) => {
-    alert(`예매하기: ${movie.title}`);
+    alert(`예매하기: "${movie.title}"`);
   };
   
   const getMovies = async () => {
@@ -122,13 +122,38 @@ function MoreMovies() {
         `https://api.themoviedb.org/3/movie/now_playing?api_key=262b76947e7259fa05d3bd23195fd016&language=ko-KR&page=1`
       );
       const data = await res.json();
-      setMovieData(data.results.slice(0, 20));
+      const movies = data.results.slice(0, 20);
+      getAdditionalMovieInfo(movies);
     } catch (e) {
       setError(e.message);
     } finally {
       setIsLoading(false);
     }
   }
+  
+  const getAdditionalMovieInfo = async (movies) => {
+    const KEY = '0d38cc635c10e090910f3d7ea7194e05'; // TMDB API 키
+    const URL = 'https://api.themoviedb.org/3';
+    const promises = movies.map(async (movie) => {
+      const movieDetailsResponse = await fetch(
+        `${URL}/movie/${movie.id}?api_key=${KEY}&language=ko-KR&append_to_response=credits`
+      );
+      const movieDetailsJson = await movieDetailsResponse.json();
+      const director = movieDetailsJson.credits.crew.find((person) => person.job === 'Director');
+      const genres = movieDetailsJson.genres.slice(0, 2).map((genre) => genre.name);
+      return {
+        title: movie.title,
+        posterUrl: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : null,
+        vote_average: movie.vote_average,
+        release_date : movie.release_date,
+        director: director ? director.name : 'Director not found',
+        genres: genres.join(' / '),
+      };
+    });
+    const moviesWithAdditionalInfo = await Promise.all(promises);
+    setMovieData(moviesWithAdditionalInfo);
+  };
+  
 
   useEffect(() => {
     getMovies();
@@ -146,7 +171,7 @@ function MoreMovies() {
       <MoviesGrid>
       {movieData.map((movie, index) => (
         <MovieContainer key={movie.id} index={index}>
-          <ImageInfo src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`Poster of ${movie.title}`} />
+          <ImageInfo src={`https://image.tmdb.org/t/p/w500/${movie.posterUrl}`} alt={`Poster of ${movie.title}`} />
           <GradeInfo rating={movie.vote_average}>
             {movie.vote_average === 0 ? 'X.X' : movie.vote_average.toFixed(1)}
           </GradeInfo>

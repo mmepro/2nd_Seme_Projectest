@@ -2,40 +2,64 @@ import React from 'react';
 import styled from 'styled-components';
 // Styled container with custom scrollbar
 const ScrollContainer = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-padding-left: 20px;
-overflow-x: auto;
-gap: 20px; // Adjust the gap between posters as needed
-padding: 20px;
-margin: 0 auto; // Centers the scroll container within its parent
-width: 80%; // Take up 100% of the parent width
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 20px;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px;
+  margin: 0 auto;
+  width: 80%;
 
-position: relative;
   &::-webkit-scrollbar {
-    height: 15px;
+    height: 12px; // 스크롤바 높이 조정
     background-color: #2C3440;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #1c1e2c;
+    background-color: #4F5B93; // 스크롤바 색상 조정
     border-radius: 10px;
-    border: 3px solid #2C3440;
+    border: 2px solid #2C3440;
     &:hover {
-      background-color: #f4f3f3; // Changes the thumb color when hovered
+      background-color: #6D7BA4; // 호버 색상 변경
     }
   }
 
   &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; // Adds a shadow effect inside the track
-    border-radius: 10px; // Rounded corners for the scrollbar track
+    box-shadow: inset 0 0 5px #3C4452; // 트랙 내부에 그림자 효과 적용
+    border-radius: 10px;
   }
 
-  /* For other browsers like Firefox */
   scrollbar-width: thin;
-  scrollbar-color: #1c1e2c #2C3440;
+  scrollbar-color: #4F5B93 #2C3440;
 `;
+
+const TitleButton = styled.button`
+  margin-top: 5px;
+  font-size: 1rem;
+  width: 200px;
+  height: 40px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(45deg, #4F5B93, #2A2F42);
+  color: #f4f3f3;
+  font-family: 'Noto Sans KR', sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+
+  &:hover {
+    background-color: #1C1E2C;
+    transform: translateY(-2px); // Slight lift on hover
+  }
+
+  &:active {
+    transform: translateY(1px); // Depress button on click
+  }
+`;
+
 function RecommendationsDisplay({ recommendations, onMovieSelect }) {
   
    // Style for each individual item (movie)
@@ -61,9 +85,9 @@ function RecommendationsDisplay({ recommendations, onMovieSelect }) {
           {movie.poster_path && (
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} style={posterStyle} />
           )}
-          <button onClick={() => onMovieSelect(movie.title)} style={{ marginTop: '5px', fontSize: '1rem', width:'200px', height:'40px', whiteSpace:"nowrap", padding:'5px'}}>
+           <TitleButton onClick={() => onMovieSelect(movie.title)}>
             {movie.title}
-          </button>
+          </TitleButton>
         </div>
       ))}
     </ScrollContainer>

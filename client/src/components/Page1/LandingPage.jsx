@@ -9,11 +9,10 @@ const CustomButton = styled.button`
   top: 85vh;
   right: 2.5vw;
   z-index: 500;
-  background-color: #1c1e2c;
+  background-color: transparent;
   border-radius: 50%;
-  padding: 1vh 2vw;
   cursor: pointer;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.99);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   transition: all 0.3s;
   font-family: 'Noto Sans KR', sans-serif;
 

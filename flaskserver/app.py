@@ -97,5 +97,36 @@ def recommend_playing_movies():
 
     return jsonify(recommendations=recommended_movies['title'].tolist())
 
+@app.route('/movies_history', methods=['GET'])
+def recommend_based_on_history():
+    # 쿼리 매개변수로 영화 제목 목록 가져오기 (예: 'title1,title2,title3,...')
+    history = request.args.get('history', '')
+    if history:
+        history_list = history.split(',')
+        all_recommendations = []
+
+        # 가중치 적용: 최근에 본 영화에 더 많은 가중치 부여
+        for i, title in enumerate(reversed(history_list)):
+            try:
+                recommendations = get_recommendations(title)
+                weighted_recommendations = [(rec, 1 / (i + 1)) for rec in recommendations.tolist()]
+                all_recommendations.extend(weighted_recommendations)
+            except KeyError:
+                # 영화 제목이 데이터셋에 없는 경우
+                continue
+
+        # 추천 목록에서 중복 제거 및 가중치 적용
+        recommendations_scores = Counter()
+        for rec, weight in all_recommendations:
+            recommendations_scores[rec] += weight
+
+        # 가중치에 따라 정렬된 추천 목록 반환
+        sorted_recommendations = [rec for rec, _ in recommendations_scores.most_common()]
+        return jsonify(recommendations=sorted_recommendations)
+    else:
+        # 영화 목록이 제공되지 않은 경우
+        return jsonify({"error": "No history provided"}), 400
+
+
 # if __name__ == '__main__':
 app.run(debug=True)

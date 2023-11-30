@@ -5,7 +5,7 @@ import styled from 'styled-components';
 function SelectedMoviesDisplay({ selectedMovies, getRecommendations }) {
   const MovieBox = styled.button`
   position: relative;
-  height: 280px;
+  height: 40vh;
   left: 10vw;
   display: flex; // Use flexbox
   /* flex-direction: row; // Align items horizontally */

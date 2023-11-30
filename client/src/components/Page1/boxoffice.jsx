@@ -101,7 +101,7 @@ function BoxOffice() {
   const [movieData, setMovieData] = useState([]);
   const [moviePost, setMoviePost] = useState([]);
   const [currentDate, setCurrentDate] = useState(dayjs().subtract(1, 'day').format('YYYYMMDD'));
-
+  
 
   const getMovies = async () => {
     // searchName 파라미터 추가
@@ -170,7 +170,10 @@ function BoxOffice() {
 
   const GradeData = () => {};
 
-  const ReservData = () => {};
+  const ReservData = (movie) => {
+    alert(`예매하기: "${movie.title}"`);
+    // 여기에 예매와 관련된 로직을 추가할 수 있습니다.
+  };
 
   return (
     <>
@@ -193,7 +196,7 @@ function BoxOffice() {
           onClick={GradeData}
           rating={movie.vote_average} // Pass the rating as a prop
         >
-          {movie.vote_average === 0 ? 'X.X' : movie.vote_average.toFixed(1)}
+          {movie.vote_average === 0 ? 'X.X' : movie.vote_average?.toFixed(1)}
         </GradeInfo>
       ))}
 
@@ -201,7 +204,7 @@ function BoxOffice() {
         <Link key={index} to={`/page4?voteAvg=${movie.vote_average}&posterUrl=${movie.posterUrl}&directorName=${movie.director}&releaseDate=${movie.release_date}&genres=${movie.genres}&title=${movie.title}`}>
           <ReservInfo
             style={{ left: `${index * 291 + 75}px`, top: '295px' }}
-            onClick={ReservData}
+            onClick={() => ReservData(movie)}
           >
             예매
           </ReservInfo>

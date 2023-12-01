@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function MovieDetailsModal({ movie, onClose }) {
+export default function MovieModal({ movie, onClose }) {
   if (!movie) return null;
 
   // Modal overlay styling
@@ -37,21 +37,26 @@ export default function MovieDetailsModal({ movie, onClose }) {
       height: 'auto', // Keep the aspect ratio
     };
 
-    // Updated style for the synopsis section
-    const synopsisStyle = {
-      textAlign: 'left', // Align text to the left
-      marginTop: '10px', // Margin at the top
-      maxHeight: '150px', // Maximum height for the synopsis section
-      overflowY: 'auto', // Show a scrollbar when the content overflows
-      padding: '10px', // Padding inside the scrollable area
-      borderRadius: '5px', // Optional: for rounded corners inside the scrollable area
-      backgroundColor: '#2A2F42', // Optional: different background color for synopsis
-      boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.1)', // Optional: subtle inner shadow
-      color: '#FFF', // Optional: text color
-      marginBottom: '10px', // Optional: space at the bottom
-      fontFamily: 'Notosans KR',
-    };
-
+    // // Updated style for the synopsis section
+    // const synopsisStyle = {
+    //   textAlign: 'left', // Align text to the left
+    //   marginTop: '10px', // Margin at the top
+    //   maxHeight: '150px', // Maximum height for the synopsis section
+    //   overflowY: 'auto', // Show a scrollbar when the content overflows
+    //   padding: '10px', // Padding inside the scrollable area
+    //   borderRadius: '5px', // Optional: for rounded corners inside the scrollable area
+    //   backgroundColor: '#2A2F42', // Optional: different background color for synopsis
+    //   boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.1)', // Optional: subtle inner shadow
+    //   color: '#FFF', // Optional: text color
+    //   marginBottom: '10px', // Optional: space at the bottom
+    //   fontFamily: 'Inter',
+    // };
+    const posterStyle = {
+        width: '300px',
+        height: '450px',
+        objectFit: 'cover',
+        borderRadius: '5px',
+      };
   const [youtubeVideoId, setYoutubeVideoId] = useState(null);
   const [showReview, setShowReview] = useState(false);
 
@@ -91,33 +96,33 @@ export default function MovieDetailsModal({ movie, onClose }) {
             allowFullScreen
           ></iframe>
         )}
-        {!showReview && movie.posterUrl && (
-          <img src={movie.posterUrl} alt={movie.title} style={imageStyle} />
+        {!showReview && movie.poster_path && (
+          <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} style={posterStyle} />
         )}
-        <p>평점 : {movie.vote_average}</p>
+        {/* <p>평점 : {movie.vote_average}</p> */}
         <div>
           <button
             onClick={handleReviewClick}
             value="preview"
-            style={{ margin: '5px' }}
+            style={{ margin: '10px' }}
           >
             예고편 보기
           </button>
           <button
             onClick={handleReviewClick}
             value="review"
-            style={{ margin: '5px' }}
+            style={{ margin: '10px'  }}
           >
             리뷰영상 보기
           </button>
         </div>
         {/* Display the synopsis */}
-        {movie.synopsis && (
+        {/* {movie.synopsis && (
           <div style={synopsisStyle}>
             <h4>줄거리 :</h4>
             <p>{movie.synopsis}</p>
           </div>
-        )}
+        )} */}
         <button onClick={onClose}>Close</button>
       </div>
     </div>

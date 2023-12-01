@@ -12,8 +12,8 @@ export const Container = styled.div`
 
 export const Body = styled.div`
   position: relative;
-  height: 100vh;
   color: #f4f3f3;
+  height: 100vh;
   background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
 `;
 

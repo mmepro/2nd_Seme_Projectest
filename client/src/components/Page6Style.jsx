@@ -10,10 +10,11 @@ export const Body = styled.div`
   position: relative;
   color: #f4f3f3;
   background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
+  
 `;
 
 export const Name = styled.div`
-position: absolute;
+position: relative;
 width: 149px;
 height: 53px;
 left: calc(50% - 149px/2 - 0.5px);
@@ -68,8 +69,9 @@ export const Logo = styled.div`
 `;;
 
 export const ResultContainer = styled.div`
+  font-family: 'Noto Sans KR', sans-serif;
   position: relative;
-  top: 21vh;
+  margin-top: 20vh;
   // position: absolute;
   // width: 1170px;
   // height: 450px;
@@ -81,16 +83,29 @@ export const ResultContainer = styled.div`
 `;
 
 export const ResultGroup = styled.div`
-  // display: flex;
-`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; // 각 항목 사이의 공간을 균등하게 조정
+  gap: 40px;
+  padding: 0 30px 60px; // 양쪽에 20px의 패딩 추가
+`;
+
+
 
 export const SearchText = styled.div`
   position: relative;
   top: 20vh;
-  // font-size: 20px;
+  font-size: 20px;
   // position: absolute;
-  // width: 885px;
-  // height: 72px;
-  // left: calc(50% - 885px / 2 - 0.5px);
+  width: 885px;
+  height: 72px;
+  left: calc(50% - 885px / 2 - 0.5px);
+  font-family: 'Noto Sans KR', sans-serif;
   // top: 140px;
 `
+export const MovieItem = styled.div`
+  flex: 1 1 calc(50% - 20px); // 한 줄에 두 아이템이 들어갈 수 있도록 계산
+  max-width: calc(50% - 20px); // 갭을 고려한 최대 너비
+  // 추가적인 스타일링...
+`;
+

@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import axios from 'axios';
 dayjs.locale('ko');
-import {Grid} from "react-loader-spinner"; 
+import { Grid } from 'react-loader-spinner';
 
 const ImageInfo = styled.div`
   position: absolute;
@@ -105,15 +105,10 @@ const GridContainer = styled.div`
 function BoxOffice() {
   const [movieData, setMovieData] = useState([]);
   const [moviePost, setMoviePost] = useState([]);
-<<<<<<< HEAD
-  const [currentDate, setCurrentDate] = useState(dayjs().subtract(1, 'day').format('YYYYMMDD'));
-  
-=======
   const [isLoading, setIsLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState(
     dayjs().subtract(1, 'day').format('YYYYMMDD')
   );
->>>>>>> 726f0e745dbeff52362e7f6ce69fab084514c6b1
 
   const getMovies = async () => {
     // searchName 파라미터 추가
@@ -179,7 +174,9 @@ function BoxOffice() {
 
   useEffect(() => {
     if (movieData.length > 0) {
-      getPost(movieData).then(setMoviePost).finally(() => setIsLoading(false));
+      getPost(movieData)
+        .then(setMoviePost)
+        .finally(() => setIsLoading(false));
     }
   }, [movieData]);
 
@@ -213,16 +210,15 @@ function BoxOffice() {
 
   return (
     <>
-      {isLoading ? (  
+      {isLoading ? (
         <GridContainer>
-            <Grid color="#2f5792" height={350} width={200} />
-            <Grid color="#2f5792" height={350} width={200} />
-            <Grid color="#2f5792" height={350} width={200} />
-            <Grid color="#2f5792" height={350} width={200} />
-            <Grid color="#2f5792" height={350} width={200} />
+          <Grid color="#2f5792" height={350} width={200} />
+          <Grid color="#2f5792" height={350} width={200} />
+          <Grid color="#2f5792" height={350} width={200} />
+          <Grid color="#2f5792" height={350} width={200} />
+          <Grid color="#2f5792" height={350} width={200} />
         </GridContainer>
       ) : (
-  
         moviePost.map((movie, index) => (
           <ImageInfo
             key={index}
@@ -242,13 +238,8 @@ function BoxOffice() {
           onClick={GradeData}
           rating={movie.vote_average} // Pass the rating as a prop
         >
-<<<<<<< HEAD
-          {movie.vote_average === 0 ? 'X.X' : movie.vote_average?.toFixed(1)}
-=======
-          {movie.vote_average === 0 ? '합산중' : 
-          movie.vote_average?.toFixed(1)}
+          {movie.vote_average === 0 ? '합산중' : movie.vote_average?.toFixed(1)}
           {/* {movie.vote_average} */}
->>>>>>> 726f0e745dbeff52362e7f6ce69fab084514c6b1
         </GradeInfo>
       ))}
 
@@ -259,11 +250,7 @@ function BoxOffice() {
         >
           <ReservInfo
             style={{ left: `${index * 291 + 75}px`, top: '295px' }}
-<<<<<<< HEAD
-            onClick={() => ReservData(movie)}
-=======
             onClick={() => ReservData(movie.title)}
->>>>>>> 726f0e745dbeff52362e7f6ce69fab084514c6b1
           >
             예매
           </ReservInfo>

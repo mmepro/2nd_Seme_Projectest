@@ -30,7 +30,7 @@ function Member() {
         {localStorage.username} 님
       </LoginInfo>
 
-      <Link to="/page5">
+      <Link to="/record">
         <LoginInfo style={{ left: '80vw', top: '2vh' }}>내 정보</LoginInfo>
       </Link>
 

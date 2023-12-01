@@ -7,12 +7,11 @@ export const Container = styled.div`
 export const Body = styled.div`
   position: relative;
   display: flex;
-  top: 11vh;
   color: #f4f3f3;
   background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
   overflow-y: visible;
   overflow-x: hidden;
-  height: 89vh;
+  height: auto;
 `;
 
 export const Reservation = styled.div`
@@ -27,7 +26,7 @@ export const Reservation = styled.div`
 `;
 
 export const DropDownOption = styled.select`
-position: absolute;
+position: relative;
 width: 143px;
 height: 31px;
 left: 621px;
@@ -46,7 +45,7 @@ color: #F4F3F3;
 `;
 
 export const TheatherGroup = styled.div`
-  position: absolute;
+  position: relative;
   width: 735px;
   height: 433px;
   left: 19px;
@@ -96,7 +95,8 @@ export const TextBox = styled.div`
   height: 559px;
   left: 15vw;
   top: 10vh;
-  font-size: 27px;
+  font-size: 24px;
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: bold;
   line-height: 50px;
 `;
@@ -115,7 +115,7 @@ export const StyledButton = styled.button`
   border: 1px solid #F4F3F3;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
-
+  position: relative;
   &:hover {
     background-color: #4F5B93; /* Change color on hover */
     transform: translateY(-2px); /* Slight lift on hover */
@@ -124,4 +124,17 @@ export const StyledButton = styled.button`
   &:active {
     transform: translateY(1px); /* Depress button on click */
   }
+`;
+
+export const MapContainer = styled.div`
+  position: relative;
+  top:11vh;
+  display: flex;
+  height: 100vh;
+`;
+
+export const TheaterContainer = styled.div`
+position: relative;
+top:11vh;
+height: 100vh;
 `;

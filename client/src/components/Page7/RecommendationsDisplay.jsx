@@ -43,7 +43,7 @@ const TitleButton = styled.button`
   padding: 5px;
   border: none;
   border-radius: 5px;
-  background: linear-gradient(45deg, #4F5B93, #2A2F42);
+  background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%);
   color: #f4f3f3;
   font-family: 'Noto Sans KR', sans-serif;
   white-space: nowrap;

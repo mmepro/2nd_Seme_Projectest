@@ -13,7 +13,7 @@ import Page6Scroll from './components/Page6/Scroll';
 import { useLocation } from 'react-router-dom';
 import Member from './components/Share/Member';
 import { jwtDecode } from 'jwt-decode';
-
+import { Link } from 'react-router-dom';
 function Page6() {
   // const [count, setCount] = useState(0)
 
@@ -73,9 +73,15 @@ function Page6() {
 
   return (
     <Container>
-      <Header>
+    <Header isvisible={isHeaderVisible}>
         <Logo>
-          <img width={'170px'} height={'110px'} src="logo.png"></img>
+          <Link to="/">
+            <img
+              src="/logo2.png"
+              alt="Logo"
+              style={{ width: '100%', height: '100%' }}
+            />
+          </Link>
         </Logo>
         <PageButton />
         {token ? <Member /> : <Login />}

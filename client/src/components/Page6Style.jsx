@@ -1,20 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  position: relative;
-  width: 1280px;
-  height: 832px;
-  color: #f4f3f3;
+  width: 100%; // 너비를 화면의 100%로 설정
+  height: 100vh; // 높이를 화면의 100%로 설정
 `;
+
 
 export const Body = styled.div`
   position: relative;
-  overflow: hidden;
-  width: 1280px;
-  height: 721px;
-  left: 0px;
-  top: 111px;
-  background: #2A2F42;
+  color: #f4f3f3;
+  background: linear-gradient(0deg, #2A2F42 30%, #1C1E2C 70%); // Adjust the gradient direction and color stops
 `;
 
 export const Name = styled.div`
@@ -37,40 +32,65 @@ color: #F4F3F3;
 `;
 
 export const Header = styled.div`
-position: absolute;
-width: 1280px;
-height: 123px;
+position: fixed;
+width: 100%;
+min-width: 500px;
+height: 11vh;
 left: 0px;
-top: 0px;
-background: #1C1E2C;
+top: 0;
+z-index: 999;
+background: ${({ isvisible }) => (isvisible ? 'rgba(28, 30, 44, 1)' : 'rgba(28, 30, 44, 0.5)')};
+ transition: background 0.5s ease; /* 배경 전환에 애니메이션 추가 */
 `;
 
 export const Logo = styled.div`
-position: absolute;
-left: 90px;
-display: flex;
-`;
+  position: fixed;
+  width: 110px; // Start with a base size
+  height: 11vh; // Maintain aspect ratio
+  left: 6vw;
+  transition: transform 0.5s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+
+  // Adjustments for smaller screens
+  @media (max-width: 768px) {
+    width: 16vw; // Larger percentage on smaller screens
+    height: 11vh; // Maintain aspect ratio
+  }
+
+  // Adjustments for very small screens
+  @media (max-width: 480px) {
+    width: 12vw; // Even larger percentage on very small screens
+    height: 11vh; // Maintain aspect ratio
+  }
+`;;
 
 export const ResultContainer = styled.div`
-  position: absolute;
-  width: 1170px;
-  height: 450px;
-  top: 190px;
-  left: 35px;
-  overflow: hidden;
-  padding: 20px;
-  border: 1px solid white;
+  position: relative;
+  top: 21vh;
+  // position: absolute;
+  // width: 1170px;
+  // height: 450px;
+  // top: 190px;
+  // left: 35px;
+  // overflow: hidden;
+  // padding: 20px;
+  // border: 1px solid white;
 `;
 
 export const ResultGroup = styled.div`
-  display: flex;
+  // display: flex;
 `
 
 export const SearchText = styled.div`
-  font-size: 20px;
-  position: absolute;
-  width: 885px;
-  height: 72px;
-  left: calc(50% - 885px / 2 - 0.5px);
-  top: 140px;
+  position: relative;
+  top: 20vh;
+  // font-size: 20px;
+  // position: absolute;
+  // width: 885px;
+  // height: 72px;
+  // left: calc(50% - 885px / 2 - 0.5px);
+  // top: 140px;
 `

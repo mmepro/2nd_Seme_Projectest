@@ -105,15 +105,10 @@ const GridContainer = styled.div`
 function BoxOffice() {
   const [movieData, setMovieData] = useState([]);
   const [moviePost, setMoviePost] = useState([]);
-<<<<<<< HEAD
-  const [currentDate, setCurrentDate] = useState(dayjs().subtract(1, 'day').format('YYYYMMDD'));
-  
-=======
   const [isLoading, setIsLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState(
     dayjs().subtract(1, 'day').format('YYYYMMDD')
   );
->>>>>>> 726f0e745dbeff52362e7f6ce69fab084514c6b1
 
   const getMovies = async () => {
     // searchName 파라미터 추가
@@ -188,6 +183,7 @@ function BoxOffice() {
   const GradeData = () => {};
 
   const ReservData = async (movieTitle) => {
+    alert(`예매하기: "${movieTitle}"`);
     try {
       const selectedTitle = movieTitle;
 
@@ -197,17 +193,23 @@ function BoxOffice() {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       };
 
-      console.log('headers : ', headers);
+      // 기존 로컬 서버로의 요청
+    const localServerResponse = await axios.post(
+      'http://localhost:3000/movieView',
+      { title: selectedTitle },
+      { headers }
+    );
+    console.log(localServerResponse.data);
 
-      const response = await axios.post(
-        'http://localhost:3000/movieView',
-        { title: selectedTitle },
-        { headers }
-      );
+     // Flask 서버로의 요청
+    const flaskServerResponse = await axios.get(
+      `http://localhost:5000/movies?title=${encodeURIComponent(selectedTitle)}`
+    );
+    console.log(flaskServerResponse.data);
 
-      console.log(response);
+      
     } catch (error) {
-      console.log(error);
+      console.log('Error in ReservData:', error);
     }
   };
 
@@ -242,13 +244,9 @@ function BoxOffice() {
           onClick={GradeData}
           rating={movie.vote_average} // Pass the rating as a prop
         >
-<<<<<<< HEAD
-          {movie.vote_average === 0 ? 'X.X' : movie.vote_average?.toFixed(1)}
-=======
           {movie.vote_average === 0 ? '합산중' : 
           movie.vote_average?.toFixed(1)}
           {/* {movie.vote_average} */}
->>>>>>> 726f0e745dbeff52362e7f6ce69fab084514c6b1
         </GradeInfo>
       ))}
 
@@ -259,11 +257,7 @@ function BoxOffice() {
         >
           <ReservInfo
             style={{ left: `${index * 291 + 75}px`, top: '295px' }}
-<<<<<<< HEAD
-            onClick={() => ReservData(movie)}
-=======
             onClick={() => ReservData(movie.title)}
->>>>>>> 726f0e745dbeff52362e7f6ce69fab084514c6b1
           >
             예매
           </ReservInfo>

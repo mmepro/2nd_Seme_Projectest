@@ -9,8 +9,11 @@ import {
   TextBox,
   StyledButton,
   DropDownOption,
+  MapContainer,
+  TheaterContainer,
 } from './components/Page4Style';
 // import Scroll from './components/Page4/Scroll';
+import RecommendedMoviesList from './components/Page4/RecommendedMoviesList';
 import Theather from './components/Page4/Theather';
 import Date from './components/Page4/Date';
 import PageButton from './components/Share/PageButton';
@@ -24,6 +27,7 @@ import megabox from './components/Page4/TN/megabox.json';
 // import axios from 'axios';
 import Member from './components/Share/Member';
 import { jwtDecode } from 'jwt-decode';
+import Footer from './components/Share/Footer';
 
 export const Page4Context = createContext();
 
@@ -172,7 +176,7 @@ function Page4() {
 
         <Body>
           {dataOpen && (
-            <>
+            <TheaterContainer>
               <MovieInfo
                 posterUrl={posterUrl}
                 voteAvg={voteAvg}
@@ -200,11 +204,11 @@ function Page4() {
                 </TheatherGroup>
                 {/* <Scroll /> */}
               </Reservation>
-            </>
+            </TheaterContainer>
           )}
 
           {mapOpen && (
-            <>
+            <MapContainer>
               <KakaoMap onDataChange={handleDataChange} />
               <TextBox>
                 <span>근처 영화관 검색결과입니다.</span>
@@ -220,9 +224,11 @@ function Page4() {
                 </StyledButton>
                 <br />
               </TextBox>
-            </>
+              <RecommendedMoviesList title={title} />
+            </MapContainer>
           )}
         </Body>
+        <Footer/>
       </Container>
   );
 }

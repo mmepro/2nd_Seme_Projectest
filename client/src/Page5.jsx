@@ -157,8 +157,8 @@ function Page5() {
           <div
             style={{
               position: 'relative',
-              top: '15vh',
-              right: '30vw',
+              top: '25.5vh',
+              right: '33vw',
             }}
           >
             <StyledRefreshIcon onClick={handleNextPage} />

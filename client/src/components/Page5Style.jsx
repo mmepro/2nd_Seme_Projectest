@@ -96,7 +96,6 @@ export const TopSection = styled.div`
   display: flex;
   margin-bottom: 20vh;
   position: relative;
-  top: 11vh;
   align-items: center; // 세로 중앙 정렬
   padding: 0 20px; // 필요한 경우 양쪽 패딩을 조정
 `;
@@ -111,8 +110,8 @@ export const Text1 = styled.div`
 position: relative;
 margin-bottom: 5vh;
 margin: 0 auto;
-top: 15vh;
-width: 430px;
+top: 25vh;
+width: 460px;
 display: flex;
 padding: 1vh 2vw;
 height: 50px;

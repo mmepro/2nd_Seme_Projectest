@@ -207,13 +207,13 @@ function Page7() {
             <hr style={{width:'80%'}}/>
             <h2
               style={{
-                paddingTop: '1rem',
+                paddingTop: '10vh',
                 textAlign: 'center',
                 color: '#FFF',
                 margin: '0',
               }}
             >
-              {selectedTitle && selectedTitle} 관련 영화
+              "{selectedTitle && selectedTitle}" 관련 영화
             </h2>
             </>
           )}

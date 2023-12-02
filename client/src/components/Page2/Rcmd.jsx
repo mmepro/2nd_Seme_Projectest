@@ -97,32 +97,50 @@ const ReservInfo = styled.button`
 const Arrow = styled.div`
   cursor: pointer;  
   position: absolute;
-  top: 80%;
+  top: 100vh;
+  width: 6vw;
   transform: translateY(-50%);
   z-index: 1000; // Ensure arrows are above other elements
   // Conditional styling based on props
   ${props => props.direction === 'left' ? 'left: 0;' : 'right: 0;'}
 `;
 
-// ScrollContainer 스타일링 개선
 const ScrollContainer = styled.div`
-  display: flex; // Flexbox를 사용하여 내부 아이템들을 가로로 배치
-  overflow-x: auto; // 가로 스크롤 가능
+  display: flex;
+  overflow-x: auto;
   gap: 20px;
   padding: 2vh 8vh;
   margin: 0 auto;
-  position: relative;
   margin-top: 11vh;
   width: auto;
   max-width: 82vw;
   height: 45vh;
+  position: relative;
+
   &::-webkit-scrollbar {
-    // 스크롤바 스타일 설정
+    height: 10px; // 스크롤바 높이 설정
+    background-color: #2C3440; // 스크롤바 배경 색상
   }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #4F5B93; // 스크롤바 썸(움직이는 부분) 색상
+    border-radius: 5px; // 썸 둥근 모서리
+    &:hover {
+      background-color: #6D7BA4; // 스크롤바 썸 호버 시 색상 변경
+    }
+  }
+
   &::-webkit-scrollbar-track {
-    // 스크롤바 스타일 설정
+    box-shadow: inset 0 0 5px grey; // 스크롤바 트랙 내부에 그림자 효과
+    border-radius: 10px; // 트랙 둥근 모서리
   }
+
+  /* Firefox를 위한 스크롤바 스타일 */
+  scrollbar-width: thin;
+  scrollbar-color: #4F5B93 #2C3440;
 `;
+
+
 
 function Rcmd({selectedGenre}) {
   

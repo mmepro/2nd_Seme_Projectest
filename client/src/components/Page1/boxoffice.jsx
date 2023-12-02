@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import axios from 'axios';
 dayjs.locale('ko');
-import {Grid} from "react-loader-spinner"; 
+import { Grid } from 'react-loader-spinner';
 
 const ImageInfo = styled.div`
   position: absolute;
@@ -175,7 +175,9 @@ function BoxOffice() {
 
   useEffect(() => {
     if (movieData.length > 0) {
-      getPost(movieData).then(setMoviePost).finally(() => setIsLoading(false));
+      getPost(movieData)
+        .then(setMoviePost)
+        .finally(() => setIsLoading(false));
     }
   }, [movieData]);
 
@@ -184,6 +186,7 @@ function BoxOffice() {
   const GradeData = () => {};
 
   const ReservData = async (movieTitle) => {
+    alert(`예매하기: "${movieTitle}"`);
     try {
       const selectedTitle = movieTitle;
 
@@ -193,32 +196,37 @@ function BoxOffice() {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       };
 
-      console.log('headers : ', headers);
+      // 기존 로컬 서버로의 요청
+    const localServerResponse = await axios.post(
+      'http://localhost:3000/movieView',
+      { title: selectedTitle },
+      { headers }
+    );
+    console.log(localServerResponse.data);
 
-      const response = await axios.post(
-        'http://localhost:3000/movieView',
-        { title: selectedTitle },
-        { headers }
-      );
+     // Flask 서버로의 요청
+    const flaskServerResponse = await axios.get(
+      `http://localhost:5000/movies?title=${encodeURIComponent(selectedTitle)}`
+    );
+    console.log(flaskServerResponse.data);
 
-      console.log(response);
+      
     } catch (error) {
-      console.log(error);
+      console.log('Error in ReservData:', error);
     }
   };
 
   return (
     <>
-      {isLoading ? (  
+      {isLoading ? (
         <GridContainer>
-            <Grid color="#2f5792" height={350} width={200} />
-            <Grid color="#2f5792" height={350} width={200} />
-            <Grid color="#2f5792" height={350} width={200} />
-            <Grid color="#2f5792" height={350} width={200} />
-            <Grid color="#2f5792" height={350} width={200} />
+          <Grid color="#2f5792" height={350} width={200} />
+          <Grid color="#2f5792" height={350} width={200} />
+          <Grid color="#2f5792" height={350} width={200} />
+          <Grid color="#2f5792" height={350} width={200} />
+          <Grid color="#2f5792" height={350} width={200} />
         </GridContainer>
       ) : (
-  
         moviePost.map((movie, index) => (
           <ImageInfo
             key={index}
@@ -238,8 +246,7 @@ function BoxOffice() {
           onClick={GradeData}
           rating={movie.vote_average} // Pass the rating as a prop
         >
-          {movie.vote_average === 0 ? '합산중' : 
-          movie.vote_average?.toFixed(1)}
+          {movie.vote_average === 0 ? '합산중' : movie.vote_average?.toFixed(1)}
           {/* {movie.vote_average} */}
         </GradeInfo>
       ))}

@@ -12,6 +12,7 @@ import {
   MapContainer,
   TheaterContainer,
 } from './components/Page4Style';
+import axios from 'axios';
 // import Scroll from './components/Page4/Scroll';
 import RecommendedMoviesList from './components/Page4/RecommendedMoviesList';
 import Theather from './components/Page4/Theather';
@@ -53,6 +54,24 @@ function Page4() {
   const [username, setUsername] = useState('');
   const [selection, setSelection] = useState('');
 
+  const getRecommendations = () => {
+    axios
+      .get(`http://127.0.0.1:5000/RcmAllMovie`)
+      .then(async (response) => {
+        const title = []
+        for (let i = 0; i < 10; i++) {
+          if (response.data[i]) {
+            title[i] = response.data[i].title
+          }
+        }
+        console.log(title);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error('There was an error!', error);
+      });
+  };
+
   // 드롭다운 선택
   const DropDown = (event) => {
     setSelection(event.target.value);
@@ -67,6 +86,7 @@ function Page4() {
       const decodedToken = jwtDecode(storedToken);
       setUsername(decodedToken.username);
     }
+    getRecommendations()
   }, []);
 
   // 많은 영화관중 주요 3사 영화관만 선별

@@ -37,7 +37,6 @@ position: relative;
   scrollbar-color: #1c1e2c #2C3440;
 `;
 function RecommendationsDisplay({ recommendations, onMovieSelect }) {
-    console.log(recommendations);
    // Style for each individual item (movie)
    const itemStyle = {
     display: 'flex',

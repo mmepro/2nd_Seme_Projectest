@@ -200,7 +200,11 @@ function Page7() {
             selectedMovies={selectedMovies}
             getRecommendations={getRecommendations}
           />
+          <br/>
+  
           {selectedTitle && (
+            <>
+            <hr style={{width:'80%'}}/>
             <h2
               style={{
                 paddingTop: '1rem',
@@ -211,6 +215,7 @@ function Page7() {
             >
               {selectedTitle && selectedTitle} 관련 영화
             </h2>
+            </>
           )}
           {selectedTitle && (
             <h3

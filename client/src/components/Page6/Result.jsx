@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 const ImageInfo = styled.div`
   position: absolute;
@@ -67,7 +66,6 @@ function Result() {
         >x.x</GradeInfo>
       ))}
 
-      <Link to="/page4">
         {[75, 366, 657, 948, 1239, 1530, 1821, 2112].map((left, index) => (
           <ReservInfo
             key={index}
@@ -75,7 +73,6 @@ function Result() {
             onClick={ReservData}
           >예매</ReservInfo>
         ))}
-      </Link>
     </>
   );
 }

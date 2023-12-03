@@ -31,7 +31,12 @@ function PageButton() {
   async function handleTest() {
     try {
       navigate('/page2');
-      const response = await axios.get('http://localhost:3000/userRecord/');
+      const response = await axios.get('http://localhost:3000/userRecord/', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      console.log('인증됐어요');
     } catch (error) {
       console.error('Error fetching data: ', error);
     }

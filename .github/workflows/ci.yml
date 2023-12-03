@@ -18,11 +18,10 @@ jobs:
       with:
         node-version: 14
 
-    - name: Change directory to client
-      run: cd client
-
     - name: Install dependencies
+      working-directory: ./client
       run: npm install
 
     - name: Build and test
+      working-directory: ./client
       run: npm run dev

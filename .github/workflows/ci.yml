@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: Change to Client Directory
+        run: cd client
+             
       - name: Checkout Repository
         uses: actions/checkout@v2
 
@@ -25,8 +29,7 @@ jobs:
         with:
           node-version: '14'
     
-      - name: Change to Client Directory
-        run: cd client    
+ 
 
       - name: Install Dependencies
         run: npm install

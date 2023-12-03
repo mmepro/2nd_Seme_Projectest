@@ -11,11 +11,13 @@ jobs:
 
     steps:
 
-      - name: Change to Client Directory
-        run: cd client
-             
+
+
       - name: Checkout Repository
         uses: actions/checkout@v2
+
+      - name: Change to Client Directory
+        run: cd client  
 
       - name: Cache node modules
         uses: actions/cache@v2

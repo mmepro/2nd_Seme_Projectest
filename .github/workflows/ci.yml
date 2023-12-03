@@ -1,4 +1,4 @@
-name: CI with Cache
+name: Build and Test
 
 on:
   push:
@@ -10,31 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 14
 
+    - name: Change directory to client
+      run: cd client
 
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    - name: Install dependencies
+      run: npm install
 
-      - name: Change to Client Directory
-        run: cd client  
-
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: |
-            client/node_modules # 경로를 프로젝트의 실제 경로로 수정
-          key: ${{ runner.os }}-node-${{ hashFiles('client/package-lock.json') }}
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-    
- 
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build and Test
-        run: npm run dev
+    - name: Build and test
+      run: npm run dev
